@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passtable", "Passtable.csproj", "{7878231D-1085-4555-B41A-B07E2F18DA4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7878231D-1085-4555-B41A-B07E2F18DA4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7878231D-1085-4555-B41A-B07E2F18DA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7878231D-1085-4555-B41A-B07E2F18DA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7878231D-1085-4555-B41A-B07E2F18DA4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {007E76C3-F36A-46CC-BFAF-EF0631957D85}
+	EndGlobalSection
+EndGlobal
