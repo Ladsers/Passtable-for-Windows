@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Passtable"
         mc:Ignorable="d"
-        Title="Passtable" Height="500" Width="700" MinWidth="550" MinHeight="200" Initialized="Window_Initialized">
+        Title="Passtable" Height="500" Width="700" MinWidth="550" MinHeight="200" Initialized="Window_Initialized" Icon="icon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="26px"/>
