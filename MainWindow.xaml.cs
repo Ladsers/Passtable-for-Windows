@@ -22,11 +22,13 @@ namespace Passtable
         public string Note { get; }
         public string Login { get; }
         public string Password { get; }
+        public string PseudoPassword { get; }
         public GridItem(string note, string login, string password)
         {
             Note = note;
             Login = login;
             Password = password;
+            PseudoPassword = "********";
         }
     }
 
@@ -58,10 +60,20 @@ namespace Passtable
         {
             if (gridMain.SelectedItem == null) return;
             int colID = gridMain.CurrentCell.Column.DisplayIndex;
-            string cellStr = (gridMain.SelectedCells[colID].Column.GetCellContent(gridMain.SelectedItem) as TextBlock)
-                .Text;
-            Clipboard.SetText(cellStr);
-
+            int rowID = gridMain.Items.IndexOf(gridMain.CurrentItem);
+            switch (colID)
+            {
+                case 0:
+                    Clipboard.SetText(gridItems[rowID].Note);
+                    break;
+                case 1:
+                    Clipboard.SetText(gridItems[rowID].Login);
+                    break;
+                case 2:
+                    Clipboard.SetText(gridItems[rowID].Password);
+                    break;
+            }
+            
             DataGridCell cell = gridMain.SelectedCells[colID].Column.GetCellContent(gridMain.SelectedItem).Parent as DataGridCell;
             Point coords = cell.PointToScreen(new Point(0, 0));
             ToolTip tt = new ToolTip();
@@ -89,6 +101,11 @@ namespace Passtable
             {
                 CellDataToClipboard();
             }
+        }
+
+        private void btnCopySuper_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

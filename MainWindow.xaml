@@ -28,7 +28,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="URL, place or note" Width="0.50*" Binding="{Binding Note}"/>
                 <DataGridTextColumn Header="Login" Width="0.30*" Binding="{Binding Login}"/>
-                <DataGridTextColumn Header="Password" Width="0.20*" Binding="{Binding Password}"/>
+                <DataGridTextColumn Header="Password" Width="0.20*" Binding="{Binding PseudoPassword}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Row="2">
@@ -69,7 +69,7 @@
                 <Button x:Name="btnEdit" Content= "Edit" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="7,0" Width="40"/>
                 <Button x:Name="btnDelete" Content="Delete" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="54"/>
             </Grid>
-            <Button x:Name="btnCopySuper" Content="Login -> Password" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Width="150"/>
+            <Button x:Name="btnCopySuper" Content="Login -> Password" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Width="150" Click="btnCopySuper_Click"/>
         </Grid>
     </Grid>
 </Window>
