@@ -22,9 +22,9 @@ namespace Passtable
 {
     public class GridItem
     {
-        public string Note { get; }
-        public string Login { get; }
-        public string Password { get; }
+        public string Note { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
         public string PseudoPassword { get; }
         public GridItem(string note, string login, string password)
         {
@@ -220,6 +220,72 @@ namespace Passtable
             if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.D)
             {
                 LogPassSystem();
+            }
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (lpSysRowID < 0)
+            {
+                MessageBox.Show("Nothing selected!", "Warning!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            lpSysWork = false;
+            UnhookWindowsHookEx(_hookID);
+            btnCopySuper.Content = "Login -> Password";
+            gridItems.RemoveAt(lpSysRowID);
+            lpSysRowID = -2;
+            gridMain.Items.Refresh();
+            btnSave.IsEnabled = true;
+            btnSaveAs.IsEnabled = true;
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var editForm = new EditGridWindow();
+            editForm.Owner = this;
+            editForm.Title = "Add new item";
+            if (editForm.ShowDialog() == true) 
+            {
+                gridItems.Add(new GridItem(editForm.tbNote.Text, editForm.tbLogin.Text, editForm.pbPassword.Password));
+                gridMain.Items.Refresh();
+                btnSave.IsEnabled = true;
+                btnSaveAs.IsEnabled = true;
+            }
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (lpSysRowID < 0)
+            {
+                MessageBox.Show("Nothing selected!", "Warning!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            lpSysWork = false;
+            UnhookWindowsHookEx(_hookID);
+            btnCopySuper.Content = "Login -> Password";
+
+            var editForm = new EditGridWindow();
+            editForm.Owner = this;
+            editForm.Title = "Edit item";
+            editForm.tbNote.Text = gridItems[lpSysRowID].Note;
+            editForm.tbLogin.Text = gridItems[lpSysRowID].Login;
+            editForm.pbPassword.Password = gridItems[lpSysRowID].Password;
+            if (editForm.ShowDialog() == true)
+            {
+                if (gridItems[lpSysRowID].Note != editForm.tbNote.Text ||
+                    gridItems[lpSysRowID].Login != editForm.tbLogin.Text ||
+                    gridItems[lpSysRowID].Password != editForm.pbPassword.Password)
+                {
+                    btnSave.IsEnabled = true;
+                    btnSaveAs.IsEnabled = true;
+                }
+                gridItems[lpSysRowID].Note = editForm.tbNote.Text;
+                gridItems[lpSysRowID].Login = editForm.tbLogin.Text;
+                gridItems[lpSysRowID].Password = editForm.pbPassword.Password;
+                gridMain.Items.Refresh();
             }
         }
     }
