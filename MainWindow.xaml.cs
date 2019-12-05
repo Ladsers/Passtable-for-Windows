@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -62,6 +64,8 @@ namespace Passtable
         int lpSysRowID;
         static bool lpSysWork;
         static string lpSysPassword;
+        string pathSave;
+        bool isOpen;
 
         static MainWindow mainWindow;
 
@@ -71,6 +75,7 @@ namespace Passtable
             gridMain.ItemsSource = gridItems;
             gridMain.ClipboardCopyMode = DataGridClipboardCopyMode.None;
             mainWindow = this;
+            pathSave = "";
         }
 
         private void Window_Initialized(object sender, EventArgs e)
@@ -78,10 +83,10 @@ namespace Passtable
             gridItems = new List<GridItem>();
             lpSysRowID = -2;
             lpSysWork = false;
-
+            isOpen = false;
             //Items for test
-            gridItems.Add(new GridItem("http://example.com/", "typicaluser@example.com", "THECAKEISALIE"));
-            for (int i = 0; i < 100; i++) gridItems.Add(new GridItem(i.ToString(), (i * 2).ToString(), (i * 3).ToString()));
+            //gridItems.Add(new GridItem("http://example.com/", "typicaluser@example.com", "THECAKEISALIE"));
+            //for (int i = 0; i < 100; i++) gridItems.Add(new GridItem(i.ToString(), (i * 2).ToString(), (i * 3).ToString()));
             //
         }
 
@@ -287,6 +292,130 @@ namespace Passtable
                 gridItems[lpSysRowID].Password = editForm.pbPassword.Password;
                 gridMain.Items.Refresh();
             }
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (pathSave == "")
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Passtable files|*.pst|All files(*.*)|*.*";
+                if (saveFileDialog.ShowDialog() == false)
+                    return;
+                pathSave = saveFileDialog.FileName;
+            }
+            try
+            {
+                string output = "ABBABBA" + "\n";
+                for (int i=0; i < gridItems.Count-1; i++) 
+                {
+                    output += gridItems[i].Note + "\t" + gridItems[i].Login + "\t" + gridItems[i].Password + "\n";
+                }
+                output += gridItems[gridItems.Count - 1].Note + "\t" + gridItems[gridItems.Count - 1].Login +
+                    "\t" + gridItems[gridItems.Count - 1].Password;
+                File.WriteAllText(pathSave, output);
+                btnSave.IsEnabled = false;
+            }
+            catch
+            {
+                MessageBox.Show("Failed to save file!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                pathSave = "";
+                return;
+            }
+        }
+
+        private void btnSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mnOpen_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (isOpen) OpenFileInNewWindow();
+            else OpenFileInThisWindow();
+        }
+
+        private void OpenFileInNewWindow() 
+        {
+            var passtableApp = new MainWindow();
+            passtableApp.Show();
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Passtable files|*.pst|All files(*.*)|*.*";
+            if (openFileDialog.ShowDialog() == false)
+            {
+                passtableApp.Close();
+                return;
+            }
+
+            passtableApp.pathSave = openFileDialog.FileName;
+
+            try
+            {
+                string inStr;
+                using (StreamReader sr = new StreamReader(passtableApp.pathSave))
+                {
+                    inStr = sr.ReadToEnd();
+                }
+                string[] arrStr = inStr.Split(new char[] { '\n' });
+                for (int i = 1; i < arrStr.Length; i++)
+                {
+                    string[] recStr = arrStr[i].Split(new char[] { '\t' });
+                    passtableApp.gridItems.Add(new GridItem(recStr[0], recStr[1], recStr[2]));
+                }
+                passtableApp.gridMain.Items.Refresh();
+                passtableApp.Title = "\"" + openFileDialog.SafeFileName + "\" – Passtable";
+                isOpen = true;
+            }
+            catch
+            {
+                MessageBox.Show("Failed to open file!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                passtableApp.pathSave = "";
+                passtableApp.Close();
+                return;
+            }
+        }
+        private void OpenFileInThisWindow() 
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Passtable files|*.pst|All files(*.*)|*.*";
+            if (openFileDialog.ShowDialog() == false)
+            {
+                return;
+            }
+
+            pathSave = openFileDialog.FileName;
+
+            try
+            {
+                string inStr;
+                using (StreamReader sr = new StreamReader(pathSave))
+                {
+                    inStr = sr.ReadToEnd();
+                }
+                string[] arrStr = inStr.Split(new char[] { '\n' });
+                for (int i = 1; i < arrStr.Length; i++)
+                {
+                    string[] recStr = arrStr[i].Split(new char[] { '\t' });
+                    gridItems.Add(new GridItem(recStr[0], recStr[1], recStr[2]));
+                }
+                gridMain.Items.Refresh();
+                Title = "\"" + openFileDialog.SafeFileName + "\" – Passtable";
+                isOpen = true;
+            }
+            catch
+            {
+                MessageBox.Show("Failed to open file!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                pathSave = "";
+                Close();
+                return;
+            }
+        }
+
+        private void mnNew_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var passtableApp = new MainWindow();
+            passtableApp.Show();
         }
     }
 }

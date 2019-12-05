@@ -19,8 +19,8 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="mnNew" Text="New" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" TextDecorations="Underline"  Margin="10,0,0,0" Cursor="Hand"/>
-            <TextBlock x:Name="mnOpen" Text="Open" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" TextDecorations="Underline"  Margin="10,0,0,0" Cursor="Hand"/>
+            <TextBlock x:Name="mnNew" Text="New" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" TextDecorations="Underline"  Margin="10,0,0,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnNew_PreviewMouseLeftButtonUp"/>
+            <TextBlock x:Name="mnOpen" Text="Open" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" TextDecorations="Underline"  Margin="10,0,0,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnOpen_PreviewMouseLeftButtonUp"/>
             <TextBlock x:Name="mnHints" Text="Hot keys &amp; Hints" HorizontalAlignment="Left" Grid.Column="2" VerticalAlignment="Center" TextDecorations="Underline" Margin="10,0,0,0" Cursor="Hand"/>
             <TextBlock x:Name="mnAbout" Text="About" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Center" TextDecorations="Underline" Margin="10,0,0,0" Cursor="Hand"/>
         </Grid>
@@ -42,7 +42,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="btnSave" Content="Save" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="45" IsEnabled="False">
+                <Button x:Name="btnSave" Content="Save" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="45" IsEnabled="False" Click="btnSave_Click">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                             <GradientStop Color="#80e27e" Offset="0"/>
@@ -50,14 +50,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btnSaveAs" Content="Save As" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="7,0,0,0" Width="61" IsEnabled="False">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                            <GradientStop Color="#80e27e" Offset="0"/>
-                            <GradientStop Color="#4caf50" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
+                <Button x:Name="btnSaveAs" Content="Save As" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="7,0,0,0" Width="61" IsEnabled="False" Click="btnSaveAs_Click"/>
             </Grid>
             <Grid Grid.Column="1" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
