@@ -21,8 +21,8 @@
             </Grid.ColumnDefinitions>
             <TextBlock x:Name="mnNew" Text="New" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" TextDecorations="Underline"  Margin="10,0,0,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnNew_PreviewMouseLeftButtonUp"/>
             <TextBlock x:Name="mnOpen" Text="Open" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" TextDecorations="Underline"  Margin="10,0,0,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnOpen_PreviewMouseLeftButtonUp"/>
-            <TextBlock x:Name="mnHints" Text="Hot keys &amp; Hints" HorizontalAlignment="Left" Grid.Column="2" VerticalAlignment="Center" TextDecorations="Underline" Margin="10,0,0,0" Cursor="Hand"/>
-            <TextBlock x:Name="mnAbout" Text="About" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Center" TextDecorations="Underline" Margin="10,0,0,0" Cursor="Hand"/>
+            <TextBlock x:Name="mnHints" Text="Hot keys &amp; Hints" HorizontalAlignment="Left" Grid.Column="2" VerticalAlignment="Center" TextDecorations="Underline" Margin="10,0,0,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnHints_PreviewMouseLeftButtonUp"/>
+            <TextBlock x:Name="mnAbout" Text="About" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Center" TextDecorations="Underline" Margin="10,0,0,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnAbout_PreviewMouseLeftButtonUp"/>
         </Grid>
         <DataGrid x:Name="gridMain" Grid.Row="1" Margin="10,0" CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" IsReadOnly="True" MouseDoubleClick="gridMain_MouseDoubleClick" SelectionMode="Single" PreviewKeyDown="gridMain_PreviewKeyDown" FontSize="14" CurrentCellChanged="gridMain_CurrentCellChanged">
             <DataGrid.Columns>

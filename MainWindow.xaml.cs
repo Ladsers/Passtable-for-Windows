@@ -65,6 +65,7 @@ namespace Passtable
         static bool lpSysWork;
         static string lpSysPassword;
         string pathSave;
+        string masterPass;
         bool isOpen;
 
         static MainWindow mainWindow;
@@ -76,6 +77,7 @@ namespace Passtable
             gridMain.ClipboardCopyMode = DataGridClipboardCopyMode.None;
             mainWindow = this;
             pathSave = "";
+            masterPass = "";
         }
 
         private void Window_Initialized(object sender, EventArgs e)
@@ -304,6 +306,16 @@ namespace Passtable
                     return;
                 pathSave = saveFileDialog.FileName;
             }
+            if (masterPass == "")
+            {
+                var masterPasswordWindow = new MasterPasswordWindow();
+                masterPasswordWindow.Owner = this;
+                masterPasswordWindow.Title = "Enter master password";
+                masterPasswordWindow.btnEnter.Content = "Save";
+                if (masterPasswordWindow.ShowDialog() == false)
+                    return;
+                masterPass = masterPasswordWindow.pbPassword.Password;
+            }
             try
             {
                 string output = "ABBABBA" + "\n";
@@ -350,6 +362,19 @@ namespace Passtable
 
             passtableApp.pathSave = openFileDialog.FileName;
 
+            var masterPasswordWindow = new MasterPasswordWindow();
+            masterPasswordWindow.Owner = passtableApp;
+            masterPasswordWindow.Title = "Enter master password";
+            if (masterPasswordWindow.ShowDialog() == true) 
+            {
+                passtableApp.masterPass = masterPasswordWindow.pbPassword.Password;
+            }
+            else
+            {
+                passtableApp.Close();
+                return;
+            }
+
             try
             {
                 string inStr;
@@ -386,6 +411,18 @@ namespace Passtable
 
             pathSave = openFileDialog.FileName;
 
+            var masterPasswordWindow = new MasterPasswordWindow();
+            masterPasswordWindow.Owner = this;
+            masterPasswordWindow.Title = "Enter master password";
+            if (masterPasswordWindow.ShowDialog() == true)
+            {
+                masterPass = masterPasswordWindow.pbPassword.Password;
+            }
+            else
+            {
+                return;
+            }
+
             try
             {
                 string inStr;
@@ -416,6 +453,16 @@ namespace Passtable
         {
             var passtableApp = new MainWindow();
             passtableApp.Show();
+        }
+
+        private void mnHints_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void mnAbout_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            
         }
     }
 }
