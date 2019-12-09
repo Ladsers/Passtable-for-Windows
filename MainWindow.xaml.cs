@@ -325,7 +325,9 @@ namespace Passtable
                 }
                 output += gridItems[gridItems.Count - 1].Note + "\t" + gridItems[gridItems.Count - 1].Login +
                     "\t" + gridItems[gridItems.Count - 1].Password;
-                File.WriteAllText(pathSave, output);
+                
+                string encrypted = AesEncryptor.Encryption(output, masterPass);
+                File.WriteAllText(pathSave, encrypted);
                 btnSave.IsEnabled = false;
             }
             catch
@@ -377,10 +379,15 @@ namespace Passtable
 
             try
             {
-                string inStr;
-                using (StreamReader sr = new StreamReader(passtableApp.pathSave))
+                string encrypted;
+                using (StreamReader sr = new StreamReader(pathSave))
                 {
-                    inStr = sr.ReadToEnd();
+                    encrypted = sr.ReadToEnd();
+                }
+                string inStr = AesEncryptor.Decryption(encrypted, passtableApp.masterPass);
+                if (inStr == "/error")
+                {
+                    throw new Exception();
                 }
                 string[] arrStr = inStr.Split(new char[] { '\n' });
                 for (int i = 1; i < arrStr.Length; i++)
@@ -425,10 +432,15 @@ namespace Passtable
 
             try
             {
-                string inStr;
+                string encrypted;
                 using (StreamReader sr = new StreamReader(pathSave))
                 {
-                    inStr = sr.ReadToEnd();
+                    encrypted = sr.ReadToEnd();
+                }
+                string inStr = AesEncryptor.Decryption(encrypted, masterPass);
+                if (inStr == "/error") 
+                {
+                    throw new Exception();
                 }
                 string[] arrStr = inStr.Split(new char[] { '\n' });
                 for (int i = 1; i < arrStr.Length; i++)
