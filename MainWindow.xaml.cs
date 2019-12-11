@@ -384,10 +384,20 @@ namespace Passtable
                 {
                     encrypted = sr.ReadToEnd();
                 }
-                string inStr = AesEncryptor.Decryption(encrypted, passtableApp.masterPass);
-                if (inStr == "/error")
+                string inStr = "";
+                while (true)
                 {
-                    throw new Exception();
+                    inStr = AesEncryptor.Decryption(encrypted, passtableApp.masterPass);
+                    if (inStr == "/error")
+                    {
+                        masterPasswordWindow = new MasterPasswordWindow();
+                        masterPasswordWindow.Owner = passtableApp;
+                        masterPasswordWindow.Title = "Enter master password";
+                        masterPasswordWindow.invalidPassword = true;
+                        if (masterPasswordWindow.ShowDialog() == false) return;
+                        passtableApp.masterPass = masterPasswordWindow.pbPassword.Password;
+                    }
+                    else break;
                 }
                 string[] arrStr = inStr.Split(new char[] { '\n' });
                 for (int i = 1; i < arrStr.Length; i++)
@@ -421,14 +431,8 @@ namespace Passtable
             var masterPasswordWindow = new MasterPasswordWindow();
             masterPasswordWindow.Owner = this;
             masterPasswordWindow.Title = "Enter master password";
-            if (masterPasswordWindow.ShowDialog() == true)
-            {
-                masterPass = masterPasswordWindow.pbPassword.Password;
-            }
-            else
-            {
-                return;
-            }
+            if (masterPasswordWindow.ShowDialog() == false) return;
+            masterPass = masterPasswordWindow.pbPassword.Password;
 
             try
             {
@@ -437,10 +441,20 @@ namespace Passtable
                 {
                     encrypted = sr.ReadToEnd();
                 }
-                string inStr = AesEncryptor.Decryption(encrypted, masterPass);
-                if (inStr == "/error") 
+                string inStr ="";
+                while (true)
                 {
-                    throw new Exception();
+                    inStr = AesEncryptor.Decryption(encrypted, masterPass);
+                    if (inStr == "/error")
+                    {
+                        masterPasswordWindow = new MasterPasswordWindow();
+                        masterPasswordWindow.Owner = this;
+                        masterPasswordWindow.Title = "Enter master password";
+                        masterPasswordWindow.invalidPassword = true;
+                        if (masterPasswordWindow.ShowDialog() == false) return;
+                        masterPass = masterPasswordWindow.pbPassword.Password;
+                    }
+                    else break;
                 }
                 string[] arrStr = inStr.Split(new char[] { '\n' });
                 for (int i = 1; i < arrStr.Length; i++)

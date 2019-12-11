@@ -24,6 +24,7 @@ namespace Passtable
     {
         ToolTip tt;
         DispatcherTimer timer;
+        public bool invalidPassword = false;
         public MasterPasswordWindow()
         {
             InitializeComponent();
@@ -47,6 +48,24 @@ namespace Passtable
                 tt.IsOpen = false;
                 timer.IsEnabled = false;
             });
+            if (invalidPassword)
+            {
+                ToolTip tIn = new ToolTip
+                {
+                    Placement = System.Windows.Controls.Primitives.PlacementMode.Relative,
+                    HorizontalOffset = coords.X,
+                    VerticalOffset = coords.Y + 28,
+                    Background = new SolidColorBrush(Color.FromRgb(255, 179, 157)),
+                    Content = "Invalid password",
+                    IsOpen = true
+                };
+                DispatcherTimer timerIn = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0,1,750), IsEnabled = true };
+                timerIn.Tick += new EventHandler(delegate (object timerSender, EventArgs timerArgs)
+                {
+                    tIn.IsOpen = false;
+                    timerIn = null;
+                });
+            }
         }
 
         private void cbShowPassword_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
