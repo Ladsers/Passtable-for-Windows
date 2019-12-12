@@ -304,7 +304,7 @@ namespace Passtable
             if (pathSave == "")
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "Passtable files|*.pst|All files(*.*)|*.*";
+                saveFileDialog.Filter = "Passtable file|*.passtable";
                 if (saveFileDialog.ShowDialog() == false)
                     return;
                 pathSave = saveFileDialog.FileName;
@@ -321,22 +321,24 @@ namespace Passtable
             }
             try
             {
-                string output = "ABBABBA" + "\n";
+                string output = FileVersion.GetChar(1, 1).ToString();
+                string tableData = "";
                 for (int i=0; i < gridItems.Count-1; i++) 
                 {
-                    output += gridItems[i].Note + "\t" + gridItems[i].Login + "\t" + gridItems[i].Password + "\n";
+                    tableData += gridItems[i].Note + "\t" + gridItems[i].Login + "\t" + gridItems[i].Password + "\n";
                 }
-                output += gridItems[gridItems.Count - 1].Note + "\t" + gridItems[gridItems.Count - 1].Login +
+                tableData += gridItems[gridItems.Count - 1].Note + "\t" + gridItems[gridItems.Count - 1].Login +
                     "\t" + gridItems[gridItems.Count - 1].Password;
                 
-                string encrypted = AesEncryptor.Encryption(output, masterPass);
-                File.WriteAllText(pathSave, encrypted);
+                output += AesEncryptor.Encryption(tableData, masterPass);
+                File.WriteAllText(pathSave, output);
                 btnSave.IsEnabled = false;
             }
             catch
             {
                 MessageBox.Show("Failed to save file!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 pathSave = "";
+                masterPass = "";
                 return;
             }
         }
@@ -357,7 +359,7 @@ namespace Passtable
             if (main != this) main.Show();
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Passtable files|*.pst|All files(*.*)|*.*";
+            openFileDialog.Filter = "Passtable file|*.passtable";
             if (openFileDialog.ShowDialog() == false)
             {
                 if (main != this) main.Close();
@@ -383,6 +385,7 @@ namespace Passtable
                 {
                     encrypted = sr.ReadToEnd();
                 }
+                encrypted = encrypted.Remove(0, 1);
                 string inStr = "";
                 while (true)
                 {
@@ -399,7 +402,7 @@ namespace Passtable
                     else break;
                 }
                 string[] arrStr = inStr.Split(new char[] { '\n' });
-                for (int i = 1; i < arrStr.Length; i++)
+                for (int i = 0; i < arrStr.Length; i++)
                 {
                     string[] recStr = arrStr[i].Split(new char[] { '\t' });
                     main.gridItems.Add(new GridItem(recStr[0], recStr[1], recStr[2]));

@@ -74,6 +74,7 @@
     <Compile Include="EditGridWindow.xaml.cs">
       <DependentUpon>EditGridWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FileVersion.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
