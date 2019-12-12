@@ -260,6 +260,8 @@ namespace Passtable
                 gridMain.Items.Refresh();
                 btnSave.IsEnabled = true;
                 btnSaveAs.IsEnabled = true;
+                isOpen = true;
+                Title = "\"Untitled\" – Passtable";
             }
         }
 
@@ -346,57 +348,53 @@ namespace Passtable
 
         private void mnOpen_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (isOpen) OpenFileInNewWindow();
-            else OpenFileInThisWindow();
+            if (isOpen) OpenFileProcess(new MainWindow());
+            else OpenFileProcess(this);
         }
 
-        private void OpenFileInNewWindow() 
+        private void OpenFileProcess(MainWindow main)
         {
-            var passtableApp = new MainWindow();
-            passtableApp.Show();
+            if (main != this) main.Show();
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Passtable files|*.pst|All files(*.*)|*.*";
             if (openFileDialog.ShowDialog() == false)
             {
-                passtableApp.Close();
+                if (main != this) main.Close();
                 return;
             }
-
-            passtableApp.pathSave = openFileDialog.FileName;
+            main.pathSave = openFileDialog.FileName;
 
             var masterPasswordWindow = new MasterPasswordWindow();
-            masterPasswordWindow.Owner = passtableApp;
+            masterPasswordWindow.Owner = main;
             masterPasswordWindow.Title = "Enter master password";
-            if (masterPasswordWindow.ShowDialog() == true) 
+            if (masterPasswordWindow.ShowDialog() == false)
             {
-                passtableApp.masterPass = masterPasswordWindow.pbPassword.Password;
-            }
-            else
-            {
-                passtableApp.Close();
+                if (main != this) main.Close();
+                else main.pathSave = "";
                 return;
             }
+            main.masterPass = masterPasswordWindow.pbPassword.Password;
 
             try
             {
                 string encrypted;
-                using (StreamReader sr = new StreamReader(pathSave))
+                using (StreamReader sr = new StreamReader(main.pathSave))
                 {
                     encrypted = sr.ReadToEnd();
                 }
                 string inStr = "";
                 while (true)
                 {
-                    inStr = AesEncryptor.Decryption(encrypted, passtableApp.masterPass);
+                    inStr = AesEncryptor.Decryption(encrypted, main.masterPass);
                     if (inStr == "/error")
                     {
                         masterPasswordWindow = new MasterPasswordWindow();
-                        masterPasswordWindow.Owner = passtableApp;
+                        masterPasswordWindow.Owner = main;
                         masterPasswordWindow.Title = "Enter master password";
                         masterPasswordWindow.invalidPassword = true;
                         if (masterPasswordWindow.ShowDialog() == false) return;
-                        passtableApp.masterPass = masterPasswordWindow.pbPassword.Password;
+                        main.masterPass = masterPasswordWindow.pbPassword.Password;
                     }
                     else break;
                 }
@@ -404,74 +402,21 @@ namespace Passtable
                 for (int i = 1; i < arrStr.Length; i++)
                 {
                     string[] recStr = arrStr[i].Split(new char[] { '\t' });
-                    passtableApp.gridItems.Add(new GridItem(recStr[0], recStr[1], recStr[2]));
+                    main.gridItems.Add(new GridItem(recStr[0], recStr[1], recStr[2]));
                 }
-                passtableApp.gridMain.Items.Refresh();
-                passtableApp.Title = "\"" + openFileDialog.SafeFileName + "\" – Passtable";
-                isOpen = true;
+                main.gridMain.Items.Refresh();
+                main.Title = "\"" + openFileDialog.SafeFileName + "\" – Passtable";
+                main.isOpen = true;
             }
             catch
             {
                 MessageBox.Show("Failed to open file!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                passtableApp.pathSave = "";
-                passtableApp.Close();
-                return;
-            }
-        }
-        private void OpenFileInThisWindow() 
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Passtable files|*.pst|All files(*.*)|*.*";
-            if (openFileDialog.ShowDialog() == false)
-            {
-                return;
-            }
-
-            pathSave = openFileDialog.FileName;
-
-            var masterPasswordWindow = new MasterPasswordWindow();
-            masterPasswordWindow.Owner = this;
-            masterPasswordWindow.Title = "Enter master password";
-            if (masterPasswordWindow.ShowDialog() == false) return;
-            masterPass = masterPasswordWindow.pbPassword.Password;
-
-            try
-            {
-                string encrypted;
-                using (StreamReader sr = new StreamReader(pathSave))
+                if (main != this) main.Close();
+                else
                 {
-                    encrypted = sr.ReadToEnd();
+                    main.pathSave = "";
+                    main.masterPass = "";
                 }
-                string inStr ="";
-                while (true)
-                {
-                    inStr = AesEncryptor.Decryption(encrypted, masterPass);
-                    if (inStr == "/error")
-                    {
-                        masterPasswordWindow = new MasterPasswordWindow();
-                        masterPasswordWindow.Owner = this;
-                        masterPasswordWindow.Title = "Enter master password";
-                        masterPasswordWindow.invalidPassword = true;
-                        if (masterPasswordWindow.ShowDialog() == false) return;
-                        masterPass = masterPasswordWindow.pbPassword.Password;
-                    }
-                    else break;
-                }
-                string[] arrStr = inStr.Split(new char[] { '\n' });
-                for (int i = 1; i < arrStr.Length; i++)
-                {
-                    string[] recStr = arrStr[i].Split(new char[] { '\t' });
-                    gridItems.Add(new GridItem(recStr[0], recStr[1], recStr[2]));
-                }
-                gridMain.Items.Refresh();
-                Title = "\"" + openFileDialog.SafeFileName + "\" – Passtable";
-                isOpen = true;
-            }
-            catch
-            {
-                MessageBox.Show("Failed to open file!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                pathSave = "";
-                Close();
                 return;
             }
         }
