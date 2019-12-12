@@ -25,6 +25,7 @@ namespace Passtable
         ToolTip tt;
         DispatcherTimer timer;
         public bool invalidPassword = false;
+        public bool withoutChange = false;
         public MasterPasswordWindow()
         {
             InitializeComponent();
@@ -59,7 +60,7 @@ namespace Passtable
                     Content = "Invalid password",
                     IsOpen = true
                 };
-                DispatcherTimer timerIn = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0,1,750), IsEnabled = true };
+                DispatcherTimer timerIn = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 1, 750), IsEnabled = true };
                 timerIn.Tick += new EventHandler(delegate (object timerSender, EventArgs timerArgs)
                 {
                     tIn.IsOpen = false;
@@ -95,10 +96,10 @@ namespace Passtable
             {
                 if (Encoding.UTF8.GetByteCount(new char[] { pbPassword.Password[i] }) > 1)
                 {
-                    pbPassword.Password = pbPassword.Password.Remove(i,1);
+                    pbPassword.Password = pbPassword.Password.Remove(i, 1);
                     pbPassword.GetType().GetMethod("Select", BindingFlags.Instance | BindingFlags.NonPublic)
                         .Invoke(pbPassword, new object[] { i, 0 });
-                    
+
                     tt.IsOpen = true;
                     timer.IsEnabled = true;
                     timer.Stop();
@@ -114,6 +115,7 @@ namespace Passtable
 
         private void btnWithoutChange_Click(object sender, RoutedEventArgs e)
         {
+            withoutChange = true;
             DialogResult = true;
         }
     }
