@@ -55,19 +55,19 @@ namespace Passtable
 
         private void tbNote_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if ((tbNote.Text != "" || tbLogin.Text != "") && pbPassword.Password != "") btnSave.IsEnabled = true;
+            if (tbNote.Text != "" || tbLogin.Text != "" && pbPassword.Password != "") btnSave.IsEnabled = true;
             else btnSave.IsEnabled = false;
         }
 
         private void tbLogin_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if ((tbNote.Text != "" || tbLogin.Text != "") && pbPassword.Password != "") btnSave.IsEnabled = true;
+            if (tbNote.Text != "" || tbLogin.Text != "" && pbPassword.Password != "") btnSave.IsEnabled = true;
             else btnSave.IsEnabled = false;
         }
 
         private void pbPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if ((tbNote.Text != "" || tbLogin.Text != "") && pbPassword.Password != "") btnSave.IsEnabled = true;
+            if (tbNote.Text != "" || tbLogin.Text != "" && pbPassword.Password != "") btnSave.IsEnabled = true;
             else btnSave.IsEnabled = false;
         }
     }

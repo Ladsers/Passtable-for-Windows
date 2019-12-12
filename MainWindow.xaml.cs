@@ -33,7 +33,8 @@ namespace Passtable
             Note = note;
             Login = login;
             Password = password;
-            PseudoPassword = "********";
+            if (password.Length>0) PseudoPassword = "********";
+            else PseudoPassword = "";
         }
     }
 
