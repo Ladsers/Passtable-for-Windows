@@ -343,6 +343,7 @@ namespace Passtable
                 masterPasswordWindow.Owner = this;
                 masterPasswordWindow.Title = "Enter master password";
                 masterPasswordWindow.btnEnter.Content = "Save";
+                masterPasswordWindow.saveMode = true;
                 if (saveAs && masterPass != "")
                     masterPasswordWindow.btnWithoutChange.Visibility = Visibility.Visible;
                 if (masterPasswordWindow.ShowDialog() == false)
@@ -401,6 +402,7 @@ namespace Passtable
             var masterPasswordWindow = new MasterPasswordWindow();
             masterPasswordWindow.Owner = main;
             masterPasswordWindow.Title = "Enter master password";
+            masterPasswordWindow.saveMode = false;
             if (masterPasswordWindow.ShowDialog() == false)
             {
                 if (main != this) main.Close();
