@@ -404,6 +404,28 @@ namespace Passtable
             }
             main.pathSave = openFileDialog.FileName;
 
+            try
+            {
+                string ver;
+                using (StreamReader sr = new StreamReader(main.pathSave))
+                {
+                    ver = sr.ReadToEnd();
+                }
+                var verCheck = FileVersion.GetChar(2, 1);
+                if (ver[0] != verCheck) throw new Exception();
+            }
+            catch
+            {
+                MessageBox.Show("Failed to open file! Unsupported version of the file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (main != this) main.Close();
+                else
+                {
+                    main.pathSave = "";
+                    main.masterPass = "";
+                }
+                return;
+            }
+
             var masterPasswordWindow = new MasterPasswordWindow();
             masterPasswordWindow.Owner = main;
             masterPasswordWindow.Title = "Enter master password";
