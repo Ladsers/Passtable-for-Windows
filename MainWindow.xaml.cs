@@ -24,12 +24,14 @@ namespace Passtable
 {
     public class GridItem
     {
+        public string Tag { get; set; }
         public string Note { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string PseudoPassword { get; }
-        public GridItem(string note, string login, string password)
+        public GridItem(string tag, string note, string login, string password)
         {
+            Tag = tag;
             Note = note;
             Login = login;
             Password = password;
@@ -273,7 +275,7 @@ namespace Passtable
             editForm.Title = "Add new item";
             if (editForm.ShowDialog() == true)
             {
-                gridItems.Add(new GridItem(editForm.tbNote.Text, editForm.tbLogin.Text, editForm.pbPassword.Password));
+                gridItems.Add(new GridItem(editForm.cbTag.SelectedIndex.ToString(),editForm.tbNote.Text, editForm.tbLogin.Text, editForm.pbPassword.Password)); //!!!
                 gridMain.Items.Refresh();
                 btnSave.IsEnabled = true;
                 btnSaveAs.IsEnabled = true;
@@ -300,11 +302,13 @@ namespace Passtable
             editForm.tbNote.Text = gridItems[lpSysRowID].Note;
             editForm.tbLogin.Text = gridItems[lpSysRowID].Login;
             editForm.pbPassword.Password = gridItems[lpSysRowID].Password;
+            editForm.cbTag.SelectedIndex = int.Parse(gridItems[lpSysRowID].Tag);
             if (editForm.ShowDialog() == true)
             {
                 if (gridItems[lpSysRowID].Note != editForm.tbNote.Text ||
                     gridItems[lpSysRowID].Login != editForm.tbLogin.Text ||
-                    gridItems[lpSysRowID].Password != editForm.pbPassword.Password)
+                    gridItems[lpSysRowID].Password != editForm.pbPassword.Password ||
+                    gridItems[lpSysRowID].Tag != editForm.cbTag.SelectedIndex.ToString())
                 {
                     btnSave.IsEnabled = true;
                     btnSaveAs.IsEnabled = true;
@@ -312,6 +316,7 @@ namespace Passtable
                 gridItems[lpSysRowID].Note = editForm.tbNote.Text;
                 gridItems[lpSysRowID].Login = editForm.tbLogin.Text;
                 gridItems[lpSysRowID].Password = editForm.pbPassword.Password;
+                gridItems[lpSysRowID].Tag = editForm.cbTag.SelectedIndex.ToString();
                 gridMain.Items.Refresh();
             }
         }
@@ -356,13 +361,13 @@ namespace Passtable
 
             try
             {
-                string output = FileVersion.GetChar(1, 1).ToString();
+                string output = FileVersion.GetChar(2, 1).ToString();
                 string tableData = "";
                 for (int i = 0; i < gridItems.Count - 1; i++)
                 {
-                    tableData += gridItems[i].Note + "\t" + gridItems[i].Login + "\t" + gridItems[i].Password + "\n";
+                    tableData += gridItems[i].Tag + "\t" + gridItems[i].Note + "\t" + gridItems[i].Login + "\t" + gridItems[i].Password + "\n";
                 }
-                tableData += gridItems[gridItems.Count - 1].Note + "\t" + gridItems[gridItems.Count - 1].Login +
+                tableData += gridItems[gridItems.Count - 1].Tag + "\t" + gridItems[gridItems.Count - 1].Note + "\t" + gridItems[gridItems.Count - 1].Login +
                     "\t" + gridItems[gridItems.Count - 1].Password;
 
                 output += AesEncryptor.Encryption(tableData, masterPass);
@@ -438,7 +443,7 @@ namespace Passtable
                 for (int i = 0; i < arrStr.Length; i++)
                 {
                     string[] recStr = arrStr[i].Split(new char[] { '\t' });
-                    main.gridItems.Add(new GridItem(recStr[0], recStr[1], recStr[2]));
+                    main.gridItems.Add(new GridItem(recStr[0], recStr[1], recStr[2], recStr[3]));
                 }
                 main.gridMain.Items.Refresh();
                 main.Title = "\"" + System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName) + "\" – Passtable";

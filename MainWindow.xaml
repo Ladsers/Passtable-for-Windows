@@ -26,6 +26,33 @@
         </Grid>
         <DataGrid x:Name="gridMain" Grid.Row="1" Margin="10,0" CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" IsReadOnly="True" MouseDoubleClick="gridMain_MouseDoubleClick" SelectionMode="Single" PreviewKeyDown="gridMain_PreviewKeyDown" FontSize="14" CurrentCellChanged="gridMain_CurrentCellChanged">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="" Width="20" CanUserResize="False"  Binding="{Binding Tag}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="0">
+                                    <Setter Property="Background" Value="White"/>
+                                </Trigger>
+                                <Trigger Property="Text" Value="1">
+                                    <Setter Property="Background" Value="#FF8F8F"/>
+                                </Trigger>
+                                <Trigger Property="Text" Value="2">
+                                    <Setter Property="Background" Value="#CEFF8F"/>
+                                </Trigger>
+                                <Trigger Property="Text" Value="3">
+                                    <Setter Property="Background" Value="#8FDEFF"/>
+                                </Trigger>
+                                <Trigger Property="Text" Value="4">
+                                    <Setter Property="Background" Value="#FFD28F"/>
+                                </Trigger>
+                                <Trigger Property="Text" Value="5">
+                                    <Setter Property="Background" Value="#E28FFF"/>
+                                </Trigger>
+                            </Style.Triggers>
+                            <Setter Property="Foreground" Value="Transparent"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="URL, place or note" Width="0.50*" Binding="{Binding Note}"/>
                 <DataGridTextColumn Header="Login" Width="0.30*" Binding="{Binding Login}"/>
                 <DataGridTextColumn Header="Password" Width="0.20*" Binding="{Binding PseudoPassword}"/>
