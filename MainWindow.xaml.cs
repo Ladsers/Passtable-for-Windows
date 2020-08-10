@@ -108,12 +108,14 @@ namespace Passtable
             switch (colID)
             {
                 case 0:
+                    return;
+                case 1:
                     Clipboard.SetText(gridItems[rowID].Note);
                     break;
-                case 1:
+                case 2:
                     Clipboard.SetText(gridItems[rowID].Login);
                     break;
-                case 2:
+                case 3:
                     lpSysPassword = gridItems[rowID].Password; //additional password protection
                     Clipboard.SetText(lpSysPassword);
                     _hookID = SetHook(_proc);
