@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Passtable"
         mc:Ignorable="d"
-        Title="Passtable" Height="500" Width="700" MinWidth="550" MinHeight="200" Initialized="Window_Initialized" Icon="icon.ico" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown">
+        Title="Passtable for Windows" Height="500" Width="700" MinWidth="550" MinHeight="200" Initialized="Window_Initialized" Icon="icon.ico" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="26px"/>
+            <RowDefinition Height="30"/>
             <RowDefinition/>
             <RowDefinition Height="40px"/>
         </Grid.RowDefinitions>
@@ -19,10 +19,9 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="mnNew" Text="New" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" TextDecorations="Underline"  Margin="10,0,0,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnNew_PreviewMouseLeftButtonUp"/>
-            <TextBlock x:Name="mnOpen" Text="Open" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" TextDecorations="Underline"  Margin="10,0,0,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnOpen_PreviewMouseLeftButtonUp"/>
-            <TextBlock x:Name="mnHints" Text="Hot keys &amp; Hints" HorizontalAlignment="Left" Grid.Column="2" VerticalAlignment="Center" TextDecorations="Underline" Margin="10,0,0,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnHints_PreviewMouseLeftButtonUp"/>
-            <TextBlock x:Name="mnAbout" Text="About" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Center" TextDecorations="Underline" Margin="10,0,0,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnAbout_PreviewMouseLeftButtonUp"/>
+            <TextBlock x:Name="mnNew" Text="New" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnNew_PreviewMouseLeftButtonUp"/>
+            <TextBlock x:Name="mnOpen" Text="Open" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnOpen_PreviewMouseLeftButtonUp"/>
+            <TextBlock x:Name="mnAbout" Text="About" HorizontalAlignment="Left" Grid.Column="2" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnAbout_PreviewMouseLeftButtonUp"/>
         </Grid>
         <DataGrid x:Name="gridMain" Grid.Row="1" Margin="10,0" CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" IsReadOnly="True" MouseDoubleClick="gridMain_MouseDoubleClick" SelectionMode="Single" PreviewKeyDown="gridMain_PreviewKeyDown" FontSize="14" CurrentCellChanged="gridMain_CurrentCellChanged">
             <DataGrid.Columns>
@@ -79,17 +78,17 @@
                 </Button>
                 <Button x:Name="btnSaveAs" Content="Save As" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="7,0,0,0" Width="61" IsEnabled="False" Click="btnSaveAs_Click"/>
             </Grid>
-            <Grid Grid.Column="1" HorizontalAlignment="Center">
+            <Grid Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,10,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="btnAdd" Content= "+ Add" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="57" Click="btnAdd_Click"/>
-                <Button x:Name="btnEdit" Content= "Edit" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="7,0" Width="40" Click="btnEdit_Click"/>
-                <Button x:Name="btnDelete" Content="Delete" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="54" Click="btnDelete_Click"/>
+                <Button x:Name="btnAdd" Content= "Add" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="59" Click="btnAdd_Click"/>
+                <Button x:Name="btnEdit" Content= "Edit" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="7,0" Width="42" Click="btnEdit_Click"/>
+                <Button x:Name="btnDelete" Content="Delete" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="56" Click="btnDelete_Click"/>
             </Grid>
-            <Button x:Name="btnCopySuper" Content="Login -> Password" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Width="150" Click="btnCopySuper_Click"/>
+            <Button x:Name="btnCopySuper" Content="Login -> Password" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Width="150" Click="btnCopySuper_Click"/>
         </Grid>
     </Grid>
 </Window>

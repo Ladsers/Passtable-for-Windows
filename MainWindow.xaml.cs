@@ -492,11 +492,6 @@ namespace Passtable
             passtableApp.Show();
         }
 
-        private void mnHints_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
         private void mnAbout_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
 
