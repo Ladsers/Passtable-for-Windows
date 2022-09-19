@@ -23,14 +23,14 @@
             <TextBlock x:Name="mnOpen" Text="Open" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnOpen_PreviewMouseLeftButtonUp"/>
             <TextBlock x:Name="mnAbout" Text="About" HorizontalAlignment="Left" Grid.Column="2" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnAbout_PreviewMouseLeftButtonUp"/>
         </Grid>
-        <DataGrid x:Name="gridMain" Grid.Row="1" Margin="10,0" CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" IsReadOnly="True" MouseDoubleClick="gridMain_MouseDoubleClick" SelectionMode="Single" PreviewKeyDown="gridMain_PreviewKeyDown" FontSize="14" CurrentCellChanged="gridMain_CurrentCellChanged">
+        <DataGrid x:Name="gridMain" Grid.Row="1"  CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" IsReadOnly="True" MouseDoubleClick="gridMain_MouseDoubleClick" SelectionMode="Single" PreviewKeyDown="gridMain_PreviewKeyDown" FontSize="15" CurrentCellChanged="gridMain_CurrentCellChanged" GridLinesVisibility="All" Background="#00000000" RowBackground="White" HorizontalGridLinesBrush="#FFB4B4B4" RowHeight="28" VerticalContentAlignment="Center" BorderBrush="#00000000">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="" Width="20" CanUserResize="False"  Binding="{Binding Tag}">
+                <DataGridTextColumn Header="" Width="20" CanUserResize="False"  Binding="{Binding Tag}" Visibility="Hidden">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}">
                             <Style.Triggers>
                                 <Trigger Property="Text" Value="0">
-                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Background" Value="Transparent"/>
                                 </Trigger>
                                 <Trigger Property="Text" Value="1">
                                     <Setter Property="Background" Value="#FF8F8F"/>
@@ -52,11 +52,126 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="URL, place or note" Width="0.50*" Binding="{Binding Note}"/>
-                <DataGridTextColumn Header="Login" Width="0.30*" Binding="{Binding Login}"/>
-                <DataGridTextColumn Header="Password" Width="0.20*" Binding="{Binding PseudoPassword}"/>
+                <DataGridTemplateColumn Header="URL, place or note" Width="0.50*">
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="MinHeight" Value="30" />
+                            <Setter Property="Background" Value="Gainsboro"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <TextBlock Text="•" FontSize="40" Margin="5,-18,5,0">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Tag}" Value="0">
+                                                    <Setter Property="Foreground" Value="Transparent"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Tag}" Value="1">
+                                                    <Setter Property="Foreground" Value="#FF8F8F"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Tag}" Value="2">
+                                                    <Setter Property="Foreground" Value="#CEFF8F"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Tag}" Value="3">
+                                                    <Setter Property="Foreground" Value="#8FDEFF"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Tag}" Value="4">
+                                                    <Setter Property="Foreground" Value="#FFD28F"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Tag}" Value="5">
+                                                    <Setter Property="Foreground" Value="#E28FFF"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <TextBlock Text="{Binding Note}" VerticalAlignment="Stretch" />
+                                <Image Width="15" Height="15" Margin="5,0,10,0" HorizontalAlignment="Right" Opacity="0.3">
+                                    <Image.Source>
+                                        <DrawingImage>
+                                            <DrawingImage.Drawing>
+                                                <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+                                                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M24,24z M0,0z M19,3L14.82,3C14.4,1.84 13.3,1 12,1 10.7,1 9.6,1.84 9.18,3L5,3C3.9,3,3,3.9,3,5L3,19C3,20.1,3.9,21,5,21L19,21C20.1,21,21,20.1,21,19L21,5C21,3.9,20.1,3,19,3z M12,3C12.55,3 13,3.45 13,4 13,4.55 12.55,5 12,5 11.45,5 11,4.55 11,4 11,3.45 11.45,3 12,3z M14,17L7,17 7,15 14,15 14,17z M17,13L7,13 7,11 17,11 17,13z M17,9L7,9 7,7 17,7 17,9z" />
+                                                </DrawingGroup>
+                                            </DrawingImage.Drawing>
+                                        </DrawingImage>
+                                    </Image.Source>
+                                </Image>
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Login" Width="0.30*">
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="MinHeight" Value="30" />
+                            <Setter Property="Background" Value="Gainsboro"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <TextBlock Text="{Binding Login}" VerticalAlignment="Stretch" Margin="5,0,0,0" />
+                                <Image Width="15" Height="15" Margin="5,0,10,0" HorizontalAlignment="Right" Opacity="0.3">
+                                    <Image.Source>
+                                        <DrawingImage>
+                                            <DrawingImage.Drawing>
+                                                <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+                                                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M24,24z M0,0z M19,3L14.82,3C14.4,1.84 13.3,1 12,1 10.7,1 9.6,1.84 9.18,3L5,3C3.9,3,3,3.9,3,5L3,19C3,20.1,3.9,21,5,21L19,21C20.1,21,21,20.1,21,19L21,5C21,3.9,20.1,3,19,3z M12,3C12.55,3 13,3.45 13,4 13,4.55 12.55,5 12,5 11.45,5 11,4.55 11,4 11,3.45 11.45,3 12,3z M14,17L7,17 7,15 14,15 14,17z M17,13L7,13 7,11 17,11 17,13z M17,9L7,9 7,7 17,7 17,9z" />
+                                                </DrawingGroup>
+                                            </DrawingImage.Drawing>
+                                        </DrawingImage>
+                                    </Image.Source>
+                                </Image>
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Password" Width="0.18*">
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="MinHeight" Value="30" />
+                            <Setter Property="Background" Value="Gainsboro"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel x:Name="spPassword" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image x:Name="btnShowPass" Width="15" Height="15" Margin="5,0" Opacity="0.7">
+                                    <Image.Source>
+                                        <DrawingImage>
+                                            <DrawingImage.Drawing>
+                                                <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+                                                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M24,24z M0,0z M12,4.5C7,4.5 2.73,7.61 1,12 2.73,16.39 7,19.5 12,19.5 17,19.5 21.27,16.39 23,12 21.27,7.61 17,4.5 12,4.5z M12,17C9.24,17 7,14.76 7,12 7,9.24 9.24,7 12,7 14.76,7 17,9.24 17,12 17,14.76 14.76,17 12,17z M12,9C10.34,9 9,10.34 9,12 9,13.66 10.34,15 12,15 13.66,15 15,13.66 15,12 15,10.34 13.66,9 12,9z" />
+                                                </DrawingGroup>
+                                            </DrawingImage.Drawing>
+                                        </DrawingImage>
+                                    </Image.Source>
+                                </Image>
+                                <Image x:Name="btnCopyPass" Width="15" Height="15" Margin="5,0" Opacity="0.3">
+                                    <Image.Source>
+                                        <DrawingImage>
+                                            <DrawingImage.Drawing>
+                                                <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+                                                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M24,24z M0,0z M19,3L14.82,3C14.4,1.84 13.3,1 12,1 10.7,1 9.6,1.84 9.18,3L5,3C3.9,3,3,3.9,3,5L3,19C3,20.1,3.9,21,5,21L19,21C20.1,21,21,20.1,21,19L21,5C21,3.9,20.1,3,19,3z M12,3C12.55,3 13,3.45 13,4 13,4.55 12.55,5 12,5 11.45,5 11,4.55 11,4 11,3.45 11.45,3 12,3z M14,17L7,17 7,15 14,15 14,17z M17,13L7,13 7,11 17,11 17,13z M17,9L7,9 7,7 17,7 17,9z" />
+                                                </DrawingGroup>
+                                            </DrawingImage.Drawing>
+                                        </DrawingImage>
+                                    </Image.Source>
+                                </Image>
+                                <TextBlock x:Name="tbPassword" Text="{Binding Password}" Visibility="Collapsed" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid>   
         <Grid Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.33*"/>
