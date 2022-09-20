@@ -486,4 +486,17 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
+    
+    <DrawingImage x:Key="IconSave">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V32 H32 V0 H0 Z">
+                <GeometryDrawing Brush="#FF635994" Geometry="F1 M32,32z M0,0z M30,7.8758L30,26.1527C30,28.2812,28.2794,30,26.1486,30L5.85138,30C3.72061,30,2,28.2812,2,26.1527L2,5.84725C2,3.71877,3.72061,2,5.85138,2L24.1079,2C25.0382,2,25.9285,2.36974,26.5888,3.01927L28.9796,5.39757C29.6299,6.0571,30,6.94647,30,7.8758z" />
+                <GeometryDrawing Brush="#FFE6E6E6" Geometry="F1 M32,32z M0,0z M6,18L26,18 26,30 6,30 6,18z" />
+                <GeometryDrawing Brush="#FFF8312F" Geometry="F1 M32,32z M0,0z M6,17.5C6,16.6716,6.67157,16,7.5,16L24.5,16C25.3284,16,26,16.6716,26,17.5L26,19 6,19 6,17.5z" />
+                <GeometryDrawing Brush="#FF321B41" Geometry="F1 M32,32z M0,0z M24.1158,2.00001C24.7892,2.00152,25.4413,2.19669,26,2.55139L26,11.2501C26,12.2201,25.21,13.0001,24.25,13.0001L7.75,13.0001C6.78,13.0001,6,12.2201,6,11.2501L6,2.00009 24.1079,2C24.1105,2,24.1132,2,24.1158,2.00001z" />
+                <GeometryDrawing Brush="#FFE6E6E6" Geometry="F1 M32,32z M0,0z M22.64,12L12.36,12C11.61,12,11,11.39,11,10.64L11,3.27C11,2.57,11.57,2,12.27,2L24,2 24,10.64C24,11.39,23.39,12,22.64,12z" />
+                <GeometryDrawing Brush="#FF321B41" Geometry="F1 M32,32z M0,0z M22.0297,11L19.9703,11C19.4356,11,19,10.5589,19,10.0175L19,3.98246C19,3.4411,19.4356,3,19.9703,3L22.0297,3C22.5644,3,23,3.4411,23,3.98246L23,10.0276C23,10.5589,22.5644,11,22.0297,11z" />
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
 </ResourceDictionary>

@@ -31,15 +31,13 @@ namespace Passtable
         public string Note { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public string PseudoPassword { get; }
+        
         public GridItem(string tag, string note, string login, string password)
         {
             Tag = tag;
             Note = note;
             Login = login;
             Password = password;
-            if (password.Length > 0) PseudoPassword = "********";
-            else PseudoPassword = "";
         }
     }
 
@@ -184,24 +182,7 @@ namespace Passtable
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (btnSave.IsEnabled)
-            {
-                switch (MessageBox.Show("Do you want to save your changes before exiting?"
-                    , "Passtable", MessageBoxButton.YesNoCancel, MessageBoxImage.Question))
-                {
-                    case MessageBoxResult.Yes:
-                        if (SaveFileProcess(false)) UnhookWindowsHookEx(_hookID);
-                        else e.Cancel = true;
-                        break;
-                    case MessageBoxResult.No:
-                        UnhookWindowsHookEx(_hookID);
-                        break;
-                    case MessageBoxResult.Cancel:
-                        e.Cancel = true;
-                        break;
-                }
-            }
-            else UnhookWindowsHookEx(_hookID);
+            UnhookWindowsHookEx(_hookID);
         }
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -226,8 +207,8 @@ namespace Passtable
             gridItems.RemoveAt(lpSysRowID);
             lpSysRowID = -2;
             gridMain.Items.Refresh();
-            btnSave.IsEnabled = true;
-            btnSaveAs.IsEnabled = true;
+
+            SaveFileProcess();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -239,10 +220,10 @@ namespace Passtable
             {
                 gridItems.Add(new GridItem(editForm.cbTag.SelectedIndex.ToString(),editForm.tbNote.Text, editForm.tbLogin.Text, editForm.pbPassword.Password)); //!!!
                 gridMain.Items.Refresh();
-                btnSave.IsEnabled = true;
-                btnSaveAs.IsEnabled = true;
                 isOpen = true;
                 if (Title == "Passtable") Title = "\"Untitled\" – Passtable";
+
+                SaveFileProcess();
             }
         }
 
@@ -267,33 +248,17 @@ namespace Passtable
             editForm.cbTag.SelectedIndex = int.Parse(gridItems[lpSysRowID].Tag);
             if (editForm.ShowDialog() == true)
             {
-                if (gridItems[lpSysRowID].Note != editForm.tbNote.Text ||
-                    gridItems[lpSysRowID].Login != editForm.tbLogin.Text ||
-                    gridItems[lpSysRowID].Password != editForm.pbPassword.Password ||
-                    gridItems[lpSysRowID].Tag != editForm.cbTag.SelectedIndex.ToString())
-                {
-                    btnSave.IsEnabled = true;
-                    btnSaveAs.IsEnabled = true;
-                }
                 gridItems[lpSysRowID].Note = editForm.tbNote.Text;
                 gridItems[lpSysRowID].Login = editForm.tbLogin.Text;
                 gridItems[lpSysRowID].Password = editForm.pbPassword.Password;
                 gridItems[lpSysRowID].Tag = editForm.cbTag.SelectedIndex.ToString();
                 gridMain.Items.Refresh();
+                
+                SaveFileProcess();
             }
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            SaveFileProcess(false);
-        }
-
-        private void btnSaveAs_Click(object sender, RoutedEventArgs e)
-        {
-            SaveFileProcess(true);
-        }
-
-        private bool SaveFileProcess(bool saveAs)
+        private bool SaveFileProcess(bool saveAs = false)
         {
             string pathSavePre = "";
             if (pathSave == "" || saveAs)
@@ -335,7 +300,10 @@ namespace Passtable
                 output += AesEncryptor.Encryption(tableData, masterPass);
                 File.WriteAllText(pathSave, output);
                 Title = "\"" + System.IO.Path.GetFileNameWithoutExtension(pathSave) + "\" – Passtable";
-                btnSave.IsEnabled = false;
+                
+                var opacityAnimation = new DoubleAnimation(0.9, 0.0, new Duration(TimeSpan.FromSeconds(1.8)));
+                dpSaveInfo.BeginAnimation(OpacityProperty, opacityAnimation);
+                
                 return true;
             }
             catch
@@ -351,6 +319,11 @@ namespace Passtable
         {
             if (isOpen) OpenFileProcess(new MainWindow());
             else OpenFileProcess(this);
+        }
+        
+        private void mnSaveAs_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            SaveFileProcess(true);
         }
 
         private void OpenFileProcess(MainWindow main)

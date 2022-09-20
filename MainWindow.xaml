@@ -18,10 +18,17 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="mnNew" Text="New" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnNew_PreviewMouseLeftButtonUp"/>
-            <TextBlock x:Name="mnOpen" Text="Open" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnOpen_PreviewMouseLeftButtonUp"/>
-            <TextBlock x:Name="mnAbout" Text="About" HorizontalAlignment="Left" Grid.Column="2" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnAbout_PreviewMouseLeftButtonUp"/>
+            <TextBlock Text="New" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnNew_PreviewMouseLeftButtonUp"/>
+            <TextBlock Text="Open" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnOpen_PreviewMouseLeftButtonUp"/>
+            <TextBlock Text="Save as" HorizontalAlignment="Left" Grid.Column="2" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnSaveAs_PreviewMouseLeftButtonUp"/>
+            <TextBlock Text="About" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnAbout_PreviewMouseLeftButtonUp"/>
+            <DockPanel x:Name="dpSaveInfo" Grid.Column="4" HorizontalAlignment="Right" Opacity="0">
+                <Image Source="{DynamicResource IconSave}" Margin="5,0,0,0" Width="18" Height="18" />
+                <TextBlock Text="Saved" VerticalAlignment="Center" FontSize="12" FontStyle="Italic" Margin="7,0,20,0" FontWeight="SemiBold" />
+            </DockPanel>
+
         </Grid>
         <DataGrid x:Name="gridMain" Grid.Row="1"  CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" IsReadOnly="True" MouseDoubleClick="gridMain_MouseDoubleClick" SelectionMode="Single" PreviewKeyDown="gridMain_PreviewKeyDown" FontSize="15" CurrentCellChanged="gridMain_CurrentCellChanged" GridLinesVisibility="All" Background="#00000000" RowBackground="White" HorizontalGridLinesBrush="#FFB4B4B4" RowHeight="30" VerticalContentAlignment="Center" BorderBrush="#00000000">
             <DataGrid.Columns>
@@ -87,26 +94,10 @@
         </DataGrid>   
         <Grid Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.33*"/>
-                <ColumnDefinition Width="0.33*"/>
-                <ColumnDefinition Width="0.33*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Button x:Name="btnSave" Content="Save" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="45" IsEnabled="False" Click="btnSave_Click">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                            <GradientStop Color="#80e27e" Offset="0"/>
-                            <GradientStop Color="#4caf50" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-                <Button x:Name="btnSaveAs" Content="Save As" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="7,0,0,0" Width="61" IsEnabled="False" Click="btnSaveAs_Click"/>
-            </Grid>
-            <Grid Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,10,0">
+            <Grid Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -116,7 +107,7 @@
                 <Button x:Name="btnEdit" Content= "Edit" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="7,0" Width="42" Click="btnEdit_Click"/>
                 <Button x:Name="btnDelete" Content="Delete" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="56" Click="btnDelete_Click"/>
             </Grid>
-            <Button x:Name="btnCopySuper" Content="Login -> Password" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Width="150" Click="btnCopySuper_Click"/>
+            <Button x:Name="btnCopySuper" Content="Login -> Password" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0" Width="150" Click="btnCopySuper_Click"/>
         </Grid>
     </Grid>
 </Window>
