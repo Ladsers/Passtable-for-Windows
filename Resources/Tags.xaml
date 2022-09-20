@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="TagColor" TargetType="{x:Type TextBlock}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag}" Value="0">
+                <Setter Property="Foreground" Value="{DynamicResource TagNoneLightBrush}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag}" Value="1">
+                <Setter Property="Foreground" Value="{DynamicResource TagRedLightBrush}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag}" Value="2">
+                <Setter Property="Foreground" Value="{DynamicResource TagGreenLightBrush}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag}" Value="3">
+                <Setter Property="Foreground" Value="{DynamicResource TagBlueLightBrush}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag}" Value="4">
+                <Setter Property="Foreground" Value="{DynamicResource TagYellowLightBrush}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag}" Value="5">
+                <Setter Property="Foreground" Value="{DynamicResource TagPurpleLightBrush}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

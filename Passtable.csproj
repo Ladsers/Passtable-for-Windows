@@ -71,6 +71,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Components\DataGridUtils.cs" />
+    <Compile Include="Containers\ClipboardKey.cs" />
     <Compile Include="EditGridWindow.xaml.cs">
       <DependentUpon>EditGridWindow.xaml</DependentUpon>
     </Compile>
@@ -83,6 +85,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Buttons.xaml" />
+    <Page Include="Resources\Colors.xaml" />
+    <Page Include="Resources\DataGrid.xaml" />
+    <Page Include="Resources\Icons.xaml" />
+    <Page Include="Resources\Tags.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MasterPasswordWindow.xaml.cs">

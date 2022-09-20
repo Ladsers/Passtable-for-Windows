@@ -15,10 +15,13 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Passtable.Components;
+using Passtable.Containers;
 
 namespace Passtable
 {
@@ -95,59 +98,16 @@ namespace Passtable
             //
         }
 
-        private void CellDataToClipboard()
-        {
-            if (gridMain.SelectedItem == null) return;
-
-            lpSysWork = false;
-            UnhookWindowsHookEx(_hookID);
-            mainWindow.btnCopySuper.Content = "Login -> Password";
-
-            int colID = gridMain.CurrentCell.Column.DisplayIndex;
-            int rowID = gridMain.Items.IndexOf(gridMain.CurrentItem);
-            switch (colID)
-            {
-                case 0:
-                    return;
-                case 1:
-                    Clipboard.SetText(gridItems[rowID].Note);
-                    break;
-                case 2:
-                    Clipboard.SetText(gridItems[rowID].Login);
-                    break;
-                case 3:
-                    lpSysPassword = gridItems[rowID].Password; //additional password protection
-                    Clipboard.SetText(lpSysPassword);
-                    _hookID = SetHook(_proc);
-                    break;
-            }
-
-            DataGridCell cell = gridMain.SelectedCells[colID].Column.GetCellContent(gridMain.SelectedItem).Parent as DataGridCell;
-            Point coords = cell.PointToScreen(new Point(0, 0));
-            ToolTip tt = new ToolTip();
-            tt.Placement = System.Windows.Controls.Primitives.PlacementMode.Relative;
-            tt.HorizontalOffset = coords.X + 10;
-            tt.VerticalOffset = coords.Y + 10;
-            tt.Content = $"{gridMain.CurrentCell.Column.Header} copied";
-            tt.IsOpen = true;
-            DispatcherTimer timer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 1), IsEnabled = true };
-            timer.Tick += new EventHandler(delegate (object timerSender, EventArgs timerArgs)
-            {
-                tt.IsOpen = false;
-                timer = null;
-            });
-        }
-
         private void gridMain_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            CellDataToClipboard();
+            //FindAndCopyToClipboard();
         }
 
         private void gridMain_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.C)
             {
-                CellDataToClipboard();
+                FindAndCopyToClipboard();
             }
         }
 
@@ -495,6 +455,77 @@ namespace Passtable
         private void mnAbout_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
 
+        }
+        
+        private void CopyToClipboard(ClipboardKey key)
+        {
+            if (gridMain.SelectedItem == null) return;
+
+            lpSysWork = false;
+            UnhookWindowsHookEx(_hookID);
+            mainWindow.btnCopySuper.Content = "Login -> Password";
+            
+            var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
+            switch (key)
+            {
+                case ClipboardKey.Note:
+                    Clipboard.SetText(gridItems[rowId].Note);
+                    break;
+                case ClipboardKey.Username:
+                    Clipboard.SetText(gridItems[rowId].Login);
+                    break;
+                case ClipboardKey.Password:
+                    lpSysPassword = gridItems[rowId].Password; //additional password protection
+                    Clipboard.SetText(lpSysPassword);
+                    _hookID = SetHook(_proc);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(key), key, null);
+            }
+        }
+
+        private void FindAndCopyToClipboard()
+        {
+            if (gridMain.SelectedItem == null) return;
+            var colId = gridMain.CurrentCell.Column.DisplayIndex;
+            var key = ClipboardKey.Note;
+            if (colId == 2) key = ClipboardKey.Username;
+            if (colId == 3) key = ClipboardKey.Password;
+            CopyToClipboard(key);
+                
+            var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
+            var row = (DataGridRow)gridMain.ItemContainerGenerator.ContainerFromIndex(rowId);
+
+            var sizeAnimation = new DoubleAnimation(24, 17, new Duration(TimeSpan.FromSeconds(0.4)));
+            var opacityAnimation = new DoubleAnimation(1.0, 0.3, new Duration(TimeSpan.FromSeconds(0.4)));
+                
+            var btKey = "btCopyNote";
+            if (colId == 2) btKey = "btCopyUsername";
+            if (colId == 3) btKey = "btCopyPassword";
+                
+            DataGridUtils.GetObject<Image>(row, btKey).BeginAnimation(WidthProperty, sizeAnimation);
+            DataGridUtils.GetObject<Image>(row, btKey).BeginAnimation(HeightProperty, sizeAnimation);
+            DataGridUtils.GetObject<Image>(row, btKey).BeginAnimation(OpacityProperty, opacityAnimation);
+        }
+        
+        private void btCopyNote_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            CopyToClipboard(ClipboardKey.Note);
+        }
+        
+        private void btCopyUsername_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            CopyToClipboard(ClipboardKey.Username);
+        }
+        
+        private void btCopyPassword_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            CopyToClipboard(ClipboardKey.Password);
+        }
+        
+        private void btShowPassword_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+          
         }
     }
 }

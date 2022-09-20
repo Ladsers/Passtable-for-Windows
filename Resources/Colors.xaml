@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="TagNoneLight">#00000000</Color>
+    <Color x:Key="TagRedLight">#F8A49E</Color>
+    <Color x:Key="TagGreenLight">#D9F3C8</Color>
+    <Color x:Key="TagBlueLight">#C8DCE6</Color>
+    <Color x:Key="TagYellowLight">#FFF5AD</Color>
+    <Color x:Key="TagPurpleLight">#C8B2D1</Color>
+
+    <SolidColorBrush x:Key="TagNoneLightBrush" Color="{StaticResource TagNoneLight}" />
+    <SolidColorBrush x:Key="TagRedLightBrush" Color="{StaticResource TagRedLight}" />
+    <SolidColorBrush x:Key="TagGreenLightBrush" Color="{StaticResource TagGreenLight}" />
+    <SolidColorBrush x:Key="TagBlueLightBrush" Color="{StaticResource TagBlueLight}" />
+    <SolidColorBrush x:Key="TagYellowLightBrush" Color="{StaticResource TagYellowLight}" />
+    <SolidColorBrush x:Key="TagPurpleLightBrush" Color="{StaticResource TagPurpleLight}" />
+    
+    <LinearGradientBrush x:Key="DataGridHeaderBackgroundBrash" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#fafafa" Offset="0"/>
+        <GradientStop Color="#f3f3f3" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <SolidColorBrush x:Key="DataGridHeaderBorderBrash" Color="#FFB4B4B4" />
+    
+</ResourceDictionary>
