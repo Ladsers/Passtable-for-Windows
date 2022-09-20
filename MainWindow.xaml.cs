@@ -525,7 +525,31 @@ namespace Passtable
         
         private void btShowPassword_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
-          
+            var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
+            var row = (DataGridRow)gridMain.ItemContainerGenerator.ContainerFromIndex(rowId);
+
+            var textBlock = DataGridUtils.GetObject<TextBlock>(row, "tbPassword");
+            var stackPanel = DataGridUtils.GetObject<StackPanel>(row, "spPassword");
+            var imgShow = DataGridUtils.GetObject<Image>(row, "btShowPassword");
+            var imgCopy = DataGridUtils.GetObject<Image>(row, "btCopyPassword");
+
+            if (textBlock.Visibility == Visibility.Collapsed)
+            {
+                textBlock.Visibility = Visibility.Visible;
+                imgShow.Source = (DrawingImage)FindResource("IconLock");
+                imgShow.Margin = new Thickness(10, 0, 3, 0);
+                imgCopy.Margin = new Thickness(2, 0, 10, 0);
+                stackPanel.SetValue(Grid.ColumnProperty, 1);
+            }
+            else
+            {
+                textBlock.Visibility = Visibility.Collapsed;
+                imgShow.Source = (DrawingImage)FindResource("IconShowPassword");
+                imgShow.Margin = new Thickness(10, 0, 7, 0);
+                imgCopy.Margin = new Thickness(7, 0, 10, 0);
+                stackPanel.SetValue(Grid.ColumnProperty, 0);
+            }
         }
+        
     }
 }

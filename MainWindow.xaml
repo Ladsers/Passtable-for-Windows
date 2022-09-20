@@ -29,32 +29,57 @@
                     <DataGridTemplateColumn Header="URL, place or note" Width="0.50*" HeaderStyle="{DynamicResource DataGridHeader}">
                         <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DockPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
                                 <TextBlock Text="•" Style = "{DynamicResource TagColor}" FontSize="40" Margin="5,-18,5,0"/>
-                                <TextBlock Text="{Binding Note}" VerticalAlignment="Stretch" />
-                                <Image x:Name="btCopyNote" Style="{DynamicResource ButtonDataGrid}" Source="{DynamicResource IconClipboard}" Margin="5,0,10,0" HorizontalAlignment="Right" PreviewMouseUp="btCopyNote_PreviewMouseUp"/>
-                            </DockPanel>
+                                <TextBlock Grid.Column="1" Text="{Binding Note}" VerticalAlignment="Stretch" TextTrimming="CharacterEllipsis"/>
+                                <DockPanel Grid.Column="2" Style="{DynamicResource DataGridNoteBtnPanel}">
+                                    <Image x:Name="btCopyNote" Style="{DynamicResource ButtonDataGrid}" Source="{DynamicResource IconClipboard}" Margin="5,0,10,0" HorizontalAlignment="Right" PreviewMouseUp="btCopyNote_PreviewMouseUp"/>
+                                </DockPanel>
+                            </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Login" Width="0.30*" HeaderStyle="{DynamicResource DataGridHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DockPanel>
-                                <TextBlock Text="{Binding Login}" VerticalAlignment="Stretch" Margin="5,0,0,0" />
-                                <Image x:Name="btCopyUsername" Style="{DynamicResource ButtonDataGrid}" Source="{DynamicResource IconClipboard}" Margin="5,0,10,0" HorizontalAlignment="Right" PreviewMouseUp="btCopyUsername_PreviewMouseUp"/>
-                            </DockPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Login}" VerticalAlignment="Stretch" Margin="5,0,0,0" TextTrimming="CharacterEllipsis" />
+                                <DockPanel Grid.Column="1" Style="{DynamicResource DataGridUsernameBtnPanel}">
+                                    <Image x:Name="btCopyUsername" Style="{DynamicResource ButtonDataGrid}" Source="{DynamicResource IconClipboard}" Margin="5,0,10,0" HorizontalAlignment="Right" PreviewMouseUp="btCopyUsername_PreviewMouseUp"/>
+                                </DockPanel>
+                            </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Password" Width="0.18*" HeaderStyle="{DynamicResource DataGridHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel x:Name="spPassword" Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Image Style="{DynamicResource ButtonDataGrid}" Source="{DynamicResource IconShowPassword}" x:Name="btShowPassword" Margin="5,0" PreviewMouseUp="btShowPassword_PreviewMouseUp"/>
-                                <Image Style="{DynamicResource ButtonDataGrid}" Source="{DynamicResource IconClipboard}" x:Name="btCopyPassword" Margin="5,0" PreviewMouseUp="btCopyPassword_PreviewMouseUp"/>
-                                <TextBlock x:Name="tbPassword" Text="{Binding Password}" Visibility="Collapsed" />
-                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="tbPassword" Text="{Binding Password}" Visibility="Collapsed" Margin="5,0,0,0" TextTrimming="CharacterEllipsis" />
+                                <StackPanel Grid.Column="0" x:Name="spPassword" Style="{DynamicResource DataGridPasswordBtnPanel}" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Image Style="{DynamicResource ButtonDataGrid}"
+                                           Source="{DynamicResource IconShowPassword}" x:Name="btShowPassword"
+                                           HorizontalAlignment="Center"
+                                           Margin="10, 0, 7, 0" PreviewMouseUp="btShowPassword_PreviewMouseUp" />
+                                    <Image Style="{DynamicResource ButtonDataGrid}"
+                                           Source="{DynamicResource IconClipboard}" x:Name="btCopyPassword"
+                                           HorizontalAlignment="Center"
+                                           Margin="7, 0, 10, 0"  PreviewMouseUp="btCopyPassword_PreviewMouseUp" />
+                                </StackPanel>
+                            </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

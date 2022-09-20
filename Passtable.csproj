@@ -71,6 +71,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Components\IsDataNotEmpty.cs" />
     <Compile Include="Components\DataGridUtils.cs" />
     <Compile Include="Containers\ClipboardKey.cs" />
     <Compile Include="EditGridWindow.xaml.cs">
