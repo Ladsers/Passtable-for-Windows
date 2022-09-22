@@ -390,15 +390,23 @@ namespace Passtable
             SaveFile(true);
         }
 
-        private void OpenFile()
+        private void OpenFile(string pathToFile = "")
         {
-            var openFileDialog = new OpenFileDialog
+            if (pathToFile == "")
             {
-                Filter = "Passtable file|*.passtable"
-            };
-            if (openFileDialog.ShowDialog() != true) return;
-            CloseFile(); // close previously opened file, if it is open
-            filePath = openFileDialog.FileName;
+                var openFileDialog = new OpenFileDialog
+                {
+                    Filter = "Passtable file|*.passtable"
+                };
+                if (openFileDialog.ShowDialog() != true) return;
+                CloseFile(); // close previously opened file, if it is open
+                filePath = openFileDialog.FileName;
+            }
+            else
+            {
+                CloseFile();
+                filePath = pathToFile;
+            }
 
             string encryptedData;
             try
@@ -470,7 +478,7 @@ namespace Passtable
 
                 if (data == "/emptyCollection")
                 {
-                    Title = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName) + " – Passtable for Windows";
+                    Title = System.IO.Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
                     isOpen = true;
                     return;
                 }
@@ -481,7 +489,7 @@ namespace Passtable
                     gridItems.Add(new GridItem(strs[0], strs[1], strs[2], strs[3]));
                 }
                 gridMain.Items.Refresh();
-                Title = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName) + " – Passtable for Windows";
+                Title = System.IO.Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
                 isOpen = true;
             }
             catch
@@ -596,6 +604,18 @@ namespace Passtable
                 stackPanel.SetValue(Grid.ColumnProperty, 0);
             }
         }
-        
+
+        private void MainWindow_OnDrop(object sender, DragEventArgs e)
+        {
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (files == null || !files[0].EndsWith(".passtable"))
+            {
+                const string msg = "This file type is not supported.";
+                const string title = "Critical error";
+                MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            OpenFile(files[0]);
+        }
     }
 }
