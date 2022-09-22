@@ -83,6 +83,7 @@
     <Compile Include="EditGridWindow.xaml.cs">
       <DependentUpon>EditGridWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Exceptions\EncryptionException.cs" />
     <Compile Include="FileVersion.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
