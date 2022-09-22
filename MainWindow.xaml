@@ -108,11 +108,11 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="btnAdd" Content= "Add" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="59" Click="btnAdd_Click"/>
-                <Button x:Name="btnEdit" Content= "Edit" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="7,0" Width="42" Click="btnEdit_Click"/>
-                <Button x:Name="btnDelete" Content="Delete" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="56" Click="btnDelete_Click"/>
+                <Button x:Name="btnAdd" Content= "Add" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="59" Click="btnAdd_Click" Focusable="False"/>
+                <Button x:Name="btnEdit" Content= "Edit" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="7,0" Width="42" Click="btnEdit_Click" Focusable="False"/>
+                <Button x:Name="btnDelete" Content="Delete" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="56" Click="btnDelete_Click" Focusable="False"/>
             </Grid>
-            <Button x:Name="btnCopySuper" Content="Login -> Password" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0" Width="150" Click="btnCopySuper_Click"/>
+            <Button x:Name="btnCopySuper" Content="Login -> Password" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0" Width="150" Click="btnCopySuper_Click" Focusable="False"/>
         </Grid>
     </Grid>
 </Window>
