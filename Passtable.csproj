@@ -79,6 +79,7 @@
     <Compile Include="Components\Askers.cs" />
     <Compile Include="Components\IsDataNotEmpty.cs" />
     <Compile Include="Components\DataGridUtils.cs" />
+    <Compile Include="Components\PasswordHandler.cs" />
     <Compile Include="Components\StatusBar.cs" />
     <Compile Include="Containers\ClipboardKey.cs" />
     <Compile Include="Containers\StatusKey.cs" />

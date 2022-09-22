@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Passtable.Components;
 
 namespace Passtable
 {
@@ -25,43 +15,30 @@ namespace Passtable
             InitializeComponent();
         }
 
-        private void cbShowPassword_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void cbShowPassword_Click(object sender, RoutedEventArgs e)
         {
-            tbPassword.Text = pbPassword.Password;
-            pbPassword.Visibility = Visibility.Hidden;
-            tbPassword.Visibility = Visibility.Visible;
-        }
-
-        private void cbShowPassword_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            pbPassword.Visibility = Visibility.Visible;
-            tbPassword.Visibility = Visibility.Hidden;
-        }
-
-        private void cbShowPassword_Checked(object sender, RoutedEventArgs e)
-        {
-            cbShowPassword.IsChecked = false;
+            PasswordHandler.ShowHidePassword(pbPassword, tbPassword);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            pbPassword.Password = PasswordHandler.GetCorrectData(pbPassword, tbPassword);
             DialogResult = true;
-        }
-
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
         }
 
         private void tbNote_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (tbNote.Text != "" || tbLogin.Text != "" && pbPassword.Password != "") btnSave.IsEnabled = true;
             else btnSave.IsEnabled = false;
+            if (tbNote.Text != "" || tbLogin.Text != "" && tbPassword.Text != "") btnSave.IsEnabled = true;
+            else btnSave.IsEnabled = false;
         }
 
         private void tbLogin_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (tbNote.Text != "" || tbLogin.Text != "" && pbPassword.Password != "") btnSave.IsEnabled = true;
+            else btnSave.IsEnabled = false;
+            if (tbNote.Text != "" || tbLogin.Text != "" && tbPassword.Text != "") btnSave.IsEnabled = true;
             else btnSave.IsEnabled = false;
         }
 
@@ -70,9 +47,20 @@ namespace Passtable
             if (tbNote.Text != "" || tbLogin.Text != "" && pbPassword.Password != "") btnSave.IsEnabled = true;
             else btnSave.IsEnabled = false;
         }
+        
+        private void tbPassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tbNote.Text != "" || tbLogin.Text != "" && tbPassword.Text != "") btnSave.IsEnabled = true;
+            else btnSave.IsEnabled = false;
+        }
 
         private void EditGridWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
+            if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.W)
+            {
+                cbShowPassword.IsChecked = !cbShowPassword.IsChecked;
+                PasswordHandler.ShowHidePassword(pbPassword, tbPassword);
+            }
             if (e.Key == Key.Escape) DialogResult = false;
         }
     }
