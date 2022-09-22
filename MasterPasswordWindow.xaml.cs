@@ -188,5 +188,11 @@ namespace Passtable
                 default: return '\x00';
             }
         }
+
+        private void MasterPasswordWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && btnEnter.IsEnabled) DialogResult = true;
+            if (e.Key == Key.Escape) DialogResult = false;
+        }
     }
 }

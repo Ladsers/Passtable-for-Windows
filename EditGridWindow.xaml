@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Passtable"
         mc:Ignorable="d"
-        Title="EditGridWindow" Height="217" Width="510" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="WhiteSmoke">
+        Title="EditGridWindow" Width="510" SizeToContent="Height"  ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        FocusManager.FocusedElement="{Binding ElementName=tbNote}"
+        PreviewKeyDown="EditGridWindow_OnPreviewKeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.33*"/>
             <RowDefinition Height="0.33*"/>
             <RowDefinition Height="0.33*"/>
             <RowDefinition Height="22px"/>
+            <RowDefinition Height="40px"/>
             <RowDefinition Height="40px"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -26,16 +29,13 @@
         <TextBox x:Name="tbLogin" x:FieldModifier="public" Grid.Row="1" Grid.Column="1" FontSize="14" Margin="0,12,10,0" TextChanged="tbLogin_TextChanged"/>
         <TextBox x:Name="tbPassword" x:FieldModifier="public" Grid.Row="2" Grid.Column="1" FontSize="14" Margin="0,12,10,0" Visibility="Hidden"/>
         <PasswordBox x:Name="pbPassword" Grid.Row="2" Grid.Column="1" FontSize="14" Margin="0,12,10,0" FontFamily="Segoe UI" PasswordChar="*" PasswordChanged="pbPassword_PasswordChanged"/>
-        <CheckBox x:Name="cbShowPassword" Grid.Row="3" Grid.Column="1" Content="show password" VerticalAlignment="Center" Margin="2,0,0,0" PreviewMouseLeftButtonDown="cbShowPassword_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="cbShowPassword_PreviewMouseLeftButtonUp" Checked="cbShowPassword_Checked" />
+        <CheckBox x:Name="cbShowPassword" Grid.Row="3" Grid.Column="1" Content="show password" VerticalAlignment="Center" Margin="2,0,0,0" PreviewMouseLeftButtonDown="cbShowPassword_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="cbShowPassword_PreviewMouseLeftButtonUp" Checked="cbShowPassword_Checked" Focusable="False" />
         <Grid Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="52"/>
                 <ColumnDefinition Width="65"/>
             </Grid.ColumnDefinitions>
-            
-            <Button x:Name="btnSave" Content="Save" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,7,0" Width="45" Click="btnSave_Click" IsEnabled="False"/>
-            <Button x:Name="btnCancel" Content="Cancel" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Width="55" Click="btnCancel_Click"/>
             <ComboBox x:Name="cbTag" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Width="70" SelectedIndex="0">
                 <ComboBoxItem Content="None"/>
                 <ComboBoxItem Background="#FF8F8F" Content="Red"/>
@@ -45,5 +45,6 @@
                 <ComboBoxItem Background="#E28FFF" Content="Purple"/>
             </ComboBox>
         </Grid>
+        <Button x:Name="btnSave" Content="Save" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,10,10" Height="30" Click="btnSave_Click" IsEnabled="False"/>
     </Grid>
 </Window>

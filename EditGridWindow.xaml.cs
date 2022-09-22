@@ -70,5 +70,10 @@ namespace Passtable
             if (tbNote.Text != "" || tbLogin.Text != "" && pbPassword.Password != "") btnSave.IsEnabled = true;
             else btnSave.IsEnabled = false;
         }
+
+        private void EditGridWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape) DialogResult = false;
+        }
     }
 }

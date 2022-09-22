@@ -195,10 +195,24 @@ namespace Passtable
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.D)
+            if ((Keyboard.Modifiers & (ModifierKeys.Control | ModifierKeys.Shift)) ==
+                (ModifierKeys.Control | ModifierKeys.Shift))
             {
-                LogPassSystem();
+                if (e.Key == Key.N)
+                {
+                    // new file
+                    CloseFile(); 
+                    return;
+                }
+                if (e.Key == Key.S) SaveFile(true); // save as
             }
+            if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                if (e.Key == Key.D) LogPassSystem();
+                if (e.Key == Key.N) AddEntry();
+                if (e.Key == Key.O) OpenFile();
+            }
+            if (e.Key == Key.F1) ShowAbout();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -468,7 +482,7 @@ namespace Passtable
                     data = AesEncryptor.Decryption(encryptedData, masterPass);
                     if (data == "/error")
                     {
-                        if (Askers.AskPrimaryPassword(this, false, false, out masterPass)) continue;
+                        if (Askers.AskPrimaryPassword(this, false, true, out masterPass)) continue;
                         CloseFile();
                         return;
                     }
@@ -508,7 +522,16 @@ namespace Passtable
 
         private void mnAbout_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            ShowAbout();
+        }
 
+        private void ShowAbout()
+        {
+            var aboutWindows = new AboutWindow
+            {
+                Owner = this
+            };
+            aboutWindows.ShowDialog();
         }
         
         private void CopyToClipboard(ClipboardKey key)
