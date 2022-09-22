@@ -72,6 +72,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Components\Askers.cs" />
     <Compile Include="Components\IsDataNotEmpty.cs" />
     <Compile Include="Components\DataGridUtils.cs" />
     <Compile Include="Components\StatusBar.cs" />

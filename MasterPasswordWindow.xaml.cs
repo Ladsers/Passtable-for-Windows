@@ -24,9 +24,9 @@ namespace Passtable
     {
         ToolTip tt;
         DispatcherTimer timer;
-        public bool invalidPassword = false;
+        public bool IncorrectPassword = false;
         public bool withoutChange = false;
-        public bool saveMode = false;
+        public bool SaveMode = false;
 
         private char keyTemp = '\x00';
         public MasterPasswordWindow()
@@ -52,7 +52,7 @@ namespace Passtable
                 tt.IsOpen = false;
                 timer.IsEnabled = false;
             });
-            if (invalidPassword)
+            if (IncorrectPassword)
             {
                 ToolTip tIn = new ToolTip
                 {
@@ -103,7 +103,7 @@ namespace Passtable
             {
                 if (Encoding.UTF8.GetByteCount(new char[] { pbPassword.Password[i] }) > 1)
                 {
-                    if (saveMode)
+                    if (SaveMode)
                     {
                         pbPassword.Password = pbPassword.Password.Remove(i, 1);
                         pbPassword.GetType().GetMethod("Select", BindingFlags.Instance | BindingFlags.NonPublic)

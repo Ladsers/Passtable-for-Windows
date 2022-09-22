@@ -228,7 +228,7 @@ namespace Passtable
             lpSysRowID = -2;
             gridMain.Items.Refresh();
 
-            SaveData();
+            SaveFile();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -238,7 +238,7 @@ namespace Passtable
 
         private void AddEntry()
         {
-            if (!isOpen && !SaveData()) return;
+            if (!isOpen && !SaveFile()) return;
             
             var editForm = new EditGridWindow
             {
@@ -251,7 +251,7 @@ namespace Passtable
             gridMain.Items.Refresh();
             isOpen = true;
 
-            SaveData();
+            SaveFile();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -286,11 +286,11 @@ namespace Passtable
                 gridItems[lpSysRowID].Tag = editForm.cbTag.SelectedIndex.ToString();
                 gridMain.Items.Refresh();
                 
-                SaveData();
+                SaveFile();
             }
         }
 
-        private bool SaveData(bool saveAs = false)
+        private bool SaveFile(bool saveAs = false)
         {
             var filePathPreselected = "";
             if (filePath == "" || saveAs)
@@ -309,7 +309,7 @@ namespace Passtable
                     Owner = this,
                     Title = "Enter master password",
                     btnEnter = { Content = "Save" },
-                    saveMode = true
+                    SaveMode = true
                 };
                 if (saveAs && masterPass != "")
                     masterPasswordWindow.btnWithoutChange.Visibility = Visibility.Visible;
@@ -382,80 +382,103 @@ namespace Passtable
 
         private void mnOpen_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            OpenFileProcess();
+            OpenFile();
         }
         
         private void mnSaveAs_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            SaveData(true);
+            SaveFile(true);
         }
 
-        private void OpenFileProcess()
+        private void OpenFile()
         {
             var openFileDialog = new OpenFileDialog
             {
                 Filter = "Passtable file|*.passtable"
             };
             if (openFileDialog.ShowDialog() != true) return;
-            CloseFile(); //
+            CloseFile(); // close previously opened file, if it is open
             filePath = openFileDialog.FileName;
 
+            string encryptedData;
             try
             {
-                string ver;
                 using (var sr = new StreamReader(filePath))
                 {
-                    ver = sr.ReadToEnd();
+                    encryptedData = sr.ReadToEnd();
                 }
-                var verCheck = FileVersion.GetChar(2, 1);
-                if (ver[0] != verCheck) throw new Exception();
             }
             catch
             {
-                MessageBox.Show("Failed to open file! Unsupported version of the file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                CloseFile();
+                MessageBox.Show("Failed to open file!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            var masterPasswordWindow = new MasterPasswordWindow();
-            masterPasswordWindow.Owner = this;
-            masterPasswordWindow.Title = "Enter master password";
-            masterPasswordWindow.saveMode = false;
-            if (masterPasswordWindow.ShowDialog() != true)
+            if (encryptedData.Length == 0)
             {
-                CloseFile();
+                const string msg = "The file is damaged.";
+                const string title = "Critical error";
+                MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            masterPass = masterPasswordWindow.pbPassword.Password;
+
+            if (encryptedData[0] == FileVersion.GetChar(2, 1))
+            {
+                encryptedData = encryptedData.Remove(0, 1); // delete version indicator
+            }
+            else
+            {
+                const string msg = "This file was created in a later version of the app and cannot be opened. Update the app.";
+                const string title = "Critical error";
+                MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             try
             {
-                string encrypted;
-                using (StreamReader sr = new StreamReader(filePath))
-                {
-                    encrypted = sr.ReadToEnd();
-                }
-                encrypted = encrypted.Remove(0, 1);
-                string inStr = "";
+                AesEncryptor.Decryption(encryptedData, "/test");
+            }
+            catch
+            {
+                const string msg = "The file is damaged.";
+                const string title = "Critical error";
+                MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            
+            if (!Askers.AskPrimaryPassword(this, false, false, out masterPass))
+            {
+                CloseFile();
+                return;
+            }
+            
+            try
+            {
+                string data;
                 while (true)
                 {
-                    inStr = AesEncryptor.Decryption(encrypted, masterPass);
-                    if (inStr == "/error")
+                    data = AesEncryptor.Decryption(encryptedData, masterPass);
+                    if (data == "/error")
                     {
-                        masterPasswordWindow = new MasterPasswordWindow();
-                        masterPasswordWindow.Owner = this;
-                        masterPasswordWindow.Title = "Enter master password";
-                        masterPasswordWindow.invalidPassword = true;
-                        if (masterPasswordWindow.ShowDialog() == false) return;
-                        masterPass = masterPasswordWindow.pbPassword.Password;
+                        if (Askers.AskPrimaryPassword(this, false, false, out masterPass)) continue;
+                        CloseFile();
+                        return;
                     }
-                    else break;
+
+                    break;
                 }
-                string[] arrStr = inStr.Split(new char[] { '\n' });
-                for (int i = 0; i < arrStr.Length; i++)
+
+                if (data == "/emptyCollection")
                 {
-                    string[] recStr = arrStr[i].Split(new char[] { '\t' });
-                    gridItems.Add(new GridItem(recStr[0], recStr[1], recStr[2], recStr[3]));
+                    Title = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName) + " – Passtable for Windows";
+                    isOpen = true;
+                    return;
+                }
+                
+                foreach (var list in data.Split('\n'))
+                {
+                    var strs = list.Split('\t');
+                    gridItems.Add(new GridItem(strs[0], strs[1], strs[2], strs[3]));
                 }
                 gridMain.Items.Refresh();
                 Title = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName) + " – Passtable for Windows";
@@ -463,7 +486,9 @@ namespace Passtable
             }
             catch
             {
-                MessageBox.Show("Failed to open file!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                const string msg = "The file is damaged.";
+                const string title = "Critical error";
+                MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
                 CloseFile();
             }
         }
