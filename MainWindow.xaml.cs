@@ -370,10 +370,19 @@ namespace Passtable
             return true;
         }
 
+        private void CloseFile()
+        {
+            filePath = "";
+            masterPass = "";
+            gridItems.Clear();
+            gridMain.Items.Refresh();
+            Title = "Passtable for Windows";
+            isOpen = false;
+        }
+
         private void mnOpen_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (isOpen) OpenFileProcess(new MainWindow());
-            else OpenFileProcess(this);
+            OpenFileProcess();
         }
         
         private void mnSaveAs_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -381,23 +390,20 @@ namespace Passtable
             SaveData(true);
         }
 
-        private void OpenFileProcess(MainWindow main)
+        private void OpenFileProcess()
         {
-            if (main != this) main.Show();
-
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Passtable file|*.passtable";
-            if (openFileDialog.ShowDialog() == false)
+            var openFileDialog = new OpenFileDialog
             {
-                if (main != this) main.Close();
-                return;
-            }
-            main.filePath = openFileDialog.FileName;
+                Filter = "Passtable file|*.passtable"
+            };
+            if (openFileDialog.ShowDialog() != true) return;
+            CloseFile(); //
+            filePath = openFileDialog.FileName;
 
             try
             {
                 string ver;
-                using (StreamReader sr = new StreamReader(main.filePath))
+                using (var sr = new StreamReader(filePath))
                 {
                     ver = sr.ReadToEnd();
                 }
@@ -407,31 +413,25 @@ namespace Passtable
             catch
             {
                 MessageBox.Show("Failed to open file! Unsupported version of the file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                if (main != this) main.Close();
-                else
-                {
-                    main.filePath = "";
-                    main.masterPass = "";
-                }
+                CloseFile();
                 return;
             }
 
             var masterPasswordWindow = new MasterPasswordWindow();
-            masterPasswordWindow.Owner = main;
+            masterPasswordWindow.Owner = this;
             masterPasswordWindow.Title = "Enter master password";
             masterPasswordWindow.saveMode = false;
-            if (masterPasswordWindow.ShowDialog() == false)
+            if (masterPasswordWindow.ShowDialog() != true)
             {
-                if (main != this) main.Close();
-                else main.filePath = "";
+                CloseFile();
                 return;
             }
-            main.masterPass = masterPasswordWindow.pbPassword.Password;
+            masterPass = masterPasswordWindow.pbPassword.Password;
 
             try
             {
                 string encrypted;
-                using (StreamReader sr = new StreamReader(main.filePath))
+                using (StreamReader sr = new StreamReader(filePath))
                 {
                     encrypted = sr.ReadToEnd();
                 }
@@ -439,15 +439,15 @@ namespace Passtable
                 string inStr = "";
                 while (true)
                 {
-                    inStr = AesEncryptor.Decryption(encrypted, main.masterPass);
+                    inStr = AesEncryptor.Decryption(encrypted, masterPass);
                     if (inStr == "/error")
                     {
                         masterPasswordWindow = new MasterPasswordWindow();
-                        masterPasswordWindow.Owner = main;
+                        masterPasswordWindow.Owner = this;
                         masterPasswordWindow.Title = "Enter master password";
                         masterPasswordWindow.invalidPassword = true;
                         if (masterPasswordWindow.ShowDialog() == false) return;
-                        main.masterPass = masterPasswordWindow.pbPassword.Password;
+                        masterPass = masterPasswordWindow.pbPassword.Password;
                     }
                     else break;
                 }
@@ -455,29 +455,22 @@ namespace Passtable
                 for (int i = 0; i < arrStr.Length; i++)
                 {
                     string[] recStr = arrStr[i].Split(new char[] { '\t' });
-                    main.gridItems.Add(new GridItem(recStr[0], recStr[1], recStr[2], recStr[3]));
+                    gridItems.Add(new GridItem(recStr[0], recStr[1], recStr[2], recStr[3]));
                 }
-                main.gridMain.Items.Refresh();
-                main.Title = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName) + " – Passtable for Windows";
-                main.isOpen = true;
+                gridMain.Items.Refresh();
+                Title = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName) + " – Passtable for Windows";
+                isOpen = true;
             }
             catch
             {
                 MessageBox.Show("Failed to open file!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                if (main != this) main.Close();
-                else
-                {
-                    main.filePath = "";
-                    main.masterPass = "";
-                }
-                return;
+                CloseFile();
             }
         }
 
         private void mnNew_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            var passtableApp = new MainWindow();
-            passtableApp.Show();
+            CloseFile();
         }
 
         private void mnAbout_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
