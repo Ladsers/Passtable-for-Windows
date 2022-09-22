@@ -499,4 +499,27 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
+    
+    <DrawingImage x:Key="IconNoEntry">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V32 H32 V0 H0 Z">
+                <DrawingGroup Opacity="1">
+                    <GeometryDrawing Geometry="F1 M32,32z M0,0z M29.6023,16C29.6023,23.732 23.3343,30 15.6023,30 7.87031,30 1.60229,23.732 1.60229,16 1.60229,8.26801 7.87031,2 15.6023,2 23.3343,2 29.6023,8.26801 29.6023,16z">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="15.6023,4.5625" EndPoint="15.6023,30" MappingMode="Absolute" SpreadMethod="Pad" Opacity="1">
+                                <GradientStop Color="#FFFE4E8E" Offset="0" />
+                                <GradientStop Color="#FFFF4C57" Offset="1" />
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup>
+                <DrawingGroup Opacity="1">
+                    <GeometryDrawing Brush="#FFFF4D76" Geometry="F1 M32,32z M0,0z M5.60229,15C5.60229,14.4477,6.05001,14,6.60229,14L24.6023,14C25.1546,14,25.6023,14.4477,25.6023,15L25.6023,17C25.6023,17.5523,25.1546,18,24.6023,18L6.6023,18C6.05001,18,5.60229,17.5523,5.60229,17L5.60229,15z" />
+                </DrawingGroup>
+                <DrawingGroup Opacity="1">
+                    <GeometryDrawing Brush="#FFF6EEFF" Geometry="F1 M32,32z M0,0z M5.60229,15C5.60229,14.4477,6.05001,14,6.60229,14L24.6023,14C25.1546,14,25.6023,14.4477,25.6023,15L25.6023,17C25.6023,17.5523,25.1546,18,24.6023,18L6.6023,18C6.05001,18,5.60229,17.5523,5.60229,17L5.60229,15z" />
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
 </ResourceDictionary>

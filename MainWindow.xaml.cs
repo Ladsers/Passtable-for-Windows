@@ -72,6 +72,7 @@ namespace Passtable
         string masterPass;
         bool isOpen;
 
+        private StatusBar _statusBar;
         static MainWindow mainWindow;
 
         public MainWindow()
@@ -90,6 +91,7 @@ namespace Passtable
             lpSysRowID = -2;
             lpSysWork = false;
             isOpen = false;
+            _statusBar = new StatusBar(dpSaveInfo, dpNoEntryInfo);
             //Items for test
             //gridItems.Add(new GridItem("http://example.com/", "typicaluser@example.com", "THECAKEISALIE"));
             //for (int i = 0; i < 100; i++) gridItems.Add(new GridItem(i.ToString(), (i * 2).ToString(), (i * 3).ToString()));
@@ -106,6 +108,11 @@ namespace Passtable
             if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.C)
             {
                 FindAndCopyToClipboard();
+            }
+            if (e.Key == Key.Delete) DeleteEntry();
+            if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.E)
+            {
+                EditEntry();
             }
         }
 
@@ -150,7 +157,7 @@ namespace Passtable
             {
                 if (lpSysRowID < 0)
                 {
-                    MessageBox.Show("Nothing selected!", "Warning!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    _statusBar.Show(StatusKey.NoEntry);
                     return;
                 }
 
@@ -195,12 +202,24 @@ namespace Passtable
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+          DeleteEntry();
+        }
+
+        private void DeleteEntry()
+        {
             if (lpSysRowID < 0)
             {
-                MessageBox.Show("Nothing selected!", "Warning!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                _statusBar.Show(StatusKey.NoEntry);
                 return;
             }
 
+            var deleteConfirmWindow = new DeleteConfirmWindow
+            {
+                Owner = this
+            };
+
+            if (deleteConfirmWindow.ShowDialog() != true) return;
+                
             lpSysWork = false;
             UnhookWindowsHookEx(_hookID);
             btnCopySuper.Content = "Login -> Password";
@@ -221,7 +240,7 @@ namespace Passtable
                 gridItems.Add(new GridItem(editForm.cbTag.SelectedIndex.ToString(),editForm.tbNote.Text, editForm.tbLogin.Text, editForm.pbPassword.Password)); //!!!
                 gridMain.Items.Refresh();
                 isOpen = true;
-                if (Title == "Passtable") Title = "\"Untitled\" – Passtable";
+                if (Title == "Passtable for Windows") Title = "Untitled – Passtable for Windows";
 
                 SaveFileProcess();
             }
@@ -229,9 +248,14 @@ namespace Passtable
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            EditEntry();
+        }
+
+        private void EditEntry()
+        {
             if (lpSysRowID < 0)
             {
-                MessageBox.Show("Nothing selected!", "Warning!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                _statusBar.Show(StatusKey.NoEntry);
                 return;
             }
 
@@ -299,10 +323,8 @@ namespace Passtable
 
                 output += AesEncryptor.Encryption(tableData, masterPass);
                 File.WriteAllText(pathSave, output);
-                Title = "\"" + System.IO.Path.GetFileNameWithoutExtension(pathSave) + "\" – Passtable";
-                
-                var opacityAnimation = new DoubleAnimation(0.9, 0.0, new Duration(TimeSpan.FromSeconds(1.8)));
-                dpSaveInfo.BeginAnimation(OpacityProperty, opacityAnimation);
+                Title = System.IO.Path.GetFileNameWithoutExtension(pathSave) + " – Passtable for Windows";
+                _statusBar.Show(StatusKey.Saved);
                 
                 return true;
             }
@@ -403,7 +425,7 @@ namespace Passtable
                     main.gridItems.Add(new GridItem(recStr[0], recStr[1], recStr[2], recStr[3]));
                 }
                 main.gridMain.Items.Refresh();
-                main.Title = "\"" + System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName) + "\" – Passtable";
+                main.Title = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName) + " – Passtable for Windows";
                 main.isOpen = true;
             }
             catch

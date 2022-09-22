@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="DeleteConfirmWindow.xaml" />
     <Page Include="EditGridWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -73,7 +74,12 @@
     </Compile>
     <Compile Include="Components\IsDataNotEmpty.cs" />
     <Compile Include="Components\DataGridUtils.cs" />
+    <Compile Include="Components\StatusBar.cs" />
     <Compile Include="Containers\ClipboardKey.cs" />
+    <Compile Include="Containers\StatusKey.cs" />
+    <Compile Include="DeleteConfirmWindow.xaml.cs">
+      <DependentUpon>DeleteConfirmWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditGridWindow.xaml.cs">
       <DependentUpon>EditGridWindow.xaml</DependentUpon>
     </Compile>

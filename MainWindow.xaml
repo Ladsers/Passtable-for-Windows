@@ -28,6 +28,10 @@
                 <Image Source="{DynamicResource IconSave}" Margin="5,0,0,0" Width="18" Height="18" />
                 <TextBlock Text="Saved" VerticalAlignment="Center" FontSize="12" FontStyle="Italic" Margin="7,0,20,0" FontWeight="SemiBold" />
             </DockPanel>
+            <DockPanel x:Name="dpNoEntryInfo" Grid.Column="4" HorizontalAlignment="Right" Opacity="0">
+                <Image Source="{DynamicResource IconNoEntry}" Margin="5,0,0,0" Width="18" Height="18" />
+                <TextBlock Text="Nothing selected" VerticalAlignment="Center" FontSize="12" FontStyle="Italic" Margin="7,0,20,0" FontWeight="SemiBold" />
+            </DockPanel>
 
         </Grid>
         <DataGrid x:Name="gridMain" Grid.Row="1"  CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" IsReadOnly="True" MouseDoubleClick="gridMain_MouseDoubleClick" SelectionMode="Single" PreviewKeyDown="gridMain_PreviewKeyDown" FontSize="15" CurrentCellChanged="gridMain_CurrentCellChanged" GridLinesVisibility="All" Background="#00000000" RowBackground="White" HorizontalGridLinesBrush="#FFB4B4B4" RowHeight="30" VerticalContentAlignment="Center" BorderBrush="#00000000">
