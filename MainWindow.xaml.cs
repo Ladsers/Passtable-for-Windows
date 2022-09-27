@@ -66,6 +66,7 @@ namespace Passtable
         private static IntPtr _hookID = IntPtr.Zero;
 
         List<GridItem> gridItems;
+        private DataSearcher _dataSearcher;
         int lpSysRowID;
         static bool lpSysWork;
         static string lpSysPassword;
@@ -84,6 +85,7 @@ namespace Passtable
             mainWindow = this;
             filePath = "";
             masterPass = "";
+            _dataSearcher = new DataSearcher(gridItems, gridMain);
         }
 
         private void Window_Initialized(object sender, EventArgs e)
@@ -241,6 +243,7 @@ namespace Passtable
             gridItems.RemoveAt(lpSysRowID);
             lpSysRowID = -2;
             gridMain.Items.Refresh();
+            _dataSearcher.RememberCurrentState();
 
             SaveFile();
         }
@@ -263,6 +266,7 @@ namespace Passtable
             
             gridItems.Add(new GridItem(editForm.cbTag.SelectedIndex.ToString(),editForm.tbNote.Text, editForm.tbLogin.Text, editForm.pbPassword.Password)); //!!!
             gridMain.Items.Refresh();
+            _dataSearcher.RememberCurrentState();
             isOpen = true;
 
             SaveFile();
@@ -299,6 +303,7 @@ namespace Passtable
                 gridItems[lpSysRowID].Password = editForm.pbPassword.Password;
                 gridItems[lpSysRowID].Tag = editForm.cbTag.SelectedIndex.ToString();
                 gridMain.Items.Refresh();
+                _dataSearcher.RememberCurrentState();
                 
                 SaveFile();
             }
@@ -390,6 +395,7 @@ namespace Passtable
             masterPass = "";
             gridItems.Clear();
             gridMain.Items.Refresh();
+            _dataSearcher.RememberCurrentState();
             Title = "Passtable for Windows";
             isOpen = false;
         }
@@ -503,6 +509,7 @@ namespace Passtable
                     gridItems.Add(new GridItem(strs[0], strs[1], strs[2], strs[3]));
                 }
                 gridMain.Items.Refresh();
+                _dataSearcher.RememberCurrentState();
                 Title = System.IO.Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
                 isOpen = true;
             }
@@ -639,6 +646,33 @@ namespace Passtable
                 return;
             }
             OpenFile(files[0]);
+        }
+
+        private async void TbSearchData_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            async Task<bool> UserKeepsTyping() {
+                var txt = tbSearchData.Text;   // remember text
+                await Task.Delay(500);        // wait some
+                return txt != tbSearchData.Text;  // return that text chaged or not
+            }
+            if (await UserKeepsTyping()) return;
+            
+            _dataSearcher.SearchByDataAsync(tbSearchData.Text);
+        }
+
+        private void BtTag_OnClick(object sender, RoutedEventArgs e)
+        {
+            _dataSearcher.SearchByTagAsync(btRed, btGreen, btBlue, btYellow, btPurple);
+        }
+
+        private void BtTagNone_OnClick(object sender, RoutedEventArgs e)
+        {
+            btRed.IsChecked = false;
+            btGreen.IsChecked = false;
+            btBlue.IsChecked = false;
+            btYellow.IsChecked = false;
+            btPurple.IsChecked = false;
+            _dataSearcher.SearchByTagAsync(btRed, btGreen, btBlue, btYellow, btPurple);
         }
     }
 }
