@@ -229,6 +229,15 @@ namespace Passtable
                 _statusBar.Show(StatusKey.NoEntry);
                 return;
             }
+            
+            var idInSearch = -1;
+            
+            if (_dataSearcher.SearchIsRunning)
+            {
+                var id = _dataSearcher.GetId(gridItems[lpSysRowID]);
+                if (id == null) return;
+                idInSearch = (int)id;
+            }
 
             var deleteConfirmWindow = new DeleteConfirmWindow
             {
@@ -240,10 +249,18 @@ namespace Passtable
             lpSysWork = false;
             UnhookWindowsHookEx(_hookID);
             btnCopySuper.Content = "Login -> Password";
-            gridItems.RemoveAt(lpSysRowID);
-            lpSysRowID = -2;
-            gridMain.Items.Refresh();
-            _dataSearcher.RememberCurrentState();
+            if (_dataSearcher.SearchIsRunning)
+            {
+                _dataSearcher.DeleteAndGetAll(idInSearch);
+                UnselectRow();
+            }
+            else
+            {
+                gridItems.RemoveAt(lpSysRowID);
+                lpSysRowID = -2;
+                gridMain.Items.Refresh();
+                _dataSearcher.RememberCurrentState();
+            }
 
             SaveFile();
         }
@@ -263,8 +280,15 @@ namespace Passtable
                 Title = "Add new item"
             };
             if (editForm.ShowDialog() != true) return;
-            
-            gridItems.Add(new GridItem(editForm.cbTag.SelectedIndex.ToString(),editForm.tbNote.Text, editForm.tbLogin.Text, editForm.pbPassword.Password)); //!!!
+
+            if (_dataSearcher.SearchIsRunning)
+            {
+                _dataSearcher.GetAll();
+                UnselectRow();
+            }
+
+            gridItems.Add(new GridItem(editForm.cbTag.SelectedIndex.ToString(), editForm.tbNote.Text,
+                editForm.tbLogin.Text, editForm.pbPassword.Password));
             gridMain.Items.Refresh();
             _dataSearcher.RememberCurrentState();
             isOpen = true;
@@ -285,6 +309,15 @@ namespace Passtable
                 return;
             }
 
+            var idInSearch = -1;
+            
+            if (_dataSearcher.SearchIsRunning)
+            {
+                var id = _dataSearcher.GetId(gridItems[lpSysRowID]);
+                if (id == null) return;
+                idInSearch = (int)id;
+            }
+
             lpSysWork = false;
             UnhookWindowsHookEx(_hookID);
             btnCopySuper.Content = "Login -> Password";
@@ -296,17 +329,25 @@ namespace Passtable
             editForm.tbLogin.Text = gridItems[lpSysRowID].Login;
             editForm.pbPassword.Password = gridItems[lpSysRowID].Password;
             editForm.cbTag.SelectedIndex = int.Parse(gridItems[lpSysRowID].Tag);
-            if (editForm.ShowDialog() == true)
+            if (editForm.ShowDialog() != true) return;
+            
+            gridItems[lpSysRowID].Note = editForm.tbNote.Text;
+            gridItems[lpSysRowID].Login = editForm.tbLogin.Text;
+            gridItems[lpSysRowID].Password = editForm.pbPassword.Password;
+            gridItems[lpSysRowID].Tag = editForm.cbTag.SelectedIndex.ToString();
+
+            if (_dataSearcher.SearchIsRunning)
             {
-                gridItems[lpSysRowID].Note = editForm.tbNote.Text;
-                gridItems[lpSysRowID].Login = editForm.tbLogin.Text;
-                gridItems[lpSysRowID].Password = editForm.pbPassword.Password;
-                gridItems[lpSysRowID].Tag = editForm.cbTag.SelectedIndex.ToString();
+                _dataSearcher.EditAndGetAll(idInSearch, gridItems[lpSysRowID]);
+                UnselectRow();
+            }
+            else
+            {
                 gridMain.Items.Refresh();
                 _dataSearcher.RememberCurrentState();
-                
-                SaveFile();
             }
+                
+            SaveFile();
         }
 
         private bool SaveFile(bool saveAs = false)
@@ -657,22 +698,32 @@ namespace Passtable
             }
             if (await UserKeepsTyping()) return;
             
+            UnselectRow();
             _dataSearcher.SearchByDataAsync(tbSearchData.Text);
         }
 
         private void BtTag_OnClick(object sender, RoutedEventArgs e)
         {
+            UnselectRow();
             _dataSearcher.SearchByTagAsync(btRed, btGreen, btBlue, btYellow, btPurple);
         }
 
         private void BtTagNone_OnClick(object sender, RoutedEventArgs e)
         {
+            UnselectRow();
             btRed.IsChecked = false;
             btGreen.IsChecked = false;
             btBlue.IsChecked = false;
             btYellow.IsChecked = false;
             btPurple.IsChecked = false;
             _dataSearcher.SearchByTagAsync(btRed, btGreen, btBlue, btYellow, btPurple);
+        }
+
+        private void UnselectRow()
+        {
+            gridMain.UnselectAll();
+            gridMain.CurrentCell = new DataGridCellInfo();
+            lpSysRowID = -2;
         }
     }
 }

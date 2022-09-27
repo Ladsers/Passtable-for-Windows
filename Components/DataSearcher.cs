@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -11,6 +12,8 @@ namespace Passtable.Components
         private readonly List<GridItem> _gridItems;
         private readonly DataGrid _dataGrid;
         private readonly List<GridItem> _allGridItems;
+
+        public bool SearchIsRunning { get; private set; }
 
         public DataSearcher(List<GridItem> gridItems, DataGrid dataGrid)
         {
@@ -30,10 +33,12 @@ namespace Passtable.Components
             _gridItems.Clear();
             if (query.Length == 0)
             {
+                SearchIsRunning = false;
                 _gridItems.AddRange(_allGridItems);
                 return;
             }
 
+            SearchIsRunning = true;
             var queryLowerCase = query.ToLower();
             foreach (var gridItem in _allGridItems.Where(gridItem =>
                          gridItem.Note.ToLower().Contains(queryLowerCase) ||
@@ -51,10 +56,12 @@ namespace Passtable.Components
             _gridItems.Clear();
             if (!red && !green && !blue && !yellow && !purple)
             {
+                SearchIsRunning = false;
                 _gridItems.AddRange(_allGridItems);
                 return;
             }
 
+            SearchIsRunning = true;
             foreach (var gridItem in _allGridItems.Where(gridItem =>
                          red && gridItem.Tag.Contains("1") || green && gridItem.Tag.Contains("2") ||
                          blue && gridItem.Tag.Contains("3") || yellow && gridItem.Tag.Contains("4") ||
@@ -72,6 +79,34 @@ namespace Passtable.Components
             
             await Task.Run(() => SearchByTag(redNonNull, greenNonNull, blueNonNull, yellowNonNull, purpleNonNull));
             _dataGrid.Items.Refresh();
+        }
+
+        public int? GetId(GridItem item)
+        {
+            var count = _allGridItems.Count(collectionItem => collectionItem == item);
+            if (count != 1) return null; // additional protection
+
+            return _allGridItems.FindIndex(collectionItem => collectionItem == item);
+        }
+
+        public void EditAndGetAll(int id, GridItem newItem)
+        {
+            _allGridItems[id] = newItem;
+            GetAll();
+        }
+        
+        public void DeleteAndGetAll(int id)
+        {
+            _allGridItems.RemoveAt(id);
+            GetAll();
+        }
+
+        public void GetAll()
+        {
+            _gridItems.Clear();
+            _gridItems.AddRange(_allGridItems);
+            _dataGrid.Items.Refresh();
+            SearchIsRunning = false;
         }
     }
 }
