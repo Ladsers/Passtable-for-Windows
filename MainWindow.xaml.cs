@@ -229,15 +229,6 @@ namespace Passtable
                 _statusBar.Show(StatusKey.NoEntry);
                 return;
             }
-            
-            var idInSearch = -1;
-            
-            if (_dataSearcher.SearchIsRunning)
-            {
-                var id = _dataSearcher.GetId(gridItems[lpSysRowID]);
-                if (id == null) return;
-                idInSearch = (int)id;
-            }
 
             var deleteConfirmWindow = new DeleteConfirmWindow
             {
@@ -251,7 +242,7 @@ namespace Passtable
             btnCopySuper.Content = "Login -> Password";
             if (_dataSearcher.SearchIsRunning)
             {
-                _dataSearcher.DeleteAndGetAll(idInSearch);
+                _dataSearcher.DeleteAndGetAll(gridItems[lpSysRowID]);
                 UnselectRow();
             }
             else
@@ -309,15 +300,6 @@ namespace Passtable
                 return;
             }
 
-            var idInSearch = -1;
-            
-            if (_dataSearcher.SearchIsRunning)
-            {
-                var id = _dataSearcher.GetId(gridItems[lpSysRowID]);
-                if (id == null) return;
-                idInSearch = (int)id;
-            }
-
             lpSysWork = false;
             UnhookWindowsHookEx(_hookID);
             btnCopySuper.Content = "Login -> Password";
@@ -338,7 +320,7 @@ namespace Passtable
 
             if (_dataSearcher.SearchIsRunning)
             {
-                _dataSearcher.EditAndGetAll(idInSearch, gridItems[lpSysRowID]);
+                _dataSearcher.EditAndGetAll(gridItems[lpSysRowID]);
                 UnselectRow();
             }
             else

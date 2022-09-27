@@ -81,22 +81,16 @@ namespace Passtable.Components
             _dataGrid.Items.Refresh();
         }
 
-        public int? GetId(GridItem item)
+        public void EditAndGetAll(GridItem item)
         {
-            var count = _allGridItems.Count(collectionItem => collectionItem == item);
-            if (count != 1) return null; // additional protection
-
-            return _allGridItems.FindIndex(collectionItem => collectionItem == item);
-        }
-
-        public void EditAndGetAll(int id, GridItem newItem)
-        {
-            _allGridItems[id] = newItem;
+            var id = _allGridItems.FindIndex(collectionItem => collectionItem == item);
+            _allGridItems[id] = item;
             GetAll();
         }
         
-        public void DeleteAndGetAll(int id)
+        public void DeleteAndGetAll(GridItem item)
         {
+            var id = _allGridItems.FindIndex(collectionItem => collectionItem == item);
             _allGridItems.RemoveAt(id);
             GetAll();
         }
