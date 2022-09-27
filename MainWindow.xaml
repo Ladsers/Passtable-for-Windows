@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Passtable"
+        xmlns:res="clr-namespace:Passtable.Resources"
         mc:Ignorable="d"
         Title="Passtable for Windows" Height="500" Width="700" MinWidth="550" MinHeight="200" Initialized="Window_Initialized" Icon="icon.ico" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown"
         Drop="MainWindow_OnDrop" AllowDrop="True">
@@ -38,7 +39,7 @@
         <DataGrid x:Name="gridMain" Grid.Row="1"  CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" IsReadOnly="True" MouseDoubleClick="gridMain_MouseDoubleClick" SelectionMode="Single" PreviewKeyDown="gridMain_PreviewKeyDown" FontSize="15" CurrentCellChanged="gridMain_CurrentCellChanged" GridLinesVisibility="All" Background="#00000000" RowBackground="White" HorizontalGridLinesBrush="#FFB4B4B4" RowHeight="30" VerticalContentAlignment="Center" BorderBrush="#00000000">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="" Width="20" CanUserResize="False" Visibility="Hidden"/>
-                    <DataGridTemplateColumn Header="URL, place or note" Width="0.50*" HeaderStyle="{DynamicResource DataGridHeader}">
+                    <DataGridTemplateColumn Header="{x:Static res:Strings.title_note}" Width="0.50*" HeaderStyle="{DynamicResource DataGridHeader}">
                         <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
@@ -56,7 +57,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Login" Width="0.30*" HeaderStyle="{DynamicResource DataGridHeader}">
+                <DataGridTemplateColumn Header="{x:Static res:Strings.title_username}" Width="0.30*" HeaderStyle="{DynamicResource DataGridHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
@@ -72,7 +73,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Password" Width="0.18*" HeaderStyle="{DynamicResource DataGridHeader}">
+                <DataGridTemplateColumn Header="{x:Static res:Strings.title_password}" Width="0.18*" HeaderStyle="{DynamicResource DataGridHeader}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
