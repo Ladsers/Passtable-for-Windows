@@ -95,5 +95,77 @@ namespace Passtable.Resources {
                 return ResourceManager.GetString("title_username", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string toolbar_help {
+            get {
+                return ResourceManager.GetString("toolbar_help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyboard shortcuts and information about the app (F1).
+        /// </summary>
+        public static string toolbar_help_tip {
+            get {
+                return ResourceManager.GetString("toolbar_help_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string toolbar_new {
+            get {
+                return ResourceManager.GetString("toolbar_new", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New file (Ctrl+Shift+N).
+        /// </summary>
+        public static string toolbar_new_tip {
+            get {
+                return ResourceManager.GetString("toolbar_new_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string toolbar_open {
+            get {
+                return ResourceManager.GetString("toolbar_open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open file (Ctrl+O).
+        /// </summary>
+        public static string toolbar_open_tip {
+            get {
+                return ResourceManager.GetString("toolbar_open_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save as.
+        /// </summary>
+        public static string toolbar_saveAs {
+            get {
+                return ResourceManager.GetString("toolbar_saveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save changes to another file with primary password change (Ctrl+Shift+S).
+        /// </summary>
+        public static string toolbar_saveAs_tip {
+            get {
+                return ResourceManager.GetString("toolbar_saveAs_tip", resourceCulture);
+            }
+        }
     }
 }

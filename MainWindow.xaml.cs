@@ -20,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using HandyControl.Tools;
 using Passtable.Components;
 using Passtable.Containers;
 using Passtable.Exceptions;
@@ -87,6 +88,9 @@ namespace Passtable
             filePath = "";
             masterPass = "";
             _dataSearcher = new DataSearcher(gridItems, gridMain);
+
+            WindowBackground.SetBackground(this);
+            //Background = new SolidColorBrush(Colors.White);
         }
 
         private void Window_Initialized(object sender, EventArgs e)
@@ -424,12 +428,12 @@ namespace Passtable
             isOpen = false;
         }
 
-        private void mnOpen_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void mnOpen_Click(object sender, RoutedEventArgs e)
         {
             OpenFile();
         }
         
-        private void mnSaveAs_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void mnSaveAs_Click(object sender, RoutedEventArgs e)
         {
             SaveFile(true);
         }
@@ -546,12 +550,12 @@ namespace Passtable
             }
         }
 
-        private void mnNew_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void mnNew_Click(object sender, RoutedEventArgs e)
         {
             CloseFile();
         }
 
-        private void mnAbout_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void mnAbout_Click(object sender, RoutedEventArgs e)
         {
             ShowAbout();
         }

@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using Passtable.Components;
+using Window = HandyControl.Controls.Window;
 
 namespace Passtable
 {

@@ -7,16 +7,15 @@
         xmlns:res="clr-namespace:Passtable.Resources"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        SystemBackdropType="Mica"
         Title="Passtable for Windows" Height="500" Width="700" MinWidth="550" MinHeight="200" Initialized="Window_Initialized" Icon="icon.ico" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown"
         Drop="MainWindow_OnDrop" AllowDrop="True">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
             <RowDefinition Height="40px"/>
         </Grid.RowDefinitions>
-        <Grid Row="0" Margin="0,-1,0,0">
+        <Grid Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -24,17 +23,17 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="New" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnNew_PreviewMouseLeftButtonUp"/>
-            <TextBlock Text="Open" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnOpen_PreviewMouseLeftButtonUp"/>
-            <TextBlock Text="Save as" HorizontalAlignment="Left" Grid.Column="2" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnSaveAs_PreviewMouseLeftButtonUp"/>
-            <TextBlock Text="About" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Center" FontSize="13" FontWeight="Bold" Margin="10,0,2,0" Cursor="Hand" PreviewMouseLeftButtonUp="mnAbout_PreviewMouseLeftButtonUp"/>
-            <DockPanel x:Name="dpSaveInfo" Grid.Column="4" HorizontalAlignment="Right" Opacity="0">
-                <Image Source="{DynamicResource IconSave}" Margin="5,0,0,0" Width="18" Height="18" />
-                <TextBlock Text="Saved" VerticalAlignment="Center" FontSize="12" FontStyle="Italic" Margin="7,0,20,0" FontWeight="SemiBold" />
+            <Button Style="{DynamicResource ToolbarButton}" Content="{x:Static res:Strings.toolbar_new}" ToolTip="{x:Static res:Strings.toolbar_new_tip}" Grid.Column="0" Click="mnNew_Click" Focusable="False"/>
+            <Button Style="{DynamicResource ToolbarButton}" Content="{x:Static res:Strings.toolbar_open}" ToolTip="{x:Static res:Strings.toolbar_open_tip}" Grid.Column="1" Click="mnOpen_Click" Focusable="False"/>
+            <Button Style="{DynamicResource ToolbarButton}" Content="{x:Static res:Strings.toolbar_saveAs}" ToolTip="{x:Static res:Strings.toolbar_saveAs_tip}" Grid.Column="2" Click="mnSaveAs_Click" Focusable="False"/>
+            <Button Style="{DynamicResource ToolbarButton}" Content="{x:Static res:Strings.toolbar_help}" ToolTip="{x:Static res:Strings.toolbar_help_tip}" Grid.Column="3" Click="mnAbout_Click" Focusable="False"/>
+            <DockPanel x:Name="dpSaveInfo" Grid.Column="4" Style="{DynamicResource StatusBarDock}">
+                <Image Source="{DynamicResource IconSave}" Style="{DynamicResource StatusBarImage}" />
+                <TextBlock Text="Saved" Style="{DynamicResource StatusBarInfo}"/>
             </DockPanel>
-            <DockPanel x:Name="dpNoEntryInfo" Grid.Column="4" HorizontalAlignment="Right" Opacity="0">
-                <Image Source="{DynamicResource IconNoEntry}" Margin="5,0,0,0" Width="18" Height="18" />
-                <TextBlock Text="Nothing selected" VerticalAlignment="Center" FontSize="12" FontStyle="Italic" Margin="7,0,20,0" FontWeight="SemiBold" />
+            <DockPanel x:Name="dpNoEntryInfo" Grid.Column="4" Style="{DynamicResource StatusBarDock}">
+                <Image Source="{DynamicResource IconNoEntry}" Style="{DynamicResource StatusBarImage}" />
+                <TextBlock Text="Nothing selected" Style="{DynamicResource StatusBarInfo}" />
             </DockPanel>
 
         </Grid>

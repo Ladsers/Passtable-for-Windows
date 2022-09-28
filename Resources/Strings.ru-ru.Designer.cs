@@ -95,5 +95,77 @@ namespace Passtable.Resources {
                 return ResourceManager.GetString("title_username", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Помощь.
+        /// </summary>
+        public static string toolbar_help {
+            get {
+                return ResourceManager.GetString("toolbar_help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Горячие клавиши и информация о приложении (F1).
+        /// </summary>
+        public static string toolbar_help_tip {
+            get {
+                return ResourceManager.GetString("toolbar_help_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Новый.
+        /// </summary>
+        public static string toolbar_new {
+            get {
+                return ResourceManager.GetString("toolbar_new", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Новый файл (Ctrl+Shift+N).
+        /// </summary>
+        public static string toolbar_new_tip {
+            get {
+                return ResourceManager.GetString("toolbar_new_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Открыть.
+        /// </summary>
+        public static string toolbar_open {
+            get {
+                return ResourceManager.GetString("toolbar_open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Открыть файл (Ctrl+O).
+        /// </summary>
+        public static string toolbar_open_tip {
+            get {
+                return ResourceManager.GetString("toolbar_open_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сохр. как.
+        /// </summary>
+        public static string toolbar_saveAs {
+            get {
+                return ResourceManager.GetString("toolbar_saveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сохранить изменения в другом файле с изменением основного пароля (Ctrl+Shift+S).
+        /// </summary>
+        public static string toolbar_saveAs_tip {
+            get {
+                return ResourceManager.GetString("toolbar_saveAs_tip", resourceCulture);
+            }
+        }
     }
 }

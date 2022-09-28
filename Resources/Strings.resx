@@ -30,4 +30,28 @@
     <data name="title_username" xml:space="preserve">
         <value>Username</value>
     </data>
+    <data name="toolbar_new" xml:space="preserve">
+        <value>New</value>
+    </data>
+    <data name="toolbar_new_tip" xml:space="preserve">
+        <value>New file (Ctrl+Shift+N)</value>
+    </data>
+    <data name="toolbar_open" xml:space="preserve">
+        <value>Open</value>
+    </data>
+    <data name="toolbar_open_tip" xml:space="preserve">
+        <value>Open file (Ctrl+O)</value>
+    </data>
+    <data name="toolbar_saveAs" xml:space="preserve">
+        <value>Save as</value>
+    </data>
+    <data name="toolbar_saveAs_tip" xml:space="preserve">
+        <value>Save changes to another file with primary password change (Ctrl+Shift+S)</value>
+    </data>
+    <data name="toolbar_help" xml:space="preserve">
+        <value>Help</value>
+    </data>
+    <data name="toolbar_help_tip" xml:space="preserve">
+        <value>Keyboard shortcuts and information about the app (F1)</value>
+    </data>
 </root>

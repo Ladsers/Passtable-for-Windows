@@ -30,4 +30,28 @@
     <data name="title_username" xml:space="preserve">
         <value>Логин</value>
     </data>
+    <data name="toolbar_saveAs" xml:space="preserve">
+        <value>Сохр. как</value>
+    </data>
+    <data name="toolbar_open" xml:space="preserve">
+        <value>Открыть</value>
+    </data>
+    <data name="toolbar_new" xml:space="preserve">
+        <value>Новый</value>
+    </data>
+    <data name="toolbar_help" xml:space="preserve">
+        <value>Помощь</value>
+    </data>
+    <data name="toolbar_new_tip" xml:space="preserve">
+        <value>Новый файл (Ctrl+Shift+N)</value>
+    </data>
+    <data name="toolbar_open_tip" xml:space="preserve">
+        <value>Открыть файл (Ctrl+O)</value>
+    </data>
+    <data name="toolbar_saveAs_tip" xml:space="preserve">
+        <value>Сохранить изменения в другом файле с изменением основного пароля (Ctrl+Shift+S)</value>
+    </data>
+    <data name="toolbar_help_tip" xml:space="preserve">
+        <value>Горячие клавиши и информация о приложении (F1)</value>
+    </data>
 </root>

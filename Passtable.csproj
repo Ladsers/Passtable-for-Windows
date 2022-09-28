@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Components\WindowBackground.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -116,6 +117,7 @@
     <Page Include="Resources\Colors.xaml" />
     <Page Include="Resources\DataGrid.xaml" />
     <Page Include="Resources\Icons.xaml" />
+    <Page Include="Resources\StatusBar.xaml" />
     <Page Include="Resources\Tags.xaml" />
   </ItemGroup>
   <ItemGroup>
