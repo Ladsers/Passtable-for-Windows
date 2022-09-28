@@ -23,6 +23,7 @@ using System.Windows.Threading;
 using Passtable.Components;
 using Passtable.Containers;
 using Passtable.Exceptions;
+using Window = HandyControl.Controls.Window;
 
 namespace Passtable
 {
