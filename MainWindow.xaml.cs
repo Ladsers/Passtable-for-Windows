@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -24,6 +25,8 @@ using HandyControl.Tools;
 using Passtable.Components;
 using Passtable.Containers;
 using Passtable.Exceptions;
+using Passtable.Resources;
+using StatusBar = Passtable.Components.StatusBar;
 using Window = HandyControl.Controls.Window;
 
 namespace Passtable
@@ -90,6 +93,7 @@ namespace Passtable
             _dataSearcher = new DataSearcher(gridItems, gridMain);
 
             WindowBackground.SetBackground(this);
+            HandleUiWidgets();
             //Background = new SolidColorBrush(Colors.White);
         }
 
@@ -152,7 +156,7 @@ namespace Passtable
                         Clipboard.SetText("");
                         lpSysWork = false;
                         UnhookWindowsHookEx(_hookID);
-                        mainWindow.btnCopySuper.Content = "Login -> Password";
+                        mainWindow.btLogPass.Content = "Login -> Password";
                     }
                 }
             }
@@ -173,14 +177,14 @@ namespace Passtable
                 lpSysPassword = gridItems[lpSysRowID].Password;
                 _hookID = SetHook(_proc);
 
-                btnCopySuper.Content = "Stop!";
+                btLogPass.Content = "Stop!";
                 lpSysWork = true;
             }
             else
             {
                 lpSysWork = false;
                 UnhookWindowsHookEx(_hookID);
-                btnCopySuper.Content = "Login -> Password";
+                btLogPass.Content = "Login -> Password";
             }
         }
 
@@ -215,9 +219,19 @@ namespace Passtable
             }
             if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
-                if (e.Key == Key.D) LogPassSystem();
                 if (e.Key == Key.N) AddEntry();
                 if (e.Key == Key.O) OpenFile();
+                if (isOpen)
+                {
+                    if (e.Key == Key.D) LogPassSystem();
+                    if (e.Key == Key.D1) SearchByTagShortcut(btRed);
+                    if (e.Key == Key.D2) SearchByTagShortcut(btGreen);
+                    if (e.Key == Key.D3) SearchByTagShortcut(btBlue);
+                    if (e.Key == Key.D4) SearchByTagShortcut(btYellow);
+                    if (e.Key == Key.D5) SearchByTagShortcut(btPurple);
+                    if (e.Key == Key.D0) SearchByTagShortcut();
+                    if (e.Key == Key.F) SearchByDataShortcut();
+                }
             }
             if (e.Key == Key.F1) ShowAbout();
         }
@@ -244,7 +258,7 @@ namespace Passtable
                 
             lpSysWork = false;
             UnhookWindowsHookEx(_hookID);
-            btnCopySuper.Content = "Login -> Password";
+            btLogPass.Content = "Login -> Password";
             if (_dataSearcher.SearchIsRunning)
             {
                 _dataSearcher.DeleteAndGetAll(gridItems[lpSysRowID]);
@@ -288,6 +302,7 @@ namespace Passtable
             gridMain.Items.Refresh();
             _dataSearcher.RememberCurrentState();
             isOpen = true;
+            HandleUiWidgets();
 
             SaveFile();
         }
@@ -307,7 +322,7 @@ namespace Passtable
 
             lpSysWork = false;
             UnhookWindowsHookEx(_hookID);
-            btnCopySuper.Content = "Login -> Password";
+            btLogPass.Content = "Login -> Password";
 
             var editForm = new EditGridWindow();
             editForm.Owner = this;
@@ -426,6 +441,7 @@ namespace Passtable
             _dataSearcher.RememberCurrentState();
             Title = "Passtable for Windows";
             isOpen = false;
+            HandleUiWidgets();
         }
 
         private void mnOpen_Click(object sender, RoutedEventArgs e)
@@ -528,6 +544,7 @@ namespace Passtable
                 {
                     Title = System.IO.Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
                     isOpen = true;
+                    HandleUiWidgets();
                     return;
                 }
                 
@@ -540,6 +557,7 @@ namespace Passtable
                 _dataSearcher.RememberCurrentState();
                 Title = System.IO.Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
                 isOpen = true;
+                HandleUiWidgets();
             }
             catch
             {
@@ -575,7 +593,7 @@ namespace Passtable
 
             lpSysWork = false;
             UnhookWindowsHookEx(_hookID);
-            mainWindow.btnCopySuper.Content = "Login -> Password";
+            mainWindow.btLogPass.Content = "Login -> Password";
             
             var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
             switch (key)
@@ -691,19 +709,83 @@ namespace Passtable
 
         private void BtTag_OnClick(object sender, RoutedEventArgs e)
         {
+            SearchByTag();
+        }
+
+        private void SearchByTagShortcut(ToggleButton button)
+        {
+            if (tbSearchData.Visibility != Visibility.Collapsed) return;
+            button.IsChecked = button.IsChecked != true;
+            SearchByTag();
+        }
+        
+        private void SearchByTagShortcut()
+        {
+            if (tbSearchData.Visibility != Visibility.Collapsed) return;
+            BtTagSetChecked(false, btRed, btGreen, btBlue, btYellow, btPurple);
+            SearchByTag();
+        }
+
+        private void SearchByTag()
+        {
             UnselectRow();
+            BtSearchSetState(CheckTags(btRed, btGreen, btBlue, btYellow, btPurple));
             _dataSearcher.SearchByTagAsync(btRed, btGreen, btBlue, btYellow, btPurple);
         }
 
-        private void BtTagNone_OnClick(object sender, RoutedEventArgs e)
+        private static bool CheckTags(params ToggleButton[] buttons)
+        {
+            return buttons.Any(button => button.IsChecked == true);
+        }
+
+        private void BtSearch_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_dataSearcher.SearchIsRunning || tbSearchData.Visibility == Visibility.Visible) ResetSearch();
+            else SearchByData();
+        }
+
+        private void ResetSearch()
         {
             UnselectRow();
-            btRed.IsChecked = false;
-            btGreen.IsChecked = false;
-            btBlue.IsChecked = false;
-            btYellow.IsChecked = false;
-            btPurple.IsChecked = false;
+            BtTagSetVisibility(Visibility.Visible, btRed, btGreen, btBlue, btYellow, btPurple);
+            BtTagSetChecked(false, btRed, btGreen, btBlue, btYellow, btPurple);
+            BtSearchSetState(false);
+            tbSearchData.Visibility = Visibility.Collapsed;
+            tbSearchData.Text = "";
             _dataSearcher.SearchByTagAsync(btRed, btGreen, btBlue, btYellow, btPurple);
+        }
+
+        private void SearchByData()
+        {
+            BtTagSetVisibility(Visibility.Collapsed, btRed, btGreen, btBlue, btYellow, btPurple);
+            tbSearchData.Visibility = Visibility.Visible;
+            tbSearchData.Focus();
+            BtSearchSetState(true);
+        }
+
+        private void SearchByDataShortcut()
+        {
+            if (tbSearchData.Visibility == Visibility.Collapsed)
+            {
+                ResetSearch();
+                SearchByData();
+            } else ResetSearch();
+        }
+
+        private static void BtTagSetVisibility(Visibility visibility, params ToggleButton[] buttons)
+        {
+            foreach (var button in buttons) button.Visibility = visibility;
+        }
+
+        private static void BtTagSetChecked(bool isChecked, params ToggleButton[] buttons)
+        {
+            foreach (var button in buttons) button.IsChecked = isChecked;
+        }
+
+        private void BtSearchSetState(bool isActive)
+        {
+            btSearch.Content = isActive ? Strings.bt_close : Strings.bt_search;
+            btSearch.ToolTip = isActive ? null : Strings.bt_search_tip;
         }
 
         private void UnselectRow()
@@ -711,6 +793,17 @@ namespace Passtable
             gridMain.UnselectAll();
             gridMain.CurrentCell = new DataGridCellInfo();
             lpSysRowID = -2;
+        }
+
+        private void HandleUiWidgets()
+        {
+            ElementSetEnabled(isOpen, egTags, btLogPass, btnEdit, btnDelete);
+            ResetSearch();
+        }
+
+        private static void ElementSetEnabled(bool isEnabled, params UIElement[] elements)
+        {
+            foreach (var element in elements) element.IsEnabled = isEnabled;
         }
     }
 }

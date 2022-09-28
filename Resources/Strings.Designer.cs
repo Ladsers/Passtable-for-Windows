@@ -61,6 +61,33 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string bt_close {
+            get {
+                return ResourceManager.GetString("bt_close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string bt_search {
+            get {
+                return ResourceManager.GetString("bt_search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search in the table by notes and usernames (Ctrl+F).
+        /// </summary>
+        public static string bt_search_tip {
+            get {
+                return ResourceManager.GetString("bt_search_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
         public static string title_note {
@@ -165,6 +192,24 @@ namespace Passtable.Resources {
         public static string toolbar_saveAs_tip {
             get {
                 return ResourceManager.GetString("toolbar_saveAs_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nothing selected.
+        /// </summary>
+        public static string toolbar_status_nothingSelected {
+            get {
+                return ResourceManager.GetString("toolbar_status_nothingSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved.
+        /// </summary>
+        public static string toolbar_status_saved {
+            get {
+                return ResourceManager.GetString("toolbar_status_saved", resourceCulture);
             }
         }
     }

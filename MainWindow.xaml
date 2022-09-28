@@ -13,7 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition/>
-            <RowDefinition Height="40px"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Row="0">
             <Grid.ColumnDefinitions>
@@ -29,11 +29,11 @@
             <Button Style="{DynamicResource ToolbarButton}" Content="{x:Static res:Strings.toolbar_help}" ToolTip="{x:Static res:Strings.toolbar_help_tip}" Grid.Column="3" Click="mnAbout_Click" Focusable="False"/>
             <DockPanel x:Name="dpSaveInfo" Grid.Column="4" Style="{DynamicResource StatusBarDock}">
                 <Image Source="{DynamicResource IconSave}" Style="{DynamicResource StatusBarImage}" />
-                <TextBlock Text="Saved" Style="{DynamicResource StatusBarInfo}"/>
+                <TextBlock Text="{x:Static res:Strings.toolbar_status_saved}" Style="{DynamicResource StatusBarInfo}"/>
             </DockPanel>
             <DockPanel x:Name="dpNoEntryInfo" Grid.Column="4" Style="{DynamicResource StatusBarDock}">
                 <Image Source="{DynamicResource IconNoEntry}" Style="{DynamicResource StatusBarImage}" />
-                <TextBlock Text="Nothing selected" Style="{DynamicResource StatusBarInfo}" />
+                <TextBlock Text="{x:Static res:Strings.toolbar_status_nothingSelected}" Style="{DynamicResource StatusBarInfo}" />
             </DockPanel>
 
         </Grid>
@@ -114,15 +114,20 @@
                 <Button x:Name="btnEdit" Content= "Edit" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="7,0" Width="42" Click="btnEdit_Click" Focusable="False"/>
                 <Button x:Name="btnDelete" Content="Delete" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="56" Click="btnDelete_Click" Focusable="False"/>
             </Grid>
-            <DockPanel Grid.Column="0" HorizontalAlignment="Stretch">
-                <ToggleButton x:Name="btRed" Content="R" Padding="5, 0" Margin="5,10" Click="BtTag_OnClick" Focusable="False"/>
-                <ToggleButton x:Name="btGreen" Content="G" Padding="5, 0" Margin="5,10" Click="BtTag_OnClick" Focusable="False"/>
-                <ToggleButton x:Name="btBlue" Content="B" Padding="5, 0" Margin="5,10" Click="BtTag_OnClick" Focusable="False"/>
-                <ToggleButton x:Name="btYellow" Content="Y" Padding="5, 0" Margin="5,10" Click="BtTag_OnClick" Focusable="False"/>
-                <ToggleButton x:Name="btPurple" Content="P" Padding="5, 0" Margin="5,10" Click="BtTag_OnClick" Focusable="False"/>
-                <Button x:Name="btNone" Content="n" Padding="5, 0" Margin="5,10" Click="BtTagNone_OnClick" Focusable="False"/>
-                <TextBox x:Name="tbSearchData" FontSize="14" Width="150" Margin="10,0,10,0" VerticalAlignment="Center" TextChanged="TbSearchData_OnTextChanged" />
-                <Button x:Name="btnCopySuper" Content="Login -> Password" Margin="10,0,10,0" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="150" Click="btnCopySuper_Click" Focusable="False"/>
+            <DockPanel Grid.Column="0" HorizontalAlignment="Stretch" Margin="5,10">
+                <hc:ElementGroup x:Name="egTags" Orientation="Horizontal" Layout="Stack">
+                    <ToggleButton x:Name="btRed" Style="{DynamicResource TagPanel}" Foreground="{DynamicResource TagRedLightBrush}" ToolTip="Ctrl+1" Click="BtTag_OnClick" />
+                    <ToggleButton x:Name="btGreen" Style="{DynamicResource TagPanel}" Foreground="{DynamicResource TagGreenLightBrush}" ToolTip="Ctrl+2" Click="BtTag_OnClick" />
+                    <ToggleButton x:Name="btBlue" Style="{DynamicResource TagPanel}" Foreground="{DynamicResource TagBlueLightBrush}" ToolTip="Ctrl+3" Click="BtTag_OnClick" />
+                    <ToggleButton x:Name="btYellow" Style="{DynamicResource TagPanel}" Foreground="{DynamicResource TagYellowLightBrush}" ToolTip="Ctrl+4" Click="BtTag_OnClick" />
+                    <ToggleButton x:Name="btPurple" Style="{DynamicResource TagPanel}" Foreground="{DynamicResource TagPurpleLightBrush}" ToolTip="Ctrl+5" Click="BtTag_OnClick" />
+                    <TextBox x:Name="tbSearchData" FontSize="14" Width="170" TextChanged="TbSearchData_OnTextChanged" Visibility="Collapsed" />
+                    <Button x:Name="btSearch" Content="{x:Static res:Strings.bt_search}" hc:IconElement.Geometry="{DynamicResource IconSearch}" ToolTip="{x:Static res:Strings.bt_search_tip}" FontSize="13" hc:IconElement.Height="10" hc:IconElement.Width="10" Padding="10, 0" Click="BtSearch_OnClick"
+                            Focusable="False" />
+                    
+                </hc:ElementGroup>
+                
+                <Button x:Name="btLogPass" Content="Login -> Password" Margin="10,0,10,0" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="150" Click="btnCopySuper_Click" Focusable="False"/>
             </DockPanel>
         </Grid>
     </Grid>

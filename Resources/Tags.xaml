@@ -3,23 +3,30 @@
     <Style x:Key="TagColor" TargetType="{x:Type TextBlock}">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Tag}" Value="0">
-                <Setter Property="Foreground" Value="{DynamicResource TagNoneLightBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TagNoneLightBrush}" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Tag}" Value="1">
-                <Setter Property="Foreground" Value="{DynamicResource TagRedLightBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TagRedLightBrush}" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Tag}" Value="2">
-                <Setter Property="Foreground" Value="{DynamicResource TagGreenLightBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TagGreenLightBrush}" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Tag}" Value="3">
-                <Setter Property="Foreground" Value="{DynamicResource TagBlueLightBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TagBlueLightBrush}" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Tag}" Value="4">
-                <Setter Property="Foreground" Value="{DynamicResource TagYellowLightBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TagYellowLightBrush}" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Tag}" Value="5">
-                <Setter Property="Foreground" Value="{DynamicResource TagPurpleLightBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TagPurpleLightBrush}" />
             </DataTrigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TagPanel" TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonDefault}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Content" Value="⚫" />
+        <Setter Property="FontSize" Value="9" />
+        <Setter Property="Padding" Value="8, 0" />
     </Style>
 </ResourceDictionary>

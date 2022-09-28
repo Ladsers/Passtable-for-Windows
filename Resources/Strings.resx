@@ -54,4 +54,19 @@
     <data name="toolbar_help_tip" xml:space="preserve">
         <value>Keyboard shortcuts and information about the app (F1)</value>
     </data>
+    <data name="bt_search" xml:space="preserve">
+        <value>Search</value>
+    </data>
+    <data name="bt_close" xml:space="preserve">
+        <value>Close</value>
+    </data>
+    <data name="bt_search_tip" xml:space="preserve">
+        <value>Search in the table by notes and usernames (Ctrl+F)</value>
+    </data>
+    <data name="toolbar_status_saved" xml:space="preserve">
+        <value>Saved</value>
+    </data>
+    <data name="toolbar_status_nothingSelected" xml:space="preserve">
+        <value>Nothing selected</value>
+    </data>
 </root>

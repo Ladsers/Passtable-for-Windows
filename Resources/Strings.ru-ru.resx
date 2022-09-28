@@ -54,4 +54,19 @@
     <data name="toolbar_help_tip" xml:space="preserve">
         <value>Горячие клавиши и информация о приложении (F1)</value>
     </data>
+    <data name="bt_search" xml:space="preserve">
+        <value>Поиск</value>
+    </data>
+    <data name="bt_close" xml:space="preserve">
+        <value>Закрыть</value>
+    </data>
+    <data name="bt_search_tip" xml:space="preserve">
+        <value>Поиск в таблице по заметкам и логинам (Ctrl+F)</value>
+    </data>
+    <data name="toolbar_status_saved" xml:space="preserve">
+        <value>Сохранено</value>
+    </data>
+    <data name="toolbar_status_nothingSelected" xml:space="preserve">
+        <value>Ничего не выбрано</value>
+    </data>
 </root>
