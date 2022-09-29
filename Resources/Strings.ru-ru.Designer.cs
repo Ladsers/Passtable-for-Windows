@@ -304,6 +304,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Недостаточно данных.
+        /// </summary>
+        public static string toolbar_status_notEnoughData {
+            get {
+                return ResourceManager.GetString("toolbar_status_notEnoughData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ничего не выбрано.
         /// </summary>
         public static string toolbar_status_nothingSelected {

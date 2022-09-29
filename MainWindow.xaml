@@ -35,6 +35,10 @@
                 <Image Source="{DynamicResource IconNoEntry}" Style="{DynamicResource StatusBarImage}" />
                 <TextBlock Text="{x:Static res:Strings.toolbar_status_nothingSelected}" Style="{DynamicResource StatusBarInfo}" />
             </DockPanel>
+            <DockPanel x:Name="dpNotEnoughData" Grid.Column="4" Style="{DynamicResource StatusBarDock}">
+                <Image Source="{DynamicResource IconNoEntry}" Style="{DynamicResource StatusBarImage}" />
+                <TextBlock Text="{x:Static res:Strings.toolbar_status_notEnoughData}" Style="{DynamicResource StatusBarInfo}" />
+            </DockPanel>
 
         </Grid>
         <DataGrid x:Name="gridMain" Grid.Row="1" Style="{x:Null}" CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" IsReadOnly="True" MouseDoubleClick="gridMain_MouseDoubleClick" SelectionMode="Single" PreviewKeyDown="gridMain_PreviewKeyDown" FontSize="15" CurrentCellChanged="gridMain_CurrentCellChanged" GridLinesVisibility="All" Background="#00000000" RowBackground="White" HorizontalGridLinesBrush="#FFB4B4B4" RowHeight="30" VerticalContentAlignment="Center" BorderBrush="#00000000">

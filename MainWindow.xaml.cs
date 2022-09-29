@@ -103,7 +103,7 @@ namespace Passtable
             lpSysRowID = -2;
             lpSysWork = false;
             isOpen = false;
-            _statusBar = new StatusBar(dpSaveInfo, dpNoEntryInfo);
+            _statusBar = new StatusBar(dpSaveInfo, dpNoEntryInfo, dpNotEnoughData);
             //Items for test
             //gridItems.Add(new GridItem("http://example.com/", "typicaluser@example.com", "THECAKEISALIE"));
             //for (int i = 0; i < 100; i++) gridItems.Add(new GridItem(i.ToString(), (i * 2).ToString(), (i * 3).ToString()));
@@ -151,14 +151,7 @@ namespace Passtable
                 {
                     Thread.Sleep(400);
                     if (Clipboard.GetText() != lpSysPassword) Clipboard.SetText(lpSysPassword);
-                    else
-                    {
-                        Clipboard.SetText("");
-                        lpSysWork = false;
-                        UnhookWindowsHookEx(_hookID);
-                        mainWindow.btLogPass.Content = Strings.bt_logPass;
-                        mainWindow.btLogPass.ToolTip = Strings.bt_logPass_tip;
-                    }
+                    else LogPassAbort(mainWindow.btLogPass);
                 }
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
@@ -174,20 +167,42 @@ namespace Passtable
                     return;
                 }
 
-                Clipboard.SetText(gridItems[lpSysRowID].Login);
-                lpSysPassword = gridItems[lpSysRowID].Password;
-                _hookID = SetHook(_proc);
+                var username = gridItems[lpSysRowID].Login;
+                var password = gridItems[lpSysRowID].Password;
 
-                BtLogPassSetState(true);
-                lpSysWork = true;
+                if (username == "" || password == "")
+                {
+                    _statusBar.Show(StatusKey.NotEnoughData);
+                    return;
+                }
+
+                Clipboard.SetText(username);
+                lpSysPassword = password;
+                try
+                {
+                    _hookID = SetHook(_proc);
+                    BtLogPassSetState(true, btLogPass);
+                    lpSysWork = true;
+                }
+                catch
+                {
+                    const string msg = "The Log'n'Pass system is currently unavailable.";
+                    const string title = "Error";
+                    MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
-            {
-                lpSysWork = false;
-                UnhookWindowsHookEx(_hookID);
-                BtLogPassSetState(false);
-            }
+            else LogPassAbort();
         }
+
+        private static void LogPassAbort(Button button)
+        {
+            Clipboard.SetText("");
+            lpSysWork = false;
+            UnhookWindowsHookEx(_hookID);
+            BtLogPassSetState(false, button);
+        }
+
+        private void LogPassAbort() => LogPassAbort(btLogPass);
 
         private void btnCopySuper_Click(object sender, RoutedEventArgs e)
         {
@@ -256,10 +271,8 @@ namespace Passtable
             };
 
             if (deleteConfirmWindow.ShowDialog() != true) return;
-                
-            lpSysWork = false;
-            UnhookWindowsHookEx(_hookID);
-            BtLogPassSetState(false);
+            
+            LogPassAbort();
             if (_dataSearcher.SearchIsRunning)
             {
                 _dataSearcher.DeleteAndGetAll(gridItems[lpSysRowID]);
@@ -320,10 +333,7 @@ namespace Passtable
                 _statusBar.Show(StatusKey.NoEntry);
                 return;
             }
-
-            lpSysWork = false;
-            UnhookWindowsHookEx(_hookID);
-            BtLogPassSetState(false);
+            LogPassAbort();
 
             var editForm = new EditGridWindow();
             editForm.Owner = this;
@@ -591,10 +601,7 @@ namespace Passtable
         private void CopyToClipboard(ClipboardKey key)
         {
             if (gridMain.SelectedItem == null) return;
-
-            lpSysWork = false;
-            UnhookWindowsHookEx(_hookID);
-            BtLogPassSetState(false);
+            LogPassAbort();
             
             var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
             switch (key)
@@ -608,7 +615,14 @@ namespace Passtable
                 case ClipboardKey.Password:
                     lpSysPassword = gridItems[rowId].Password; //additional password protection
                     Clipboard.SetText(lpSysPassword);
-                    _hookID = SetHook(_proc);
+                    try
+                    {
+                        _hookID = SetHook(_proc);
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(key), key, null);
@@ -788,11 +802,11 @@ namespace Passtable
             btSearch.Content = isActive ? Strings.bt_close : Strings.bt_search;
             btSearch.ToolTip = isActive ? null : Strings.bt_search_tip;
         }
-
-        private void BtLogPassSetState(bool isActive)
+        
+        private static void BtLogPassSetState(bool isActive, Button button)
         {
-            btLogPass.Content = isActive ? Strings.bt_abort : Strings.bt_logPass;
-            btLogPass.ToolTip = isActive ? null : Strings.bt_logPass_tip;
+            button.Content = isActive ? Strings.bt_abort : Strings.bt_logPass;
+            button.ToolTip = isActive ? "Ctrl+D" : Strings.bt_logPass_tip;
         }
 
         private void UnselectRow()

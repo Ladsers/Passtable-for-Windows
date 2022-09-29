@@ -3,6 +3,7 @@
     public enum StatusKey
     {
         Saved,
-        NoEntry
+        NoEntry,
+        NotEnoughData
     }
 }

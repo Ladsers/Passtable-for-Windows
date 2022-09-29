@@ -105,4 +105,7 @@
     <data name="bt_abort" xml:space="preserve">
         <value>Прервать</value>
     </data>
+    <data name="toolbar_status_notEnoughData" xml:space="preserve">
+        <value>Недостаточно данных</value>
+    </data>
 </root>
