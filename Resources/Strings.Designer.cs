@@ -61,11 +61,119 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abort.
+        /// </summary>
+        public static string bt_abort {
+            get {
+                return ResourceManager.GetString("bt_abort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More about Log&apos;n&apos;Pass.
+        /// </summary>
+        public static string bt_aboutLogPass_tip {
+            get {
+                return ResourceManager.GetString("bt_aboutLogPass_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string bt_add {
+            get {
+                return ResourceManager.GetString("bt_add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add an entry to the table (Ctrl+N).
+        /// </summary>
+        public static string bt_add_tip {
+            get {
+                return ResourceManager.GetString("bt_add_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string bt_close {
             get {
                 return ResourceManager.GetString("bt_close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create table.
+        /// </summary>
+        public static string bt_createTable {
+            get {
+                return ResourceManager.GetString("bt_createTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new table (Ctrl+N).
+        /// </summary>
+        public static string bt_createTable_tip {
+            get {
+                return ResourceManager.GetString("bt_createTable_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string bt_delete {
+            get {
+                return ResourceManager.GetString("bt_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete entry from the table (Del).
+        /// </summary>
+        public static string bt_delete_tip {
+            get {
+                return ResourceManager.GetString("bt_delete_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string bt_edit {
+            get {
+                return ResourceManager.GetString("bt_edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit data in the entry (Ctrl+E).
+        /// </summary>
+        public static string bt_edit_tip {
+            get {
+                return ResourceManager.GetString("bt_edit_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log&apos;n&apos;Pass.
+        /// </summary>
+        public static string bt_logPass {
+            get {
+                return ResourceManager.GetString("bt_logPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically copy username, then password (Ctrl+D).
+        /// </summary>
+        public static string bt_logPass_tip {
+            get {
+                return ResourceManager.GetString("bt_logPass_tip", resourceCulture);
             }
         }
         

@@ -9,6 +9,8 @@
     
     <Color x:Key="ForegroundLight">#1A191A</Color>
     <Color x:Key="HoverLight">#10000000</Color>
+    
+    <Color x:Key="InfoLight">#C9C9C9</Color>
 
     <SolidColorBrush x:Key="TagNoneLightBrush" Color="{StaticResource TagNoneLight}" />
     <SolidColorBrush x:Key="TagRedLightBrush" Color="{StaticResource TagRedLight}" />
@@ -19,6 +21,8 @@
     
     <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}" />
     <SolidColorBrush x:Key="HoverLightBrush" Color="{StaticResource HoverLight}" />
+    
+    <SolidColorBrush x:Key="InfoLightBrush" Color="{StaticResource InfoLight}" />
     
     <LinearGradientBrush x:Key="DataGridHeaderBackgroundBrash" EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="#fafafa" Offset="0"/>

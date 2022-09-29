@@ -92,17 +92,25 @@
     <Style x:Key="ToolbarButton" TargetType="Button" BasedOn="{StaticResource ButtonCustom}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
-        <Setter Property="FontFamily" Value="Segoe UI Variable Text"/>
+        <Setter Property="FontFamily" Value="Segoe UI Variable Text" />
         <Setter Property="FontSize" Value="14" />
-        
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        
+
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+
         <Setter Property="Margin" Value="4,5,5,0" />
         <Setter Property="Padding" Value="9,6" />
-        
+
         <Setter Property="hc:BackgroundSwitchElement.MouseHoverBackground" Value="{DynamicResource HoverLightBrush}" />
         <Setter Property="hc:BackgroundSwitchElement.MouseDownBackground" Value="{DynamicResource HoverLightBrush}" />
         <Setter Property="hc:BorderElement.CornerRadius" Value="3" />
+    </Style>
+
+    <Style x:Key="ButtonAction" TargetType="Button" BasedOn="{StaticResource ButtonDefault}">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Padding" Value="10, 0" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="hc:IconElement.Height" Value="10" />
+        <Setter Property="hc:IconElement.Width" Value="10" />
     </Style>
 </ResourceDictionary>

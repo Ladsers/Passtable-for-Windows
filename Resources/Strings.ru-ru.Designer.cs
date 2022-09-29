@@ -61,11 +61,119 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Прервать.
+        /// </summary>
+        public static string bt_abort {
+            get {
+                return ResourceManager.GetString("bt_abort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подробнее о Log&apos;n&apos;Pass.
+        /// </summary>
+        public static string bt_aboutLogPass_tip {
+            get {
+                return ResourceManager.GetString("bt_aboutLogPass_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавить.
+        /// </summary>
+        public static string bt_add {
+            get {
+                return ResourceManager.GetString("bt_add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавить запись в таблицу (Ctrl+N).
+        /// </summary>
+        public static string bt_add_tip {
+            get {
+                return ResourceManager.GetString("bt_add_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Закрыть.
         /// </summary>
         public static string bt_close {
             get {
                 return ResourceManager.GetString("bt_close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Создать таблицу.
+        /// </summary>
+        public static string bt_createTable {
+            get {
+                return ResourceManager.GetString("bt_createTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Создать новую таблицу (Ctrl+N).
+        /// </summary>
+        public static string bt_createTable_tip {
+            get {
+                return ResourceManager.GetString("bt_createTable_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Удалить.
+        /// </summary>
+        public static string bt_delete {
+            get {
+                return ResourceManager.GetString("bt_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Удалить запись из таблицы (Del).
+        /// </summary>
+        public static string bt_delete_tip {
+            get {
+                return ResourceManager.GetString("bt_delete_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изменить.
+        /// </summary>
+        public static string bt_edit {
+            get {
+                return ResourceManager.GetString("bt_edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изменить данные в записи (Ctrl+E).
+        /// </summary>
+        public static string bt_edit_tip {
+            get {
+                return ResourceManager.GetString("bt_edit_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log&apos;n&apos;Pass.
+        /// </summary>
+        public static string bt_logPass {
+            get {
+                return ResourceManager.GetString("bt_logPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Автоматически скопировать логин, затем пароль (Ctrl+D).
+        /// </summary>
+        public static string bt_logPass_tip {
+            get {
+                return ResourceManager.GetString("bt_logPass_tip", resourceCulture);
             }
         }
         

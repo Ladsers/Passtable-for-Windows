@@ -156,7 +156,8 @@ namespace Passtable
                         Clipboard.SetText("");
                         lpSysWork = false;
                         UnhookWindowsHookEx(_hookID);
-                        mainWindow.btLogPass.Content = "Login -> Password";
+                        mainWindow.btLogPass.Content = Strings.bt_logPass;
+                        mainWindow.btLogPass.ToolTip = Strings.bt_logPass_tip;
                     }
                 }
             }
@@ -177,14 +178,14 @@ namespace Passtable
                 lpSysPassword = gridItems[lpSysRowID].Password;
                 _hookID = SetHook(_proc);
 
-                btLogPass.Content = "Stop!";
+                BtLogPassSetState(true);
                 lpSysWork = true;
             }
             else
             {
                 lpSysWork = false;
                 UnhookWindowsHookEx(_hookID);
-                btLogPass.Content = "Login -> Password";
+                BtLogPassSetState(false);
             }
         }
 
@@ -258,7 +259,7 @@ namespace Passtable
                 
             lpSysWork = false;
             UnhookWindowsHookEx(_hookID);
-            btLogPass.Content = "Login -> Password";
+            BtLogPassSetState(false);
             if (_dataSearcher.SearchIsRunning)
             {
                 _dataSearcher.DeleteAndGetAll(gridItems[lpSysRowID]);
@@ -322,7 +323,7 @@ namespace Passtable
 
             lpSysWork = false;
             UnhookWindowsHookEx(_hookID);
-            btLogPass.Content = "Login -> Password";
+            BtLogPassSetState(false);
 
             var editForm = new EditGridWindow();
             editForm.Owner = this;
@@ -593,7 +594,7 @@ namespace Passtable
 
             lpSysWork = false;
             UnhookWindowsHookEx(_hookID);
-            mainWindow.btLogPass.Content = "Login -> Password";
+            BtLogPassSetState(false);
             
             var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
             switch (key)
@@ -788,6 +789,12 @@ namespace Passtable
             btSearch.ToolTip = isActive ? null : Strings.bt_search_tip;
         }
 
+        private void BtLogPassSetState(bool isActive)
+        {
+            btLogPass.Content = isActive ? Strings.bt_abort : Strings.bt_logPass;
+            btLogPass.ToolTip = isActive ? null : Strings.bt_logPass_tip;
+        }
+
         private void UnselectRow()
         {
             gridMain.UnselectAll();
@@ -797,8 +804,10 @@ namespace Passtable
 
         private void HandleUiWidgets()
         {
-            ElementSetEnabled(isOpen, egTags, btLogPass, btnEdit, btnDelete);
+            ElementSetEnabled(isOpen, egTags, egLogPass, btnEdit, btnDelete);
             ResetSearch();
+            btnAdd.Content = isOpen ? Strings.bt_add : Strings.bt_createTable;
+            btnAdd.ToolTip = isOpen ? Strings.bt_add_tip : Strings.bt_createTable_tip;
         }
 
         private static void ElementSetEnabled(bool isEnabled, params UIElement[] elements)

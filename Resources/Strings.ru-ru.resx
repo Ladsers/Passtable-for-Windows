@@ -69,4 +69,40 @@
     <data name="toolbar_status_nothingSelected" xml:space="preserve">
         <value>Ничего не выбрано</value>
     </data>
+    <data name="bt_logPass" xml:space="preserve">
+        <value>Log'n'Pass</value>
+    </data>
+    <data name="bt_add" xml:space="preserve">
+        <value>Добавить</value>
+    </data>
+    <data name="bt_createTable" xml:space="preserve">
+        <value>Создать таблицу</value>
+    </data>
+    <data name="bt_delete" xml:space="preserve">
+        <value>Удалить</value>
+    </data>
+    <data name="bt_edit" xml:space="preserve">
+        <value>Изменить</value>
+    </data>
+    <data name="bt_add_tip" xml:space="preserve">
+        <value>Добавить запись в таблицу (Ctrl+N)</value>
+    </data>
+    <data name="bt_delete_tip" xml:space="preserve">
+        <value>Удалить запись из таблицы (Del)</value>
+    </data>
+    <data name="bt_logPass_tip" xml:space="preserve">
+        <value>Автоматически скопировать логин, затем пароль (Ctrl+D)</value>
+    </data>
+    <data name="bt_edit_tip" xml:space="preserve">
+        <value>Изменить данные в записи (Ctrl+E)</value>
+    </data>
+    <data name="bt_createTable_tip" xml:space="preserve">
+        <value>Создать новую таблицу (Ctrl+N)</value>
+    </data>
+    <data name="bt_aboutLogPass_tip" xml:space="preserve">
+        <value>Подробнее о Log'n'Pass</value>
+    </data>
+    <data name="bt_abort" xml:space="preserve">
+        <value>Прервать</value>
+    </data>
 </root>
