@@ -186,9 +186,7 @@ namespace Passtable
                 }
                 catch
                 {
-                    const string msg = "The Log'n'Pass system is currently unavailable.";
-                    const string title = "Error";
-                    MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                    ShowErrBox(Strings.err_title, Strings.err_logPass_msg);
                 }
             }
             else LogPassAbort();
@@ -419,9 +417,7 @@ namespace Passtable
             }
             catch
             {
-                const string msg = "This is probably caused by using an unsupported character.";
-                const string title = "Encryption error";
-                MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrBox(Strings.err_encryption_title, Strings.err_encryption_msg);
                 return false;
             }
 
@@ -432,9 +428,7 @@ namespace Passtable
             }
             catch
             {
-                const string msg = "The application does not have sufficient permissions to write data to this file. You need to save the data to a new file to avoid losing data.";
-                const string title = "Write error";
-                MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrBox(Strings.err_write_title, Strings.err_write_msg);
                 return false;
             }
             
@@ -493,15 +487,13 @@ namespace Passtable
             }
             catch
             {
-                MessageBox.Show("Failed to open file!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrBox(Strings.err_title, Strings.err_openFileFail);
                 return;
             }
 
             if (encryptedData.Length == 0)
             {
-                const string msg = "The file is damaged.";
-                const string title = "Critical error";
-                MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrBox(Strings.err_critical_title, Strings.err_critical_fileDamaged);
                 return;
             }
 
@@ -511,9 +503,7 @@ namespace Passtable
             }
             else
             {
-                const string msg = "This file was created in a later version of the app and cannot be opened. Update the app.";
-                const string title = "Critical error";
-                MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrBox(Strings.err_critical_title, Strings.err_critical_updateApp);
                 return;
             }
 
@@ -523,9 +513,7 @@ namespace Passtable
             }
             catch
             {
-                const string msg = "The file is damaged.";
-                const string title = "Critical error";
-                MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrBox(Strings.err_critical_title, Strings.err_critical_fileDamaged);
                 return;
             }
             
@@ -572,9 +560,7 @@ namespace Passtable
             }
             catch
             {
-                const string msg = "The file is damaged.";
-                const string title = "Critical error";
-                MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrBox(Strings.err_critical_title, Strings.err_critical_fileDamaged);
                 CloseFile();
             }
         }
@@ -701,9 +687,7 @@ namespace Passtable
             var files = (string[])e.Data.GetData(DataFormats.FileDrop);
             if (files == null || !files[0].EndsWith(".passtable"))
             {
-                const string msg = "This file type is not supported.";
-                const string title = "Critical error";
-                MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrBox(Strings.err_critical_title, Strings.err_critical_fileNotSupported);
                 return;
             }
             OpenFile(files[0]);
@@ -828,5 +812,9 @@ namespace Passtable
         {
             foreach (var element in elements) element.IsEnabled = isEnabled;
         }
+
+        private void ShowErrBox(string title, string msg) =>
+            MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
+        
     }
 }

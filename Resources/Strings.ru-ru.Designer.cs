@@ -196,6 +196,105 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Файл повреждён..
+        /// </summary>
+        public static string err_critical_fileDamaged {
+            get {
+                return ResourceManager.GetString("err_critical_fileDamaged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Этот тип файла не поддерживается..
+        /// </summary>
+        public static string err_critical_fileNotSupported {
+            get {
+                return ResourceManager.GetString("err_critical_fileNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Критическая ошибка.
+        /// </summary>
+        public static string err_critical_title {
+            get {
+                return ResourceManager.GetString("err_critical_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Этот файл был создан в более поздней версии приложения и не может быть открыт. Обновите приложение..
+        /// </summary>
+        public static string err_critical_updateApp {
+            get {
+                return ResourceManager.GetString("err_critical_updateApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вероятно, эта ошибка вызвана использованием неподдерживаемого символа..
+        /// </summary>
+        public static string err_encryption_msg {
+            get {
+                return ResourceManager.GetString("err_encryption_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка шифрования.
+        /// </summary>
+        public static string err_encryption_title {
+            get {
+                return ResourceManager.GetString("err_encryption_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Система Log&apos;n&apos;Pass в данный момент недоступна..
+        /// </summary>
+        public static string err_logPass_msg {
+            get {
+                return ResourceManager.GetString("err_logPass_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось открыть файл..
+        /// </summary>
+        public static string err_openFileFail {
+            get {
+                return ResourceManager.GetString("err_openFileFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка.
+        /// </summary>
+        public static string err_title {
+            get {
+                return ResourceManager.GetString("err_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Приложение не имеет достаточных прав для записи данных в этот файл. Вам необходимо сохранить данные через &quot;Сохр. как&quot; в новый файл во избежание потери данных..
+        /// </summary>
+        public static string err_write_msg {
+            get {
+                return ResourceManager.GetString("err_write_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка записи.
+        /// </summary>
+        public static string err_write_title {
+            get {
+                return ResourceManager.GetString("err_write_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заметка.
         /// </summary>
         public static string title_note {

@@ -108,4 +108,37 @@
     <data name="toolbar_status_notEnoughData" xml:space="preserve">
         <value>Недостаточно данных</value>
     </data>
+    <data name="err_title" xml:space="preserve">
+        <value>Ошибка</value>
+    </data>
+    <data name="err_logPass_msg" xml:space="preserve">
+        <value>Система Log'n'Pass в данный момент недоступна.</value>
+    </data>
+    <data name="err_encryption_title" xml:space="preserve">
+        <value>Ошибка шифрования</value>
+    </data>
+    <data name="err_encryption_msg" xml:space="preserve">
+        <value>Вероятно, эта ошибка вызвана использованием неподдерживаемого символа.</value>
+    </data>
+    <data name="err_write_title" xml:space="preserve">
+        <value>Ошибка записи</value>
+    </data>
+    <data name="err_write_msg" xml:space="preserve">
+        <value>Приложение не имеет достаточных прав для записи данных в этот файл. Вам необходимо сохранить данные через "Сохр. как" в новый файл во избежание потери данных.</value>
+    </data>
+    <data name="err_critical_updateApp" xml:space="preserve">
+        <value>Этот файл был создан в более поздней версии приложения и не может быть открыт. Обновите приложение.</value>
+    </data>
+    <data name="err_critical_title" xml:space="preserve">
+        <value>Критическая ошибка</value>
+    </data>
+    <data name="err_critical_fileNotSupported" xml:space="preserve">
+        <value>Этот тип файла не поддерживается.</value>
+    </data>
+    <data name="err_critical_fileDamaged" xml:space="preserve">
+        <value>Файл повреждён.</value>
+    </data>
+    <data name="err_openFileFail" xml:space="preserve">
+        <value>Не удалось открыть файл.</value>
+    </data>
 </root>

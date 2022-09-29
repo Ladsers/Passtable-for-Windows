@@ -108,4 +108,37 @@
     <data name="toolbar_status_notEnoughData" xml:space="preserve">
         <value>Not enough data</value>
     </data>
+    <data name="err_encryption_title" xml:space="preserve">
+        <value>Encryption error</value>
+    </data>
+    <data name="err_encryption_msg" xml:space="preserve">
+        <value>This error is probably caused by using an unsupported character.</value>
+    </data>
+    <data name="err_write_title" xml:space="preserve">
+        <value>Write error</value>
+    </data>
+    <data name="err_write_msg" xml:space="preserve">
+        <value>The application does not have sufficient permissions to write data to this file. You need to save the data via "Save as" to a new file to avoid losing data.</value>
+    </data>
+    <data name="err_critical_title" xml:space="preserve">
+        <value>Critical error</value>
+    </data>
+    <data name="err_critical_fileDamaged" xml:space="preserve">
+        <value>The file is damaged.</value>
+    </data>
+    <data name="err_critical_updateApp" xml:space="preserve">
+        <value>This file was created in a later version of the app and cannot be opened. Update the app.</value>
+    </data>
+    <data name="err_critical_fileNotSupported" xml:space="preserve">
+        <value>This file type is not supported.</value>
+    </data>
+    <data name="err_title" xml:space="preserve">
+        <value>Error</value>
+    </data>
+    <data name="err_logPass_msg" xml:space="preserve">
+        <value>The Log'n'Pass system is currently unavailable.</value>
+    </data>
+    <data name="err_openFileFail" xml:space="preserve">
+        <value>Failed to open file.</value>
+    </data>
 </root>
