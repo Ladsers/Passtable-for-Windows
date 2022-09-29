@@ -7,13 +7,13 @@
         xmlns:res="clr-namespace:Passtable.Resources"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        Title="Passtable for Windows" Height="500" Width="700" MinWidth="550" MinHeight="200" Initialized="Window_Initialized" Icon="icon.ico" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown"
+        Title="Passtable for Windows" Height="520" Width="750" MinWidth="675" MinHeight="250" Initialized="Window_Initialized" Icon="icon.ico" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown"
         Drop="MainWindow_OnDrop" AllowDrop="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid Row="0">
             <Grid.ColumnDefinitions>
@@ -110,25 +110,9 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
-        </DataGrid>   
-        <Grid Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.6*"/>
-                <ColumnDefinition Width="0.4*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1" HorizontalAlignment="Right" Margin="5,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Button x:Name="btnAdd" Style="{StaticResource ButtonPrimary}" Content="{x:Static res:Strings.bt_createTable}" Grid.Column="1" MinWidth="80" FontSize="13" Padding="18, 0" Click="btnAdd_Click" Focusable="False"/>
-                <hc:ElementGroup Grid.Column="0" x:Name="egEdit" Orientation="Horizontal" Layout="Stack" Margin="0,0,10,0">
-                    <Button x:Name="btnEdit" Style="{DynamicResource ButtonAction}" Content="{x:Static res:Strings.bt_edit}" ToolTip="{x:Static res:Strings.bt_edit_tip}" Click="btnEdit_Click" />
-                    <Button x:Name="btnDelete" Style="{DynamicResource ButtonAction}" Content="{x:Static res:Strings.bt_delete}" ToolTip="{x:Static res:Strings.bt_delete_tip}" Click="btnDelete_Click" />
-                </hc:ElementGroup>
-            </Grid>
-            <DockPanel Grid.Column="0" HorizontalAlignment="Stretch" Margin="5,10">
-                <hc:ElementGroup x:Name="egTags" Orientation="Horizontal" Layout="Stack">
+        </DataGrid>
+        <DockPanel Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <hc:ElementGroup x:Name="egTags" Orientation="Horizontal" Layout="Stack" HorizontalAlignment="Left" Margin="10, 0">
                     <ToggleButton x:Name="btRed" Style="{DynamicResource TagPanel}" Foreground="{DynamicResource TagRedLightBrush}" ToolTip="Ctrl+1" Click="BtTag_OnClick" />
                     <ToggleButton x:Name="btGreen" Style="{DynamicResource TagPanel}" Foreground="{DynamicResource TagGreenLightBrush}" ToolTip="Ctrl+2" Click="BtTag_OnClick" />
                     <ToggleButton x:Name="btBlue" Style="{DynamicResource TagPanel}" Foreground="{DynamicResource TagBlueLightBrush}" ToolTip="Ctrl+3" Click="BtTag_OnClick" />
@@ -136,13 +120,18 @@
                     <ToggleButton x:Name="btPurple" Style="{DynamicResource TagPanel}" Foreground="{DynamicResource TagPurpleLightBrush}" ToolTip="Ctrl+5" Click="BtTag_OnClick" />
                     <TextBox x:Name="tbSearchData" FontSize="14" Width="170" TextChanged="TbSearchData_OnTextChanged" Visibility="Collapsed" />
                     <Button x:Name="btSearch" Style="{DynamicResource ButtonAction}" Content="{x:Static res:Strings.bt_search}" hc:IconElement.Geometry="{DynamicResource IconSearch}" ToolTip="{x:Static res:Strings.bt_search_tip}" Click="BtSearch_OnClick" />
-                    
                 </hc:ElementGroup>
-                <hc:ElementGroup x:Name="egLogPass" Orientation="Horizontal" Layout="Stack" Margin="10,0,10,0">
-                <Button x:Name="btLogPass" Style="{DynamicResource ButtonAction}" Content="{x:Static res:Strings.bt_logPass}" ToolTip="{x:Static res:Strings.bt_logPass_tip}" Click="btnCopySuper_Click" />
-                <Button Style="{DynamicResource ButtonAction}" hc:IconElement.Geometry="{DynamicResource IconInfo}" Foreground="{DynamicResource InfoLightBrush}" hc:IconElement.Width="12" hc:IconElement.Height="12" Padding="10, 2, 10, 0" ToolTip="{x:Static res:Strings.bt_aboutLogPass_tip}" />
+                <hc:ElementGroup x:Name="egLogPass" Orientation="Horizontal" Layout="Stack" HorizontalAlignment="Left">
+                    <Button x:Name="btLogPass" Style="{DynamicResource ButtonAction}" Content="{x:Static res:Strings.bt_logPass}" ToolTip="{x:Static res:Strings.bt_logPass_tip}" Click="btnCopySuper_Click" />
+                    <Button Style="{DynamicResource ButtonAction}" hc:IconElement.Geometry="{DynamicResource IconInfo}" Foreground="{DynamicResource InfoLightBrush}" hc:IconElement.Width="12" hc:IconElement.Height="12" Padding="10, 2, 10, 0" ToolTip="{x:Static res:Strings.bt_aboutLogPass_tip}" />
                 </hc:ElementGroup>
-            </DockPanel>
-        </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <hc:ElementGroup x:Name="egEdit" Orientation="Horizontal" Layout="Stack">
+                    <Button x:Name="btnEdit" Style="{DynamicResource ButtonAction}" Content="{x:Static res:Strings.bt_edit}" ToolTip="{x:Static res:Strings.bt_edit_tip}" Click="btnEdit_Click" />
+                    <Button x:Name="btnDelete" Style="{DynamicResource ButtonAction}" Content="{x:Static res:Strings.bt_delete}" ToolTip="{x:Static res:Strings.bt_delete_tip}" Click="btnDelete_Click" />
+                </hc:ElementGroup>
+                <Button x:Name="btnAdd" Style="{StaticResource ButtonPrimary}" Content="{x:Static res:Strings.bt_createTable}" Margin="10, 0" MinWidth="80" FontSize="13" Padding="18, 0" Click="btnAdd_Click" Focusable="False"/>
+            </StackPanel>
+        </DockPanel>
     </Grid>
 </hc:Window>
