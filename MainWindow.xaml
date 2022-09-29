@@ -41,7 +41,15 @@
             </DockPanel>
 
         </Grid>
-        <DataGrid x:Name="gridMain" Grid.Row="1" Style="{x:Null}" CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" CanUserResizeRows="False" HeadersVisibility="Column" IsReadOnly="True" MouseDoubleClick="gridMain_MouseDoubleClick" SelectionMode="Single" PreviewKeyDown="gridMain_PreviewKeyDown" FontSize="15" CurrentCellChanged="gridMain_CurrentCellChanged" GridLinesVisibility="All" Background="#00000000" RowBackground="White" HorizontalGridLinesBrush="#FFB4B4B4" RowHeight="30" VerticalContentAlignment="Center" BorderBrush="#00000000">
+        <DataGrid x:Name="gridMain" Grid.Row="1" Style="{DynamicResource DataGridMain}"
+                  MouseDoubleClick="gridMain_MouseDoubleClick"
+                  PreviewKeyDown="gridMain_PreviewKeyDown" CurrentCellChanged="gridMain_CurrentCellChanged">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{DynamicResource DataGridHighlightLight}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{DynamicResource ForegroundLight}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource ForegroundLight}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{DynamicResource ForegroundLight}" />
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="" Width="20" CanUserResize="False" Visibility="Hidden"/>
                     <DataGridTemplateColumn Header="{x:Static res:Strings.title_note}" Width="0.50*" HeaderStyle="{DynamicResource DataGridHeader}">
@@ -53,10 +61,10 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="•" Style = "{DynamicResource TagColor}" FontSize="40" Margin="5,-18,5,0"/>
-                                <TextBlock Grid.Column="1" Text="{Binding Note}" VerticalAlignment="Stretch" TextTrimming="CharacterEllipsis"/>
+                                <TextBlock Text="⚫" Style = "{DynamicResource TagColor}" FontSize="9" VerticalAlignment="Center" Margin="5,0,7,0"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Note}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                                 <DockPanel Grid.Column="2" Style="{DynamicResource DataGridNoteBtnPanel}">
-                                    <Image x:Name="btCopyNote" Style="{DynamicResource ButtonDataGrid}" Source="{DynamicResource IconClipboard}" Margin="5,0,10,0" HorizontalAlignment="Right" PreviewMouseUp="btCopyNote_PreviewMouseUp"/>
+                                    <Image x:Name="btCopyNote" Style="{DynamicResource ButtonDataGrid}" Source="{DynamicResource IconClipboard}" Margin="7,0,5,0" HorizontalAlignment="Right" PreviewMouseUp="btCopyNote_PreviewMouseUp"/>
                                 </DockPanel>
                             </Grid>
                         </DataTemplate>
@@ -70,9 +78,9 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Login}" VerticalAlignment="Stretch" Margin="5,0,0,0" TextTrimming="CharacterEllipsis" />
+                                <TextBlock Text="{Binding Login}" VerticalAlignment="Center" Margin="5,0,0,0" TextTrimming="CharacterEllipsis" />
                                 <DockPanel Grid.Column="1" Style="{DynamicResource DataGridUsernameBtnPanel}">
-                                    <Image x:Name="btCopyUsername" Style="{DynamicResource ButtonDataGrid}" Source="{DynamicResource IconClipboard}" Margin="5,0,10,0" HorizontalAlignment="Right" PreviewMouseUp="btCopyUsername_PreviewMouseUp"/>
+                                    <Image x:Name="btCopyUsername" Style="{DynamicResource ButtonDataGrid}" Source="{DynamicResource IconClipboard}" Margin="7,0,5,0" HorizontalAlignment="Right" PreviewMouseUp="btCopyUsername_PreviewMouseUp"/>
                                 </DockPanel>
                             </Grid>
                         </DataTemplate>
@@ -86,7 +94,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock x:Name="tbPassword" Text="{Binding Password}" Visibility="Collapsed" Margin="5,0,0,0" TextTrimming="CharacterEllipsis" />
+                                <TextBlock x:Name="tbPassword" Text="{Binding Password}" Visibility="Collapsed" VerticalAlignment="Center" Margin="5,0,0,0" TextTrimming="CharacterEllipsis" />
                                 <StackPanel Grid.Column="0" x:Name="spPassword" Style="{DynamicResource DataGridPasswordBtnPanel}" Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Image Style="{DynamicResource ButtonDataGrid}"
                                            Source="{DynamicResource IconShowPassword}" x:Name="btShowPassword"

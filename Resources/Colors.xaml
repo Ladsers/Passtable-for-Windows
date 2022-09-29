@@ -11,6 +11,10 @@
     <Color x:Key="HoverLight">#10000000</Color>
     
     <Color x:Key="InfoLight">#C9C9C9</Color>
+    
+    <Color x:Key="DataGridBackgroundLight">#EAEAEA</Color>
+    <Color x:Key="DataGridLinesLight">#B4B4B4</Color>
+    <Color x:Key="DataGridHighlightLight">#D4D4D4</Color>
 
     <SolidColorBrush x:Key="TagNoneLightBrush" Color="{StaticResource TagNoneLight}" />
     <SolidColorBrush x:Key="TagRedLightBrush" Color="{StaticResource TagRedLight}" />
@@ -24,9 +28,14 @@
     
     <SolidColorBrush x:Key="InfoLightBrush" Color="{StaticResource InfoLight}" />
     
+    <SolidColorBrush x:Key="DataGridBackgroundLightBrush" Color="{StaticResource DataGridBackgroundLight}" />
+    <SolidColorBrush x:Key="DataGridLinesLightBrush" Color="{StaticResource DataGridLinesLight}" />
+    <SolidColorBrush x:Key="DataGridHighlightLightBrush" Color="{StaticResource DataGridHighlightLight}" />
+    
+    
     <LinearGradientBrush x:Key="DataGridHeaderBackgroundBrash" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#fafafa" Offset="0"/>
-        <GradientStop Color="#f3f3f3" Offset="1"/>
+        <GradientStop Color="#FAFAFA" Offset="0"/>
+        <GradientStop Color="#F3F3F3" Offset="1"/>
     </LinearGradientBrush>
     
     <SolidColorBrush x:Key="DataGridHeaderBorderBrash" Color="#FFB4B4B4" />

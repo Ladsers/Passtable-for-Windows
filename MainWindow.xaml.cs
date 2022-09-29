@@ -126,6 +126,10 @@ namespace Passtable
             {
                 EditEntry();
             }
+            if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.W)
+            {
+                ShowPassword();
+            }
         }
 
         private static IntPtr SetHook(LowLevelKeyboardProc proc)
@@ -656,6 +660,11 @@ namespace Passtable
         
         private void btShowPassword_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
+            ShowPassword();
+        }
+
+        private void ShowPassword()
+        {
             var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
             var row = (DataGridRow)gridMain.ItemContainerGenerator.ContainerFromIndex(rowId);
 
@@ -664,22 +673,18 @@ namespace Passtable
             var imgShow = DataGridUtils.GetObject<Image>(row, "btShowPassword");
             var imgCopy = DataGridUtils.GetObject<Image>(row, "btCopyPassword");
 
-            if (textBlock.Visibility == Visibility.Collapsed)
+            void Change(Visibility visibility, string imgSource, int showLeft, int showRight, int copyLeft,
+                int copyRight, int column)
             {
-                textBlock.Visibility = Visibility.Visible;
-                imgShow.Source = (DrawingImage)FindResource("IconLock");
-                imgShow.Margin = new Thickness(10, 0, 3, 0);
-                imgCopy.Margin = new Thickness(2, 0, 10, 0);
-                stackPanel.SetValue(Grid.ColumnProperty, 1);
+                textBlock.Visibility = visibility;
+                imgShow.Source = (DrawingImage)FindResource(imgSource);
+                imgShow.Margin = new Thickness(showLeft, 0, showRight, 0);
+                imgCopy.Margin = new Thickness(copyLeft, 0, copyRight, 0);
+                stackPanel.SetValue(Grid.ColumnProperty, column);
             }
-            else
-            {
-                textBlock.Visibility = Visibility.Collapsed;
-                imgShow.Source = (DrawingImage)FindResource("IconShowPassword");
-                imgShow.Margin = new Thickness(10, 0, 7, 0);
-                imgCopy.Margin = new Thickness(7, 0, 10, 0);
-                stackPanel.SetValue(Grid.ColumnProperty, 0);
-            }
+
+            if (textBlock.Visibility == Visibility.Collapsed) Change(Visibility.Visible, "IconLock", 7, 3, 2, 5, 1);
+            else Change(Visibility.Collapsed, "IconShowPassword", 10, 7, 7, 10, 0);
         }
 
         private void MainWindow_OnDrop(object sender, DragEventArgs e)

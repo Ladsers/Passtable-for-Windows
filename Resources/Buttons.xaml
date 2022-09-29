@@ -5,6 +5,7 @@
         <Setter Property="Width" Value="17" />
         <Setter Property="Height" Value="17" />
         <Setter Property="Opacity" Value="0.3" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Style.Triggers>
             <EventTrigger RoutedEvent="Mouse.MouseEnter">
                 <EventTrigger.Actions>
