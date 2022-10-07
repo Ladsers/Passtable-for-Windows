@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:hc="https://handyorg.github.io/handycontrol">
+    <Style x:Key="EditTextBox" TargetType="TextBox" BasedOn="{StaticResource TextBoxExtend}">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Margin" Value="10,5,10,0" />
+        <Setter Property="FontFamily" Value="Segoe UI Variable Text" />
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+    </Style>
+    
+    <Style x:Key="MultilineEditTextBox" TargetType="TextBox" BasedOn="{StaticResource EditTextBox}">
+        <Setter Property="MaxLines" Value="4" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+    </Style>
+    
+    <Style x:Key="PasswordBox" TargetType="hc:PasswordBox" BasedOn="{StaticResource PasswordBoxPlusBaseStyle}">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="PasswordChar" Value="＊" />
+        <Setter Property="ShowEyeButton" Value="True" />
+        <Setter Property="FontFamily" Value="Segoe UI Variable Text" />
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+    </Style>
+    
+</ResourceDictionary>

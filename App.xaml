@@ -13,6 +13,7 @@
                  <ResourceDictionary Source="Resources/Colors.xaml"/>
                  <ResourceDictionary Source="Resources/Icons.xaml"/>
                  <ResourceDictionary Source="Resources/Buttons.xaml"/>
+                 <ResourceDictionary Source="Resources/TextBoxes.xaml"/>
                  <ResourceDictionary Source="Resources/DataGrid.xaml"/>
                  <ResourceDictionary Source="Resources/Tags.xaml"/>
                  <ResourceDictionary Source="Resources/StatusBar.xaml"/>

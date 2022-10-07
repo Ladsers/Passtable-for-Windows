@@ -303,7 +303,7 @@ namespace Passtable
             var editForm = new EditGridWindow
             {
                 Owner = this,
-                Title = "Add new item"
+                Title = Strings.title_addEntry
             };
             if (editForm.ShowDialog() != true) return;
 
@@ -313,7 +313,7 @@ namespace Passtable
                 UnselectRow();
             }
 
-            gridItems.Add(new GridItem(editForm.cbTag.SelectedIndex.ToString(), editForm.tbNote.Text,
+            gridItems.Add(new GridItem(editForm.SelectedTag.ToString(), editForm.tbNote.Text,
                 editForm.tbLogin.Text, editForm.pbPassword.Password));
             gridMain.Items.Refresh();
             _dataSearcher.RememberCurrentState();
@@ -339,17 +339,17 @@ namespace Passtable
 
             var editForm = new EditGridWindow();
             editForm.Owner = this;
-            editForm.Title = "Edit item";
+            editForm.Title = Strings.title_editEntry;
             editForm.tbNote.Text = gridItems[lpSysRowID].Note;
             editForm.tbLogin.Text = gridItems[lpSysRowID].Login;
             editForm.pbPassword.Password = gridItems[lpSysRowID].Password;
-            editForm.cbTag.SelectedIndex = int.Parse(gridItems[lpSysRowID].Tag);
+            editForm.SelectTag(int.Parse(gridItems[lpSysRowID].Tag));
             if (editForm.ShowDialog() != true) return;
             
             gridItems[lpSysRowID].Note = editForm.tbNote.Text;
             gridItems[lpSysRowID].Login = editForm.tbLogin.Text;
             gridItems[lpSysRowID].Password = editForm.pbPassword.Password;
-            gridItems[lpSysRowID].Tag = editForm.cbTag.SelectedIndex.ToString();
+            gridItems[lpSysRowID].Tag = editForm.SelectedTag.ToString();
 
             if (_dataSearcher.SearchIsRunning)
             {

@@ -141,4 +141,28 @@
     <data name="err_openFileFail" xml:space="preserve">
         <value>Failed to open file.</value>
     </data>
+    <data name="edit_leaveBlankToSkip" xml:space="preserve">
+        <value>Leave blank to skip</value>
+    </data>
+    <data name="edit_confirm" xml:space="preserve">
+        <value>Confirm</value>
+    </data>
+    <data name="bt_save" xml:space="preserve">
+        <value>Save</value>
+    </data>
+    <data name="title_addEntry" xml:space="preserve">
+        <value>Add entry</value>
+    </data>
+    <data name="title_editEntry" xml:space="preserve">
+        <value>Edit entry</value>
+    </data>
+    <data name="err_edit_passwordsDoNotMatch" xml:space="preserve">
+        <value>Passwords don't match.</value>
+    </data>
+    <data name="err_edit_itemMustContain" xml:space="preserve">
+        <value>Entry must contain note or username with password.</value>
+    </data>
+    <data name="err_edit_dataInvalidChars" xml:space="preserve">
+        <value>Some data contains invalid characters.</value>
+    </data>
 </root>

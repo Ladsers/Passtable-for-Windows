@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using Passtable.Components;
+using Window = HandyControl.Controls.Window;
 
 namespace Passtable
 {
@@ -7,6 +9,7 @@ namespace Passtable
         public AboutWindow()
         {
             InitializeComponent();
+            WindowBackground.SetBackground(this);
         }
     }
 }

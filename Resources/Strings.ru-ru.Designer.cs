@@ -178,6 +178,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сохранить.
+        /// </summary>
+        public static string bt_save {
+            get {
+                return ResourceManager.GetString("bt_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Поиск.
         /// </summary>
         public static string bt_search {
@@ -192,6 +201,24 @@ namespace Passtable.Resources {
         public static string bt_search_tip {
             get {
                 return ResourceManager.GetString("bt_search_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подтвердить.
+        /// </summary>
+        public static string edit_confirm {
+            get {
+                return ResourceManager.GetString("edit_confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оставьте пустым для пропуска.
+        /// </summary>
+        public static string edit_leaveBlankToSkip {
+            get {
+                return ResourceManager.GetString("edit_leaveBlankToSkip", resourceCulture);
             }
         }
         
@@ -228,6 +255,33 @@ namespace Passtable.Resources {
         public static string err_critical_updateApp {
             get {
                 return ResourceManager.GetString("err_critical_updateApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Некоторые данные содержат недопустимые символы..
+        /// </summary>
+        public static string err_edit_dataInvalidChars {
+            get {
+                return ResourceManager.GetString("err_edit_dataInvalidChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Запись должна содержать заметку или логин с паролем..
+        /// </summary>
+        public static string err_edit_itemMustContain {
+            get {
+                return ResourceManager.GetString("err_edit_itemMustContain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароли не совпадают..
+        /// </summary>
+        public static string err_edit_passwordsDoNotMatch {
+            get {
+                return ResourceManager.GetString("err_edit_passwordsDoNotMatch", resourceCulture);
             }
         }
         
@@ -291,6 +345,24 @@ namespace Passtable.Resources {
         public static string err_write_title {
             get {
                 return ResourceManager.GetString("err_write_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавить запись.
+        /// </summary>
+        public static string title_addEntry {
+            get {
+                return ResourceManager.GetString("title_addEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изменить запись.
+        /// </summary>
+        public static string title_editEntry {
+            get {
+                return ResourceManager.GetString("title_editEntry", resourceCulture);
             }
         }
         

@@ -178,6 +178,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string bt_save {
+            get {
+                return ResourceManager.GetString("bt_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string bt_search {
@@ -192,6 +201,24 @@ namespace Passtable.Resources {
         public static string bt_search_tip {
             get {
                 return ResourceManager.GetString("bt_search_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string edit_confirm {
+            get {
+                return ResourceManager.GetString("edit_confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave blank to skip.
+        /// </summary>
+        public static string edit_leaveBlankToSkip {
+            get {
+                return ResourceManager.GetString("edit_leaveBlankToSkip", resourceCulture);
             }
         }
         
@@ -228,6 +255,33 @@ namespace Passtable.Resources {
         public static string err_critical_updateApp {
             get {
                 return ResourceManager.GetString("err_critical_updateApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some data contains invalid characters..
+        /// </summary>
+        public static string err_edit_dataInvalidChars {
+            get {
+                return ResourceManager.GetString("err_edit_dataInvalidChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entry must contain note or username with password..
+        /// </summary>
+        public static string err_edit_itemMustContain {
+            get {
+                return ResourceManager.GetString("err_edit_itemMustContain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords don&apos;t match..
+        /// </summary>
+        public static string err_edit_passwordsDoNotMatch {
+            get {
+                return ResourceManager.GetString("err_edit_passwordsDoNotMatch", resourceCulture);
             }
         }
         
@@ -291,6 +345,24 @@ namespace Passtable.Resources {
         public static string err_write_title {
             get {
                 return ResourceManager.GetString("err_write_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add entry.
+        /// </summary>
+        public static string title_addEntry {
+            get {
+                return ResourceManager.GetString("title_addEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit entry.
+        /// </summary>
+        public static string title_editEntry {
+            get {
+                return ResourceManager.GetString("title_editEntry", resourceCulture);
             }
         }
         

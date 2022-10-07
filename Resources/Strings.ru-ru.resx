@@ -141,4 +141,28 @@
     <data name="err_openFileFail" xml:space="preserve">
         <value>Не удалось открыть файл.</value>
     </data>
+    <data name="edit_leaveBlankToSkip" xml:space="preserve">
+        <value>Оставьте пустым для пропуска</value>
+    </data>
+    <data name="edit_confirm" xml:space="preserve">
+        <value>Подтвердить</value>
+    </data>
+    <data name="bt_save" xml:space="preserve">
+        <value>Сохранить</value>
+    </data>
+    <data name="title_addEntry" xml:space="preserve">
+        <value>Добавить запись</value>
+    </data>
+    <data name="title_editEntry" xml:space="preserve">
+        <value>Изменить запись</value>
+    </data>
+    <data name="err_edit_passwordsDoNotMatch" xml:space="preserve">
+        <value>Пароли не совпадают.</value>
+    </data>
+    <data name="err_edit_itemMustContain" xml:space="preserve">
+        <value>Запись должна содержать заметку или логин с паролем.</value>
+    </data>
+    <data name="err_edit_dataInvalidChars" xml:space="preserve">
+        <value>Некоторые данные содержат недопустимые символы.</value>
+    </data>
 </root>
