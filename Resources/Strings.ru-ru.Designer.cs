@@ -97,6 +97,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отменить.
+        /// </summary>
+        public static string bt_cancel {
+            get {
+                return ResourceManager.GetString("bt_cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Закрыть.
         /// </summary>
         public static string bt_close {
@@ -349,11 +358,29 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Это действие не может быть отменено.
+        /// </summary>
+        public static string msg_permanentAction {
+            get {
+                return ResourceManager.GetString("msg_permanentAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Добавить запись.
         /// </summary>
         public static string title_addEntry {
             get {
                 return ResourceManager.GetString("title_addEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Удалить запись?.
+        /// </summary>
+        public static string title_deleteEntry {
+            get {
+                return ResourceManager.GetString("title_deleteEntry", resourceCulture);
             }
         }
         

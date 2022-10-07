@@ -97,6 +97,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string bt_cancel {
+            get {
+                return ResourceManager.GetString("bt_cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string bt_close {
@@ -349,11 +358,29 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is permanent and cannot be undone.
+        /// </summary>
+        public static string msg_permanentAction {
+            get {
+                return ResourceManager.GetString("msg_permanentAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add entry.
         /// </summary>
         public static string title_addEntry {
             get {
                 return ResourceManager.GetString("title_addEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete entry?.
+        /// </summary>
+        public static string title_deleteEntry {
+            get {
+                return ResourceManager.GetString("title_deleteEntry", resourceCulture);
             }
         }
         

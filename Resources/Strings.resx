@@ -165,4 +165,13 @@
     <data name="err_edit_dataInvalidChars" xml:space="preserve">
         <value>Some data contains invalid characters.</value>
     </data>
+    <data name="bt_cancel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="title_deleteEntry" xml:space="preserve">
+        <value>Delete entry?</value>
+    </data>
+    <data name="msg_permanentAction" xml:space="preserve">
+        <value>This is permanent and cannot be undone</value>
+    </data>
 </root>

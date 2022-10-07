@@ -165,4 +165,13 @@
     <data name="err_edit_dataInvalidChars" xml:space="preserve">
         <value>Некоторые данные содержат недопустимые символы.</value>
     </data>
+    <data name="bt_cancel" xml:space="preserve">
+        <value>Отменить</value>
+    </data>
+    <data name="title_deleteEntry" xml:space="preserve">
+        <value>Удалить запись?</value>
+    </data>
+    <data name="msg_permanentAction" xml:space="preserve">
+        <value>Это действие не может быть отменено</value>
+    </data>
 </root>

@@ -7,7 +7,7 @@ namespace Passtable.Components
 {
     public class WindowBackground
     {
-        private static bool CheckWin11()
+        public static bool CheckWin11()
         {
             const string keyName = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion";
             const string valueName = "CurrentBuildNumber";
