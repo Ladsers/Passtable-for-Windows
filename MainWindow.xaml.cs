@@ -379,19 +379,9 @@ namespace Passtable
             }
             if (masterPass == "" || saveAs)
             {
-                var masterPasswordWindow = new MasterPasswordWindow
-                {
-                    Owner = this,
-                    Title = "Enter master password",
-                    btnEnter = { Content = "Save" },
-                    SaveMode = true
-                };
-                if (saveAs && masterPass != "")
-                    masterPasswordWindow.btnWithoutChange.Visibility = Visibility.Visible;
-                if (masterPasswordWindow.ShowDialog() == false)
+                var mode = saveAs && masterPass != "" ? Askers.Mode.SaveAs : Askers.Mode.Save;
+                if (!Askers.AskPrimaryPassword(this, mode, false, ref masterPass))
                     return false;
-                if (!masterPasswordWindow.withoutChange)
-                    masterPass = masterPasswordWindow.pbPassword.Password;
             }
             //Process cancellation protection
             if (filePath == "" || saveAs) filePath = filePathPreselected;
@@ -521,7 +511,7 @@ namespace Passtable
                 return;
             }
             
-            if (!Askers.AskPrimaryPassword(this, false, false, out masterPass))
+            if (!Askers.AskPrimaryPassword(this, Askers.Mode.Open, false, ref masterPass))
             {
                 CloseFile();
                 return;
@@ -535,7 +525,7 @@ namespace Passtable
                     data = AesEncryptor.Decryption(encryptedData, masterPass);
                     if (data == "/error")
                     {
-                        if (Askers.AskPrimaryPassword(this, false, true, out masterPass)) continue;
+                        if (Askers.AskPrimaryPassword(this, Askers.Mode.Open, true, ref masterPass)) continue;
                         CloseFile();
                         return;
                     }

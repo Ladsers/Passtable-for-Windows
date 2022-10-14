@@ -3,10 +3,12 @@
     public enum EditErrorKey
     {
         Ok,
-        BadItem,
-        BadData,
-        BadPrimaryPassword,
-        BadFileName,
+        InvalidItem,
+        DataInvalidChars,
+        PrimaryPasswordEmpty,
+        PrimaryPasswordInvalidChars,
+        PrimaryPasswordSlash,
+        PrimaryPasswordTooLong,
         PasswordsDoNotMatch
     }
 }

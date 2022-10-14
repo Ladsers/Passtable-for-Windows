@@ -38,14 +38,14 @@ namespace Passtable
         {
             if (!Verifier.VerifyData(tbNote.Text, tbLogin.Text, pbPassword.Password))
             {
-                if (isMsg) _error.Show(EditErrorKey.BadData);
+                if (isMsg) _error.Show(EditErrorKey.DataInvalidChars);
                 else btnSave.IsEnabled = false;
                 return;
             }
 
             if (!Verifier.VerifyItem(tbNote.Text, tbLogin.Text, pbPassword.Password))
             {
-                if (isMsg) _error.Show(EditErrorKey.BadItem);
+                if (isMsg) _error.Show(EditErrorKey.InvalidItem);
                 else btnSave.IsEnabled = false;
                 return;
             }

@@ -169,6 +169,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ввод.
+        /// </summary>
+        public static string bt_enter {
+            get {
+                return ResourceManager.GetString("bt_enter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log&apos;n&apos;Pass.
         /// </summary>
         public static string bt_logPass {
@@ -228,6 +237,15 @@ namespace Passtable.Resources {
         public static string edit_leaveBlankToSkip {
             get {
                 return ResourceManager.GetString("edit_leaveBlankToSkip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Основной пароль.
+        /// </summary>
+        public static string edit_primaryPassword {
+            get {
+                return ResourceManager.GetString("edit_primaryPassword", resourceCulture);
             }
         }
         
@@ -313,6 +331,24 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Имя файла не должно начинаться с пробела..
+        /// </summary>
+        public static string err_fileName_spaceChar {
+            get {
+                return ResourceManager.GetString("err_fileName_spaceChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Имя файла слишком длинное..
+        /// </summary>
+        public static string err_fileName_tooLong {
+            get {
+                return ResourceManager.GetString("err_fileName_tooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Система Log&apos;n&apos;Pass в данный момент недоступна..
         /// </summary>
         public static string err_logPass_msg {
@@ -327,6 +363,51 @@ namespace Passtable.Resources {
         public static string err_openFileFail {
             get {
                 return ResourceManager.GetString("err_openFileFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Основной пароль не может быть пустым..
+        /// </summary>
+        public static string err_primaryPassword_empty {
+            get {
+                return ResourceManager.GetString("err_primaryPassword_empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неверный пароль..
+        /// </summary>
+        public static string err_primaryPassword_incorrect {
+            get {
+                return ResourceManager.GetString("err_primaryPassword_incorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Основной пароль содержит недопустимые символы. Разрешённые символы: .
+        /// </summary>
+        public static string err_primaryPassword_invalidChars {
+            get {
+                return ResourceManager.GetString("err_primaryPassword_invalidChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Основной пароль не может начинаться с косой черты..
+        /// </summary>
+        public static string err_primaryPassword_slashChar {
+            get {
+                return ResourceManager.GetString("err_primaryPassword_slashChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Основной пароль слишком длинный (макс. 32 символа)..
+        /// </summary>
+        public static string err_primaryPassword_tooLong {
+            get {
+                return ResourceManager.GetString("err_primaryPassword_tooLong", resourceCulture);
             }
         }
         
@@ -358,6 +439,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to пробел.
+        /// </summary>
+        public static string key_space {
+            get {
+                return ResourceManager.GetString("key_space", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Это действие не может быть отменено.
         /// </summary>
         public static string msg_permanentAction {
@@ -372,6 +462,15 @@ namespace Passtable.Resources {
         public static string title_addEntry {
             get {
                 return ResourceManager.GetString("title_addEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Создать новый файл.
+        /// </summary>
+        public static string title_createNewFile {
+            get {
+                return ResourceManager.GetString("title_createNewFile", resourceCulture);
             }
         }
         
@@ -403,11 +502,29 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Открыть файл.
+        /// </summary>
+        public static string title_openFile {
+            get {
+                return ResourceManager.GetString("title_openFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пароль.
         /// </summary>
         public static string title_password {
             get {
                 return ResourceManager.GetString("title_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сохранить как.
+        /// </summary>
+        public static string title_saveAs {
+            get {
+                return ResourceManager.GetString("title_saveAs", resourceCulture);
             }
         }
         

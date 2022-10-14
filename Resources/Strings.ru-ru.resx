@@ -174,4 +174,43 @@
     <data name="msg_permanentAction" xml:space="preserve">
         <value>Это действие не может быть отменено</value>
     </data>
+    <data name="bt_enter" xml:space="preserve">
+        <value>Ввод</value>
+    </data>
+    <data name="title_saveAs" xml:space="preserve">
+        <value>Сохранить как</value>
+    </data>
+    <data name="edit_primaryPassword" xml:space="preserve">
+        <value>Основной пароль</value>
+    </data>
+    <data name="title_openFile" xml:space="preserve">
+        <value>Открыть файл</value>
+    </data>
+    <data name="title_createNewFile" xml:space="preserve">
+        <value>Создать новый файл</value>
+    </data>
+    <data name="err_primaryPassword_slashChar" xml:space="preserve">
+        <value>Основной пароль не может начинаться с косой черты.</value>
+    </data>
+    <data name="err_primaryPassword_tooLong" xml:space="preserve">
+        <value>Основной пароль слишком длинный (макс. 32 символа).</value>
+    </data>
+    <data name="err_primaryPassword_invalidChars" xml:space="preserve">
+        <value>Основной пароль содержит недопустимые символы. Разрешённые символы: </value>
+    </data>
+    <data name="err_primaryPassword_empty" xml:space="preserve">
+        <value>Основной пароль не может быть пустым.</value>
+    </data>
+    <data name="err_fileName_tooLong" xml:space="preserve">
+        <value>Имя файла слишком длинное.</value>
+    </data>
+    <data name="err_fileName_spaceChar" xml:space="preserve">
+        <value>Имя файла не должно начинаться с пробела.</value>
+    </data>
+    <data name="err_primaryPassword_incorrect" xml:space="preserve">
+        <value>Неверный пароль.</value>
+    </data>
+    <data name="key_space" xml:space="preserve">
+        <value>пробел</value>
+    </data>
 </root>

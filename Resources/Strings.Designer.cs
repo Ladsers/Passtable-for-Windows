@@ -169,6 +169,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter.
+        /// </summary>
+        public static string bt_enter {
+            get {
+                return ResourceManager.GetString("bt_enter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log&apos;n&apos;Pass.
         /// </summary>
         public static string bt_logPass {
@@ -228,6 +237,15 @@ namespace Passtable.Resources {
         public static string edit_leaveBlankToSkip {
             get {
                 return ResourceManager.GetString("edit_leaveBlankToSkip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary password.
+        /// </summary>
+        public static string edit_primaryPassword {
+            get {
+                return ResourceManager.GetString("edit_primaryPassword", resourceCulture);
             }
         }
         
@@ -313,6 +331,24 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File name must not start with a space character..
+        /// </summary>
+        public static string err_fileName_spaceChar {
+            get {
+                return ResourceManager.GetString("err_fileName_spaceChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File name is too long..
+        /// </summary>
+        public static string err_fileName_tooLong {
+            get {
+                return ResourceManager.GetString("err_fileName_tooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Log&apos;n&apos;Pass system is currently unavailable..
         /// </summary>
         public static string err_logPass_msg {
@@ -327,6 +363,51 @@ namespace Passtable.Resources {
         public static string err_openFileFail {
             get {
                 return ResourceManager.GetString("err_openFileFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary password cannot be empty..
+        /// </summary>
+        public static string err_primaryPassword_empty {
+            get {
+                return ResourceManager.GetString("err_primaryPassword_empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect password..
+        /// </summary>
+        public static string err_primaryPassword_incorrect {
+            get {
+                return ResourceManager.GetString("err_primaryPassword_incorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary password contains invalid characters. Allowed characters: .
+        /// </summary>
+        public static string err_primaryPassword_invalidChars {
+            get {
+                return ResourceManager.GetString("err_primaryPassword_invalidChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary password cannot start with a forward slash..
+        /// </summary>
+        public static string err_primaryPassword_slashChar {
+            get {
+                return ResourceManager.GetString("err_primaryPassword_slashChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary password is too long (max. 32 chars)..
+        /// </summary>
+        public static string err_primaryPassword_tooLong {
+            get {
+                return ResourceManager.GetString("err_primaryPassword_tooLong", resourceCulture);
             }
         }
         
@@ -358,6 +439,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to space.
+        /// </summary>
+        public static string key_space {
+            get {
+                return ResourceManager.GetString("key_space", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is permanent and cannot be undone.
         /// </summary>
         public static string msg_permanentAction {
@@ -372,6 +462,15 @@ namespace Passtable.Resources {
         public static string title_addEntry {
             get {
                 return ResourceManager.GetString("title_addEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new file.
+        /// </summary>
+        public static string title_createNewFile {
+            get {
+                return ResourceManager.GetString("title_createNewFile", resourceCulture);
             }
         }
         
@@ -403,11 +502,29 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open file.
+        /// </summary>
+        public static string title_openFile {
+            get {
+                return ResourceManager.GetString("title_openFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string title_password {
             get {
                 return ResourceManager.GetString("title_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save as.
+        /// </summary>
+        public static string title_saveAs {
+            get {
+                return ResourceManager.GetString("title_saveAs", resourceCulture);
             }
         }
         

@@ -20,16 +20,21 @@ namespace Passtable.Components
         {
             switch (key)
             {
-                case EditErrorKey.BadItem:
+                case EditErrorKey.InvalidItem:
                     return Strings.err_edit_itemMustContain;
-                case EditErrorKey.BadData:
+                case EditErrorKey.DataInvalidChars:
                     return Strings.err_edit_dataInvalidChars;
-                case EditErrorKey.BadPrimaryPassword:
-                    return "BadPrimaryPassword";
-                case EditErrorKey.BadFileName:
-                    return "BadFileName";
+                case EditErrorKey.PrimaryPasswordEmpty:
+                    return Strings.err_primaryPassword_empty;
                 case EditErrorKey.PasswordsDoNotMatch:
                     return Strings.err_edit_passwordsDoNotMatch;
+                case EditErrorKey.PrimaryPasswordInvalidChars:
+                    return Strings.err_primaryPassword_invalidChars +
+                           Verifier.GetPrimaryAllowedChars(Strings.key_space);
+                case EditErrorKey.PrimaryPasswordSlash:
+                    return Strings.err_primaryPassword_slashChar;
+                case EditErrorKey.PrimaryPasswordTooLong:
+                    return Strings.err_primaryPassword_tooLong;
                 case EditErrorKey.Ok:
                 default:
                     throw new ArgumentOutOfRangeException(nameof(key), key, null);
@@ -45,7 +50,7 @@ namespace Passtable.Components
             }
 
             _label.Visibility = Visibility.Visible;
-            _label.Content = GetErrorMsg(key);
+            _label.Content = new TextBlock { Text = GetErrorMsg(key), TextWrapping = TextWrapping.Wrap };
             var opacityAnimation =
                 new DoubleAnimation(0.0, 1.0, new Duration(TimeSpan.FromSeconds(0.5)), FillBehavior.HoldEnd);
             _label.BeginAnimation(UIElement.OpacityProperty, opacityAnimation);
