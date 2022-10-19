@@ -475,6 +475,40 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to • Система работает только с записями, которые содержат логин и пароль.
+        ///• Система не работает в приложении Passtable.
+        ///• По окончании работы буфер обмена будет очищен..
+        /// </summary>
+        public static string info_logPass_notes {
+            get {
+                return ResourceManager.GetString("info_logPass_notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Выбрать запись в таблице;
+        ///2. Нажать на кнопку &quot;Log&apos;n&apos;Pass&quot; (Ctrl+D);
+        ///3. Перейти на форму авторизации (например, авторизация на сайте в браузере, ввод учетных данных в почтовом клиенте);
+        ///4. Выбрать поле &quot;логин&quot; и нажать Ctrl+V;
+        ///5. Затем выбрать поле &quot;пароль&quot; и нажать Ctrl+V;
+        ///6. Готово..
+        /// </summary>
+        public static string info_logPass_steps {
+            get {
+                return ResourceManager.GetString("info_logPass_steps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Как использовать систему &quot;Log&apos;n&apos;Pass&quot;.
+        /// </summary>
+        public static string info_logPass_title {
+            get {
+                return ResourceManager.GetString("info_logPass_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Страница проекта:.
         /// </summary>
         public static string info_projectPage {

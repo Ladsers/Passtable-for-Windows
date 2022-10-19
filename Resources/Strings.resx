@@ -452,4 +452,20 @@ https://fonts.google.com/icons
     <data name="info_projectRepo" xml:space="preserve">
         <value>Project repo:</value>
     </data>
+    <data name="info_logPass_title" xml:space="preserve">
+        <value>How to use "Log'n'pass" system</value>
+    </data>
+    <data name="info_logPass_steps" xml:space="preserve">
+        <value>1. Select an entry in the table;
+2. Click on the "Log'n'pass" button (Ctrl+D);
+3. Go to authorization form (for example: authorization on the website in the browser, credentials entry in the mail client);
+4. Select the "username" field and press Ctrl+V;
+5. Then select the "password" field and press Ctrl+V;
+6. Done.</value>
+    </data>
+    <data name="info_logPass_notes" xml:space="preserve">
+        <value>• The system only works with entries that contain username and password.
+• The system does not work in the Passtable app.
+• At the end of the work, the clipboard will be cleared.</value>
+    </data>
 </root>

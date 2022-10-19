@@ -499,6 +499,40 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to • The system only works with entries that contain username and password.
+        ///• The system does not work in the Passtable app.
+        ///• At the end of the work, the clipboard will be cleared..
+        /// </summary>
+        public static string info_logPass_notes {
+            get {
+                return ResourceManager.GetString("info_logPass_notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Select an entry in the table;
+        ///2. Click on the &quot;Log&apos;n&apos;pass&quot; button (Ctrl+D);
+        ///3. Go to authorization form (for example: authorization on the website in the browser, credentials entry in the mail client);
+        ///4. Select the &quot;username&quot; field and press Ctrl+V;
+        ///5. Then select the &quot;password&quot; field and press Ctrl+V;
+        ///6. Done..
+        /// </summary>
+        public static string info_logPass_steps {
+            get {
+                return ResourceManager.GetString("info_logPass_steps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to use &quot;Log&apos;n&apos;pass&quot; system.
+        /// </summary>
+        public static string info_logPass_title {
+            get {
+                return ResourceManager.GetString("info_logPass_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project page:.
         /// </summary>
         public static string info_projectPage {

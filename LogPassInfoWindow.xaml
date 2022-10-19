@@ -1,13 +1,27 @@
-﻿<Window x:Class="Passtable.LogPassInfoWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:Passtable"
-        mc:Ignorable="d"
-        Title="LogPassInfoWindow" Height="450" Width="500">
+﻿<hc:Window x:Class="Passtable.LogPassInfoWindow"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:local="clr-namespace:Passtable"
+           xmlns:hc="https://handyorg.github.io/handycontrol"
+           xmlns:res="clr-namespace:Passtable.Resources"
+           mc:Ignorable="d"
+           Title="{x:Static res:Strings.info_logPass_title}"
+           Width="400" MinWidth="400" MaxWidth="400"
+           SizeToContent="Height" WindowStartupLocation="CenterOwner"
+           ResizeMode="CanMinimize" ShowMinButton="False"
+           Loaded="LogPassInfoWindow_OnLoaded"
+           LayoutUpdated="LogPassInfoWindow_OnLayoutUpdated">
     <StackPanel>
-        <TextBlock Text="Context"/>
-        <Label Content="Context"/>
+        <TextBlock Text="{x:Static res:Strings.info_logPass_steps}" FontSize="14"
+                   Foreground="{DynamicResource ForegroundLightBrush}" HorizontalAlignment="Stretch"
+                   Margin="20, 10, 20, 0" />
+        <Label FontSize="14" Foreground="{DynamicResource ForegroundLightBrush}"
+               HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Margin="10">
+            <Label.Content>
+                <AccessText TextWrapping="Wrap" Text="{x:Static res:Strings.info_logPass_notes}" />
+            </Label.Content>
+        </Label>
     </StackPanel>
-</Window>
+</hc:Window>

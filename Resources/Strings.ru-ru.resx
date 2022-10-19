@@ -240,4 +240,20 @@
     <data name="info_winApp" xml:space="preserve">
         <value>Приложение для Windows</value>
     </data>
+    <data name="info_logPass_steps" xml:space="preserve">
+        <value>1. Выбрать запись в таблице;
+2. Нажать на кнопку "Log'n'Pass" (Ctrl+D);
+3. Перейти на форму авторизации (например, авторизация на сайте в браузере, ввод учетных данных в почтовом клиенте);
+4. Выбрать поле "логин" и нажать Ctrl+V;
+5. Затем выбрать поле "пароль" и нажать Ctrl+V;
+6. Готово.</value>
+    </data>
+    <data name="info_logPass_notes" xml:space="preserve">
+        <value>• Система работает только с записями, которые содержат логин и пароль.
+• Система не работает в приложении Passtable.
+• По окончании работы буфер обмена будет очищен.</value>
+    </data>
+    <data name="info_logPass_title" xml:space="preserve">
+        <value>Как использовать систему "Log'n'Pass"</value>
+    </data>
 </root>
