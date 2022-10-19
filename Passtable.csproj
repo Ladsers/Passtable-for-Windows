@@ -61,9 +61,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Components\EditErrorWindow.cs" />
+    <Compile Include="Components\License.cs" />
     <Compile Include="Components\Verifier.cs" />
     <Compile Include="Components\WindowBackground.cs" />
     <Compile Include="Containers\EditErrorKey.cs" />
+    <Compile Include="LogPassInfoWindow.xaml.cs">
+      <DependentUpon>LogPassInfoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Strings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -80,6 +84,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LogPassInfoWindow.xaml" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -120,6 +125,7 @@
     <Page Include="Resources\Colors.xaml" />
     <Page Include="Resources\DataGrid.xaml" />
     <Page Include="Resources\Icons.xaml" />
+    <Page Include="Resources\Img\BitmapSource.xaml" />
     <Page Include="Resources\StatusBar.xaml" />
     <Page Include="Resources\Tags.xaml" />
     <Page Include="Resources\TextBoxes.xaml" />
@@ -171,6 +177,9 @@
     </PackageReference>
     <PackageReference Include="HandyControls" Version="3.4.2" />
     <PackageReference Include="Resource.Embedder" Version="2.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Img\PasstableLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -213,4 +213,31 @@
     <data name="key_space" xml:space="preserve">
         <value>пробел</value>
     </data>
+    <data name="bt_about" xml:space="preserve">
+        <value>О приложении</value>
+    </data>
+    <data name="title_about" xml:space="preserve">
+        <value>О приложении</value>
+    </data>
+    <data name="bt_license" xml:space="preserve">
+        <value>Лицензия</value>
+    </data>
+    <data name="bt_thirdPartyResources" xml:space="preserve">
+        <value>Сторонние ресурсы</value>
+    </data>
+    <data name="info_createdBy" xml:space="preserve">
+        <value>Разработал Максим Королев</value>
+    </data>
+    <data name="info_projectPage" xml:space="preserve">
+        <value>Страница проекта:</value>
+    </data>
+    <data name="info_projectRepo" xml:space="preserve">
+        <value>Репозиторий проекта:</value>
+    </data>
+    <data name="info_version" xml:space="preserve">
+        <value>Версия:</value>
+    </data>
+    <data name="info_winApp" xml:space="preserve">
+        <value>Приложение для Windows</value>
+    </data>
 </root>

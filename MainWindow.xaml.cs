@@ -810,6 +810,14 @@ namespace Passtable
 
         private void ShowErrBox(string title, string msg) =>
             MessageBox.Show(msg, title, MessageBoxButton.OK, MessageBoxImage.Error);
-        
+
+        private void LogPassInfo_OnClick(object sender, RoutedEventArgs e)
+        {
+            var logPassInfoWindow = new LogPassInfoWindow
+            {
+                Owner = this
+            };
+            logPassInfoWindow.ShowDialog();
+        }
     }
 }

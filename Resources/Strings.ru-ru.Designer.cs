@@ -70,6 +70,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to О приложении.
+        /// </summary>
+        public static string bt_about {
+            get {
+                return ResourceManager.GetString("bt_about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Подробнее о Log&apos;n&apos;Pass.
         /// </summary>
         public static string bt_aboutLogPass_tip {
@@ -178,6 +187,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Лицензия.
+        /// </summary>
+        public static string bt_license {
+            get {
+                return ResourceManager.GetString("bt_license", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log&apos;n&apos;Pass.
         /// </summary>
         public static string bt_logPass {
@@ -219,6 +237,15 @@ namespace Passtable.Resources {
         public static string bt_search_tip {
             get {
                 return ResourceManager.GetString("bt_search_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сторонние ресурсы.
+        /// </summary>
+        public static string bt_thirdPartyResources {
+            get {
+                return ResourceManager.GetString("bt_thirdPartyResources", resourceCulture);
             }
         }
         
@@ -439,6 +466,51 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Разработал Максим Королев.
+        /// </summary>
+        public static string info_createdBy {
+            get {
+                return ResourceManager.GetString("info_createdBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Страница проекта:.
+        /// </summary>
+        public static string info_projectPage {
+            get {
+                return ResourceManager.GetString("info_projectPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Репозиторий проекта:.
+        /// </summary>
+        public static string info_projectRepo {
+            get {
+                return ResourceManager.GetString("info_projectRepo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Версия:.
+        /// </summary>
+        public static string info_version {
+            get {
+                return ResourceManager.GetString("info_version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Приложение для Windows.
+        /// </summary>
+        public static string info_winApp {
+            get {
+                return ResourceManager.GetString("info_winApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to пробел.
         /// </summary>
         public static string key_space {
@@ -453,6 +525,15 @@ namespace Passtable.Resources {
         public static string msg_permanentAction {
             get {
                 return ResourceManager.GetString("msg_permanentAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to О приложении.
+        /// </summary>
+        public static string title_about {
+            get {
+                return ResourceManager.GetString("title_about", resourceCulture);
             }
         }
         

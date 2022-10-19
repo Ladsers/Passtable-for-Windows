@@ -70,6 +70,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About app.
+        /// </summary>
+        public static string bt_about {
+            get {
+                return ResourceManager.GetString("bt_about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to More about Log&apos;n&apos;Pass.
         /// </summary>
         public static string bt_aboutLogPass_tip {
@@ -178,6 +187,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to License.
+        /// </summary>
+        public static string bt_license {
+            get {
+                return ResourceManager.GetString("bt_license", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log&apos;n&apos;Pass.
         /// </summary>
         public static string bt_logPass {
@@ -219,6 +237,15 @@ namespace Passtable.Resources {
         public static string bt_search_tip {
             get {
                 return ResourceManager.GetString("bt_search_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Third party resources.
+        /// </summary>
+        public static string bt_thirdPartyResources {
+            get {
+                return ResourceManager.GetString("bt_thirdPartyResources", resourceCulture);
             }
         }
         
@@ -439,6 +466,110 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created by Max Korolev.
+        /// </summary>
+        public static string info_createdBy {
+            get {
+                return ResourceManager.GetString("info_createdBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to     Copyright 2022 Maxim Korolev
+        ///    Licensed under the Apache License, Version 2.0
+        ///    
+        ///    
+        ///                                 Apache License
+        ///                           Version 2.0, January 2004
+        ///                        http://www.apache.org/licenses/
+        ///
+        ///   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+        ///
+        ///   1. Definitions.
+        ///
+        ///      &quot;License&quot; shall mean the terms and conditions for use, reproduction,
+        ///      and distribution as defined by Sections 1 through 9 of this document.
+        ///
+        ///      &quot;L [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string info_license {
+            get {
+                return ResourceManager.GetString("info_license", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project page:.
+        /// </summary>
+        public static string info_projectPage {
+            get {
+                return ResourceManager.GetString("info_projectPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project repo:.
+        /// </summary>
+        public static string info_projectRepo {
+            get {
+                return ResourceManager.GetString("info_projectRepo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///HandyControls
+        ///Mahdi Hosseini
+        ///https://ghost1372.github.io/handycontrol/
+        ///based on HandyControl
+        ///HandyOrg
+        ///MIT License
+        ///https://handyorg.github.io/
+        ///
+        ///Costura.Fody
+        ///Fody
+        ///MIT license
+        ///
+        ///Resource.Embedder
+        ///Marc Stan
+        ///MIT license
+        ///
+        ///Fluent Emoji
+        ///Microsoft Corporation
+        ///
+        /// MIT license
+        ///
+        ///Material Design icons 
+        ///Google LLC
+        ///Apache License 2.0
+        ///https://fonts.google.com/icons
+        ///.
+        /// </summary>
+        public static string info_thirdPartyResources {
+            get {
+                return ResourceManager.GetString("info_thirdPartyResources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version:.
+        /// </summary>
+        public static string info_version {
+            get {
+                return ResourceManager.GetString("info_version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application for Windows.
+        /// </summary>
+        public static string info_winApp {
+            get {
+                return ResourceManager.GetString("info_winApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to space.
         /// </summary>
         public static string key_space {
@@ -453,6 +584,15 @@ namespace Passtable.Resources {
         public static string msg_permanentAction {
             get {
                 return ResourceManager.GetString("msg_permanentAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About app.
+        /// </summary>
+        public static string title_about {
+            get {
+                return ResourceManager.GetString("title_about", resourceCulture);
             }
         }
         

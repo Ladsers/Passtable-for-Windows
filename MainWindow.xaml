@@ -123,7 +123,7 @@
                 </hc:ElementGroup>
                 <hc:ElementGroup x:Name="egLogPass" Orientation="Horizontal" Layout="Stack" HorizontalAlignment="Left">
                     <Button x:Name="btLogPass" Style="{DynamicResource ButtonAction}" Content="{x:Static res:Strings.bt_logPass}" ToolTip="{x:Static res:Strings.bt_logPass_tip}" Click="btnCopySuper_Click" />
-                    <Button Style="{DynamicResource ButtonAction}" hc:IconElement.Geometry="{DynamicResource IconInfo}" Foreground="{DynamicResource InfoLightBrush}" hc:IconElement.Width="12" hc:IconElement.Height="12" Padding="10, 2, 10, 0" ToolTip="{x:Static res:Strings.bt_aboutLogPass_tip}" />
+                    <Button Style="{DynamicResource ButtonAction}" hc:IconElement.Geometry="{DynamicResource IconInfo}" Foreground="{DynamicResource InfoLightBrush}" hc:IconElement.Width="12" hc:IconElement.Height="12" Padding="10, 2, 10, 0" ToolTip="{x:Static res:Strings.bt_aboutLogPass_tip}" Click="LogPassInfo_OnClick"/>
                 </hc:ElementGroup>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <hc:ElementGroup x:Name="egEdit" Orientation="Horizontal" Layout="Stack">

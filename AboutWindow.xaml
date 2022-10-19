@@ -1,17 +1,53 @@
 ﻿<hc:Window x:Class="Passtable.AboutWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:Passtable"
-        xmlns:hc="https://handyorg.github.io/handycontrol"
-        mc:Ignorable="d"
-        Title="About" Height="450" Width="800"
-        ResizeMode="CanMinimize" ShowMinButton="False"
-        MinWidth="800" MinHeight="450"
-        MaxWidth="800" MaxHeight="450"
-        WindowStartupLocation="CenterOwner">
-    <Grid>
-        
-    </Grid>
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:hc="https://handyorg.github.io/handycontrol"
+           xmlns:res="clr-namespace:Passtable.Resources"
+           mc:Ignorable="d"
+           Title="{x:Static res:Strings.title_about}" Height="440" Width="710"
+           ResizeMode="CanMinimize" ShowMinButton="False"
+           MinWidth="710" MinHeight="440"
+           MaxWidth="710" MaxHeight="440"
+           WindowStartupLocation="CenterOwner">
+    <TabControl VerticalAlignment="Stretch" Style="{StaticResource TabControlCapsule}" Background="Transparent"
+                FontSize="13">
+        <TabItem Header="{x:Static res:Strings.bt_about}" Width="230" Margin="0, 10, 0, 5">
+            <StackPanel Background="White" Orientation="Vertical">
+                <Image Source="{StaticResource PasstableLogo}" HorizontalAlignment="Center" Width="110"
+                       Margin="0, 20, 0, 15" />
+                <TextBlock Text="Passtable" HorizontalAlignment="Center" FontFamily="Segoe UI Variable Text"
+                           Foreground="{DynamicResource ForegroundLightBrush}"
+                           FontSize="26" FontWeight="SemiBold" Margin="0, 0, 0, 15" />
+                <TextBlock x:Name="tbAbout" HorizontalAlignment="Center" TextAlignment="Center"
+                           FontFamily="Segoe UI Variable Text" Foreground="{DynamicResource ForegroundLightBrush}"
+                           FontSize="16" />
+                <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontFamily="Segoe UI Variable Text"
+                           Foreground="{DynamicResource ForegroundLightBrush}"
+                           FontSize="16" Margin="0, 20, 0, 0" Text="{x:Static res:Strings.info_projectPage}">
+                    &#160;
+                    <Hyperlink Click="ProjectLink_OnClick">https://www.ladsers.com/Passtable</Hyperlink>
+                </TextBlock>
+                <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontFamily="Segoe UI Variable Text"
+                           Foreground="{DynamicResource ForegroundLightBrush}"
+                           FontSize="16" Text="{x:Static res:Strings.info_projectRepo}">
+                    &#160;
+                    <Hyperlink Click="RepoLink_OnClick">https://github.com/Ladsers/Passtable-for-Windows</Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="{x:Static res:Strings.bt_license}" Width="230" Margin="0, 10, 0, 5">
+            <ScrollViewer>
+                <TextBlock Text="{x:Static res:Strings.info_license}"
+                           Background="White" Padding="0,1" TextWrapping="Wrap" FontSize="16" />
+            </ScrollViewer>
+        </TabItem>
+        <TabItem Header="{x:Static res:Strings.bt_thirdPartyResources}" Width="230" Margin="0, 10, 0, 5">
+            <ScrollViewer>
+                <TextBlock Text="{x:Static res:Strings.info_thirdPartyResources}"
+                           Background="White" Padding="10,1" TextWrapping="Wrap" FontSize="16" />
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>
 </hc:Window>
