@@ -358,6 +358,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The specified file name is not supported..
+        /// </summary>
+        public static string err_fileName_invalid {
+            get {
+                return ResourceManager.GetString("err_fileName_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File name must not start with a space character..
         /// </summary>
         public static string err_fileName_spaceChar {
@@ -570,8 +579,7 @@ namespace Passtable.Resources {
         ///
         ///Fluent Emoji
         ///Microsoft Corporation
-        ///
-        /// MIT license
+        ///MIT license
         ///
         ///Material Design icons 
         ///Google LLC

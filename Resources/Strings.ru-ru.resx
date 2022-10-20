@@ -256,4 +256,7 @@
     <data name="info_logPass_title" xml:space="preserve">
         <value>Как использовать систему "Log'n'Pass"</value>
     </data>
+    <data name="err_fileName_invalid" xml:space="preserve">
+        <value>Указанное имя файла не поддерживается.</value>
+    </data>
 </root>

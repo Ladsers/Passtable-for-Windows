@@ -358,6 +358,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Указанное имя файла не поддерживается..
+        /// </summary>
+        public static string err_fileName_invalid {
+            get {
+                return ResourceManager.GetString("err_fileName_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Имя файла не должно начинаться с пробела..
         /// </summary>
         public static string err_fileName_spaceChar {

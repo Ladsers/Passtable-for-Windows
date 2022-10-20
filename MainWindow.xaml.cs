@@ -377,6 +377,30 @@ namespace Passtable
                 if (saveFileDialog.ShowDialog() != true) return false;
                 filePathPreselected = saveFileDialog.FileName;
             }
+
+            var names = filePathPreselected.Split('\\');
+            var fileName = names[names.Length - 1];
+            fileName = fileName.Remove(fileName.Length - 10);
+            var nameVerifierRes = Verifier.VerifyFileName(fileName);
+            
+            if (nameVerifierRes == 3)
+            {
+                ShowErrBox(Strings.err_critical_title, Strings.err_fileName_spaceChar);
+                return false;
+            }
+            
+            if (0 < nameVerifierRes && nameVerifierRes < 5)
+            {
+                ShowErrBox(Strings.err_critical_title, Strings.err_fileName_invalid);
+                return false;
+            }
+
+            if (nameVerifierRes == 5)
+            {
+                ShowErrBox(Strings.err_critical_title, Strings.err_fileName_tooLong);
+                return false;
+            }
+            
             if (masterPass == "" || saveAs)
             {
                 var mode = saveAs && masterPass != "" ? Askers.Mode.SaveAs : Askers.Mode.Save;

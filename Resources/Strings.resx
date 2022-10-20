@@ -416,8 +416,7 @@ MIT license
 
 Fluent Emoji
 Microsoft Corporation
-
- MIT license
+MIT license
 
 Material Design icons 
 Google LLC
@@ -467,5 +466,8 @@ https://fonts.google.com/icons
         <value>• The system only works with entries that contain username and password.
 • The system does not work in the Passtable app.
 • At the end of the work, the clipboard will be cleared.</value>
+    </data>
+    <data name="err_fileName_invalid" xml:space="preserve">
+        <value>The specified file name is not supported.</value>
     </data>
 </root>
