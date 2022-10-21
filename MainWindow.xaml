@@ -42,7 +42,7 @@
 
         </Grid>
         <DataGrid x:Name="gridMain" Grid.Row="1" Style="{DynamicResource DataGridMain}"
-                  MouseDoubleClick="gridMain_MouseDoubleClick"
+                  MouseDoubleClick="gridMain_MouseDoubleClick" ScrollViewer.ScrollChanged="GridMain_OnScrollChanged"
                   PreviewKeyDown="gridMain_PreviewKeyDown" CurrentCellChanged="gridMain_CurrentCellChanged">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{DynamicResource DataGridHighlightLight}" />

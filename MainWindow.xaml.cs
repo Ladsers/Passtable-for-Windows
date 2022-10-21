@@ -79,6 +79,8 @@ namespace Passtable
         string masterPass;
         bool isOpen;
 
+        private List<DataGridRow> _showedPasswordsRows;
+
         private StatusBar _statusBar;
         static MainWindow mainWindow;
 
@@ -104,6 +106,7 @@ namespace Passtable
             lpSysWork = false;
             isOpen = false;
             _statusBar = new StatusBar(dpSaveInfo, dpNoEntryInfo, dpNotEnoughData);
+            _showedPasswordsRows = new List<DataGridRow>();
             //Items for test
             //gridItems.Add(new GridItem("http://example.com/", "typicaluser@example.com", "THECAKEISALIE"));
             //for (int i = 0; i < 100; i++) gridItems.Add(new GridItem(i.ToString(), (i * 2).ToString(), (i * 3).ToString()));
@@ -663,6 +666,7 @@ namespace Passtable
         {
             var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
             var row = (DataGridRow)gridMain.ItemContainerGenerator.ContainerFromIndex(rowId);
+            _showedPasswordsRows.Add(row);
 
             var textBlock = DataGridUtils.GetObject<TextBlock>(row, "tbPassword");
             var stackPanel = DataGridUtils.GetObject<StackPanel>(row, "spPassword");
@@ -681,6 +685,23 @@ namespace Passtable
 
             if (textBlock.Visibility == Visibility.Collapsed) Change(Visibility.Visible, "IconLock", 7, 3, 2, 5, 1);
             else Change(Visibility.Collapsed, "IconShowPassword", 10, 7, 7, 10, 0);
+        }
+
+        private void AutoHidePassword()
+        {
+            foreach (var row in _showedPasswordsRows)
+            {
+                var textBlock = DataGridUtils.GetObject<TextBlock>(row, "tbPassword");
+                var stackPanel = DataGridUtils.GetObject<StackPanel>(row, "spPassword");
+                var imgShow = DataGridUtils.GetObject<Image>(row, "btShowPassword");
+                var imgCopy = DataGridUtils.GetObject<Image>(row, "btCopyPassword");
+                
+                textBlock.Visibility = Visibility.Collapsed;
+                imgShow.Source = (DrawingImage)FindResource("IconShowPassword");
+                imgShow.Margin = new Thickness(10, 0, 7, 0);
+                imgCopy.Margin = new Thickness(7, 0, 10, 0);
+                stackPanel.SetValue(Grid.ColumnProperty, 0);
+            }
         }
 
         private void MainWindow_OnDrop(object sender, DragEventArgs e)
@@ -852,6 +873,11 @@ namespace Passtable
             }
 
             return true;
+        }
+
+        private void GridMain_OnScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            if (e.VerticalChange != 0) AutoHidePassword();
         }
     }
 }
