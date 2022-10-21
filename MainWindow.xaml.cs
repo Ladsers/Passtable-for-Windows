@@ -317,8 +317,6 @@ namespace Passtable
                 editForm.tbLogin.Text, editForm.pbPassword.Password));
             gridMain.Items.Refresh();
             _dataSearcher.RememberCurrentState();
-            isOpen = true;
-            HandleUiWidgets();
 
             SaveFile();
         }
@@ -426,6 +424,12 @@ namespace Passtable
             {
                 ShowErrBox(Strings.err_write_title, Strings.err_write_msg);
                 return false;
+            }
+
+            if (!isOpen)
+            {
+                isOpen = true;
+                HandleUiWidgets();
             }
             
             Title = System.IO.Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
