@@ -886,5 +886,10 @@ namespace Passtable
         {
             if (e.VerticalChange != 0) AutoHidePassword();
         }
+
+        private void TbSearchData_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            UnselectRow();
+        }
     }
 }

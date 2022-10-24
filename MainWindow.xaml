@@ -118,7 +118,7 @@
                     <ToggleButton x:Name="btBlue" Style="{DynamicResource TagPanel}" Foreground="{DynamicResource TagBlueLightBrush}" ToolTip="Ctrl+3" Click="BtTag_OnClick" />
                     <ToggleButton x:Name="btYellow" Style="{DynamicResource TagPanel}" Foreground="{DynamicResource TagYellowLightBrush}" ToolTip="Ctrl+4" Click="BtTag_OnClick" />
                     <ToggleButton x:Name="btPurple" Style="{DynamicResource TagPanel}" Foreground="{DynamicResource TagPurpleLightBrush}" ToolTip="Ctrl+5" Click="BtTag_OnClick" />
-                    <TextBox x:Name="tbSearchData" FontSize="14" Width="170" TextChanged="TbSearchData_OnTextChanged" Visibility="Collapsed" />
+                    <TextBox x:Name="tbSearchData" FontSize="14" Width="170" TextChanged="TbSearchData_OnTextChanged" Visibility="Collapsed" LostFocus="TbSearchData_OnLostFocus"/>
                     <Button x:Name="btSearch" Style="{DynamicResource ButtonAction}" Content="{x:Static res:Strings.bt_search}" hc:IconElement.Geometry="{DynamicResource IconSearch}" ToolTip="{x:Static res:Strings.bt_search_tip}" Click="BtSearch_OnClick" />
                 </hc:ElementGroup>
                 <hc:ElementGroup x:Name="egLogPass" Orientation="Horizontal" Layout="Stack" HorizontalAlignment="Left">
