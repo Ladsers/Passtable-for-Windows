@@ -78,6 +78,7 @@ namespace Passtable
         string filePath;
         string masterPass;
         bool isOpen;
+        bool copyIsBlocked;
 
         private List<DataGridRow> _showedPasswordsRows;
 
@@ -115,7 +116,7 @@ namespace Passtable
 
         private void gridMain_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //FindAndCopyToClipboard();
+            FindAndCopyToClipboard();
         }
 
         private void gridMain_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -587,9 +588,15 @@ namespace Passtable
             aboutWindows.ShowDialog();
         }
         
-        private void CopyToClipboard(ClipboardKey key)
+        private async void CopyToClipboard(ClipboardKey key)
         {
             if (gridMain.SelectedItem == null) return;
+            
+            if (copyIsBlocked) return;
+            copyIsBlocked = true;
+            await Task.Delay(200); // if the user copy too often (without delay), the app crashes.
+            copyIsBlocked = false;
+            
             LogPassAbort();
             
             var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
