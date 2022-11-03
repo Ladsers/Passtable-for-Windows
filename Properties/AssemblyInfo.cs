@@ -6,11 +6,11 @@ using System.Windows;
 // набор атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
 [assembly: AssemblyTitle("Passtable")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Password manager")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Ladsers")]
 [assembly: AssemblyProduct("Passtable")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright 2022 Maxim Korolev")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
