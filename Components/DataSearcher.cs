@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -76,7 +75,7 @@ namespace Passtable.Components
             var blueNonNull = blue.IsChecked == true;
             var yellowNonNull = yellow.IsChecked == true;
             var purpleNonNull = purple.IsChecked == true;
-            
+
             await Task.Run(() => SearchByTag(redNonNull, greenNonNull, blueNonNull, yellowNonNull, purpleNonNull));
             _dataGrid.Items.Refresh();
         }
@@ -87,7 +86,7 @@ namespace Passtable.Components
             _allGridItems[id] = item;
             GetAll();
         }
-        
+
         public void DeleteAndGetAll(GridItem item)
         {
             var id = _allGridItems.FindIndex(collectionItem => collectionItem == item);

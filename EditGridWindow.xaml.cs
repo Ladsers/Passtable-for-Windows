@@ -10,15 +10,12 @@ using PasswordBox = HandyControl.Controls.PasswordBox;
 
 namespace Passtable
 {
-    /// <summary>
-    /// Логика взаимодействия для EditGridWindow.xaml
-    /// </summary>
     public partial class EditGridWindow
     {
         public int SelectedTag { private set; get; }
 
         private readonly EditErrorWindow _error;
-        private readonly ToggleButton[] tagButtons;
+        private readonly ToggleButton[] _tagButtons;
 
         public EditGridWindow()
         {
@@ -26,7 +23,7 @@ namespace Passtable
             WindowBackground.SetBackground(this);
             _error = new EditErrorWindow(lbError);
 
-            tagButtons = new[] { btNone, btRed, btGreen, btBlue, btYellow, btPurple };
+            _tagButtons = new[] { btNone, btRed, btGreen, btBlue, btYellow, btPurple };
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -129,8 +126,8 @@ namespace Passtable
 
         public void SelectTag(int tagId)
         {
-            foreach (var tagButton in tagButtons) tagButton.IsChecked = false;
-            tagButtons[tagId].IsChecked = true;
+            foreach (var tagButton in _tagButtons) tagButton.IsChecked = false;
+            _tagButtons[tagId].IsChecked = true;
             SelectedTag = tagId;
         }
 

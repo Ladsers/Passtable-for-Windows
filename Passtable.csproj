@@ -61,7 +61,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Components\EditErrorWindow.cs" />
-    <Compile Include="Components\License.cs" />
     <Compile Include="Components\Verifier.cs" />
     <Compile Include="Components\WindowBackground.cs" />
     <Compile Include="Containers\EditErrorKey.cs" />
@@ -100,7 +99,6 @@
     <Compile Include="Components\Askers.cs" />
     <Compile Include="Components\IsDataNotEmpty.cs" />
     <Compile Include="Components\DataGridUtils.cs" />
-    <Compile Include="Components\PasswordHandler.cs" />
     <Compile Include="Components\DataSearcher.cs" />
     <Compile Include="Components\StatusBar.cs" />
     <Compile Include="Containers\ClipboardKey.cs" />

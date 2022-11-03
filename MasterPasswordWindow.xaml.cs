@@ -10,18 +10,15 @@ using PasswordBox = HandyControl.Controls.PasswordBox;
 
 namespace Passtable
 {
-    /// <summary>
-    /// Логика взаимодействия для MasterPasswordWindow.xaml
-    /// </summary>
     public partial class MasterPasswordWindow
     {
         public bool WithoutChange { get; private set; }
-        
+
         private bool _saveMode;
         private bool _firstCheck = true;
-        
+
         private readonly EditErrorWindow _error;
-        
+
         public MasterPasswordWindow()
         {
             InitializeComponent();
@@ -36,7 +33,7 @@ namespace Passtable
             pbConfirm.Visibility = Visibility.Visible;
             _saveMode = true;
             if (mode != Askers.Mode.SaveAs) return;
-            
+
             btEnter.SetValue(Grid.ColumnSpanProperty, 1);
             btWithoutChange.Visibility = Visibility.Visible;
         }
@@ -58,7 +55,7 @@ namespace Passtable
         {
             if (e.Key == Key.Escape) DialogResult = false;
         }
-        
+
         private void NotifyError(bool isMsg)
         {
             var res = Verifier.VerifyPrimary(pbPassword.Password);
@@ -92,7 +89,7 @@ namespace Passtable
             _error.Show(EditErrorKey.Ok);
             btEnter.IsEnabled = true;
         }
-        
+
         private async void CheckError(PasswordBox passwordBox)
         {
             if (_firstCheck && pbPassword.Password.Length == 0) return;

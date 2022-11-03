@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
@@ -28,7 +27,7 @@ namespace Passtable.Components
         public void Show(StatusKey key)
         {
             StopAll();
-            
+
             var opacityAnimation = new DoubleAnimation(0.9, 0.0, new Duration(TimeSpan.FromSeconds(1.8)));
             _panels[(int)key].BeginAnimation(UIElement.OpacityProperty, opacityAnimation);
         }

@@ -10,7 +10,7 @@ namespace Passtable
     {
         //The special sequence to padding instead of zero-sequence
         private static char[] keyPadding = new char[]
-        {'1', 'a', '3', 'b', '5', 'c', '7', 'd', '9', 'e', '0', 'f', '2', 'g', '4' };
+            { '1', 'a', '3', 'b', '5', 'c', '7', 'd', '9', 'e', '0', 'f', '2', 'g', '4' };
 
         public static string Encryption(string data, string password)
         {
@@ -18,22 +18,38 @@ namespace Passtable
             Aes aes = Aes.Create();
             //Working with the key(password): Select mode, padding the key to the required number of characters
             int idKeyPadding = 0;
-            if (password.Length > 32 || password.Length == 0) throw
+            if (password.Length > 32 || password.Length == 0)
+                throw
                     new Exception("The password contains 0 or more than 32 characters");
             if (password.Length <= 16)
             {
-                while (password.Length < 16) { password += keyPadding[idKeyPadding]; idKeyPadding++; }
+                while (password.Length < 16)
+                {
+                    password += keyPadding[idKeyPadding];
+                    idKeyPadding++;
+                }
+
                 aes.KeySize = 128;
             }
             else if (password.Length > 16 && password.Length <= 24)
             {
-                while (password.Length < 24) { password += keyPadding[idKeyPadding]; idKeyPadding++; }
+                while (password.Length < 24)
+                {
+                    password += keyPadding[idKeyPadding];
+                    idKeyPadding++;
+                }
+
                 aes.KeySize = 192;
             }
             else
             {
-                while (password.Length < 32) { password += keyPadding[idKeyPadding]; idKeyPadding++; }
+                while (password.Length < 32)
+                {
+                    password += keyPadding[idKeyPadding];
+                    idKeyPadding++;
+                }
             }
+
             aes.Key = Encoding.UTF8.GetBytes(password);
             //AES setup
             aes.GenerateIV();
@@ -51,8 +67,10 @@ namespace Passtable
                         sw.Write(data);
                     }
                 }
+
                 dataEncrypted = ms.ToArray();
             }
+
             //Output the result
             string strResult = Convert.ToBase64String(dataEncrypted.Concat(aes.IV).ToArray());
             aes.Dispose();
@@ -65,22 +83,38 @@ namespace Passtable
             Aes aes = Aes.Create();
             //Working with the key(password): Select mode, padding the key to the required number of characters
             int idKeyPadding = 0;
-            if (password.Length > 32 || password.Length == 0) throw
+            if (password.Length > 32 || password.Length == 0)
+                throw
                     new Exception("The password contains 0 or more than 32 characters");
             if (password.Length <= 16)
             {
-                while (password.Length < 16) { password += keyPadding[idKeyPadding]; idKeyPadding++; }
+                while (password.Length < 16)
+                {
+                    password += keyPadding[idKeyPadding];
+                    idKeyPadding++;
+                }
+
                 aes.KeySize = 128;
             }
             else if (password.Length > 16 && password.Length <= 24)
             {
-                while (password.Length < 24) { password += keyPadding[idKeyPadding]; idKeyPadding++; }
+                while (password.Length < 24)
+                {
+                    password += keyPadding[idKeyPadding];
+                    idKeyPadding++;
+                }
+
                 aes.KeySize = 192;
             }
             else
             {
-                while (password.Length < 32) { password += keyPadding[idKeyPadding]; idKeyPadding++; }
+                while (password.Length < 32)
+                {
+                    password += keyPadding[idKeyPadding];
+                    idKeyPadding++;
+                }
             }
+
             aes.Key = Encoding.UTF8.GetBytes(password);
             //AES setup
             aes.Mode = CipherMode.CBC;
@@ -112,6 +146,7 @@ namespace Passtable
             {
                 strResult = "/error";
             }
+
             //Output the result
             aes.Dispose();
             return strResult;

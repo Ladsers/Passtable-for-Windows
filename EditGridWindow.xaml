@@ -1,38 +1,54 @@
 ﻿<hc:Window x:Class="Passtable.EditGridWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Passtable"
-        xmlns:res="clr-namespace:Passtable.Resources"
-        xmlns:hc="https://handyorg.github.io/handycontrol"
-        mc:Ignorable="d"
-        Title="EditGridWindow" Width="520" SizeToContent="Height" WindowStartupLocation="CenterOwner"
-        MinWidth="510" MaxWidth="655"
-        ResizeMode="CanMinimize" ShowMinButton="False"
-        FocusManager.FocusedElement="{Binding ElementName=tbNote}"
-        PreviewKeyDown="EditGridWindow_OnPreviewKeyDown"
-        LayoutUpdated="EditGridWindow_OnLayoutUpdated">
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:res="clr-namespace:Passtable.Resources"
+           xmlns:hc="https://handyorg.github.io/handycontrol"
+           mc:Ignorable="d"
+           Title="EditGridWindow" Width="520" SizeToContent="Height" WindowStartupLocation="CenterOwner"
+           MinWidth="510" MaxWidth="655"
+           ResizeMode="CanMinimize" ShowMinButton="False"
+           FocusManager.FocusedElement="{Binding ElementName=tbNote}"
+           PreviewKeyDown="EditGridWindow_OnPreviewKeyDown"
+           LayoutUpdated="EditGridWindow_OnLayoutUpdated">
     <StackPanel Orientation="Vertical">
-        <TextBox x:Name="tbNote" x:FieldModifier="public" Style="{DynamicResource MultilineEditTextBox}" hc:InfoElement.Title="{x:Static res:Strings.title_note}" TextChanged="tbNote_TextChanged" />
-        <TextBox x:Name="tbLogin" x:FieldModifier="public" Style="{DynamicResource EditTextBox}" hc:InfoElement.Title="{x:Static res:Strings.title_username}" TextChanged="tbLogin_TextChanged"/>
+        <TextBox x:Name="tbNote" x:FieldModifier="public" Style="{DynamicResource MultilineEditTextBox}"
+                 hc:InfoElement.Title="{x:Static res:Strings.title_note}" TextChanged="tbNote_TextChanged" />
+        <TextBox x:Name="tbLogin" x:FieldModifier="public" Style="{DynamicResource EditTextBox}"
+                 hc:InfoElement.Title="{x:Static res:Strings.title_username}" TextChanged="tbLogin_TextChanged" />
         <Grid Margin="10,5,10,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.5*" />
             </Grid.ColumnDefinitions>
-            <hc:PasswordBox Grid.Column="0" x:Name="pbPassword" Style="{DynamicResource PasswordBox}" hc:InfoElement.Title="{x:Static res:Strings.title_password}" Margin="0,0,5,0" KeyUp="PbPassword_OnKeyUp"/>
-            <hc:PasswordBox Grid.Column="1" x:Name="pbConfirm" hc:InfoElement.Placeholder="{x:Static res:Strings.edit_leaveBlankToSkip}" Style="{DynamicResource PasswordBox}" hc:InfoElement.Title="{x:Static res:Strings.edit_confirm}" Margin="5,0,0,0" KeyUp="PbConfirm_OnKeyUp" />
+            <hc:PasswordBox Grid.Column="0" x:Name="pbPassword" Style="{DynamicResource PasswordBox}"
+                            hc:InfoElement.Title="{x:Static res:Strings.title_password}" Margin="0,0,5,0"
+                            KeyUp="PbPassword_OnKeyUp" />
+            <hc:PasswordBox Grid.Column="1" x:Name="pbConfirm"
+                            hc:InfoElement.Placeholder="{x:Static res:Strings.edit_leaveBlankToSkip}"
+                            Style="{DynamicResource PasswordBox}"
+                            hc:InfoElement.Title="{x:Static res:Strings.edit_confirm}" Margin="5,0,0,0"
+                            KeyUp="PbConfirm_OnKeyUp" />
         </Grid>
-       
-        <hc:ElementGroup x:Name="egTags" Orientation="Horizontal" Layout="Stack" HorizontalAlignment="Left" Margin="10, 20, 10, 16">
-            <Label Content="{x:Static res:Strings.title_tag}" FontSize="14" Height="33" FontFamily="Segoe UI Variable Text" Foreground="{DynamicResource ForegroundLightBrush}"/>
-            <ToggleButton x:Name="btNone" Style="{DynamicResource EditTag}" Content="◯" Foreground="{DynamicResource ForegroundLightBrush}" ToolTip="Ctrl+0" IsChecked="True" Click="BtNone_OnClick" />
-            <ToggleButton x:Name="btRed" Style="{DynamicResource EditTag}" Foreground="{DynamicResource TagRedLightBrush}" ToolTip="Ctrl+1" Click="BtRed_OnClick"/>
-            <ToggleButton x:Name="btGreen" Style="{DynamicResource EditTag}" Foreground="{DynamicResource TagGreenLightBrush}" ToolTip="Ctrl+2" Click="BtGreen_OnClick"/>
-            <ToggleButton x:Name="btBlue" Style="{DynamicResource EditTag}" Foreground="{DynamicResource TagBlueLightBrush}" ToolTip="Ctrl+3" Click="BtBlue_OnClick"/>
-            <ToggleButton x:Name="btYellow" Style="{DynamicResource EditTag}" Foreground="{DynamicResource TagYellowLightBrush}" ToolTip="Ctrl+4" Click="BtYellow_OnClick"/>
-            <ToggleButton x:Name="btPurple" Style="{DynamicResource EditTag}" Foreground="{DynamicResource TagPurpleLightBrush}" ToolTip="Ctrl+5" Click="BtPurple_OnClick"/>
+
+        <hc:ElementGroup x:Name="egTags" Orientation="Horizontal" Layout="Stack" HorizontalAlignment="Left"
+                         Margin="10, 20, 10, 16">
+            <Label Content="{x:Static res:Strings.title_tag}" FontSize="14" Height="33"
+                   FontFamily="Segoe UI Variable Text" Foreground="{DynamicResource ForegroundLightBrush}" />
+            <ToggleButton x:Name="btNone" Style="{DynamicResource EditTag}" Content="◯"
+                          Foreground="{DynamicResource ForegroundLightBrush}" ToolTip="Ctrl+0" IsChecked="True"
+                          Click="BtNone_OnClick" />
+            <ToggleButton x:Name="btRed" Style="{DynamicResource EditTag}"
+                          Foreground="{DynamicResource TagRedLightBrush}" ToolTip="Ctrl+1" Click="BtRed_OnClick" />
+            <ToggleButton x:Name="btGreen" Style="{DynamicResource EditTag}"
+                          Foreground="{DynamicResource TagGreenLightBrush}" ToolTip="Ctrl+2" Click="BtGreen_OnClick" />
+            <ToggleButton x:Name="btBlue" Style="{DynamicResource EditTag}"
+                          Foreground="{DynamicResource TagBlueLightBrush}" ToolTip="Ctrl+3" Click="BtBlue_OnClick" />
+            <ToggleButton x:Name="btYellow" Style="{DynamicResource EditTag}"
+                          Foreground="{DynamicResource TagYellowLightBrush}" ToolTip="Ctrl+4" Click="BtYellow_OnClick" />
+            <ToggleButton x:Name="btPurple" Style="{DynamicResource EditTag}"
+                          Foreground="{DynamicResource TagPurpleLightBrush}" ToolTip="Ctrl+5" Click="BtPurple_OnClick" />
         </hc:ElementGroup>
 
         <Label x:Name="lbError" Content="{x:Static res:Strings.err_edit_itemMustContain}"
@@ -40,6 +56,8 @@
                Foreground="{DynamicResource InfoRedPrimaryLightBrush}"
                BorderBrush="{DynamicResource InfoRedPrimaryLightBrush}" HorizontalContentAlignment="Left" FontSize="14"
                FontFamily="Segoe UI Variable Text" HorizontalAlignment="Stretch" Margin="10, 0, 10, 0" />
-        <Button x:Name="btnSave" Style="{StaticResource ButtonPrimary}" Content="{x:Static res:Strings.bt_save}" FontSize="13" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Margin="10,4,10,10" Height="35" Click="btnSave_Click" IsEnabled="False"/>
+        <Button x:Name="btnSave" Style="{StaticResource ButtonPrimary}" Content="{x:Static res:Strings.bt_save}"
+                FontSize="13" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Margin="10,4,10,10"
+                Height="35" Click="btnSave_Click" IsEnabled="False" />
     </StackPanel>
 </hc:Window>

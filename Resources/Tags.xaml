@@ -29,12 +29,12 @@
         <Setter Property="FontSize" Value="9" />
         <Setter Property="Padding" Value="8, 0" />
     </Style>
-    
+
     <Style x:Key="EditTag" TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonDefault}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Content" Value="⚫" />
         <Setter Property="FontSize" Value="9" />
         <Setter Property="Padding" Value="9, 0" />
-        <Setter Property="Height" Value="33"/>
+        <Setter Property="Height" Value="33" />
     </Style>
 </ResourceDictionary>

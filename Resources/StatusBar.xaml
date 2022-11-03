@@ -14,8 +14,8 @@
     <Style x:Key="StatusBarInfo" TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="13" />
-        <Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}"/>
-        <Setter Property="FontFamily" Value="Segoe UI Variable Text"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+        <Setter Property="FontFamily" Value="Segoe UI Variable Text" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Margin" Value="7,0,0,0" />
     </Style>

@@ -1,7 +1,6 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -12,22 +11,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
-using HandyControl.Tools;
+using Microsoft.Win32;
 using Passtable.Components;
 using Passtable.Containers;
 using Passtable.Exceptions;
 using Passtable.Resources;
 using StatusBar = Passtable.Components.StatusBar;
-using Window = HandyControl.Controls.Window;
 
 namespace Passtable
 {
@@ -37,7 +29,7 @@ namespace Passtable
         public string Note { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        
+
         public GridItem(string tag, string note, string login, string password)
         {
             Tag = tag;
@@ -47,13 +39,11 @@ namespace Passtable
         }
     }
 
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
+        private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod,
+            uint dwThreadId);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -71,7 +61,7 @@ namespace Passtable
         private static IntPtr _hookID = IntPtr.Zero;
 
         List<GridItem> gridItems;
-        private DataSearcher _dataSearcher;
+        private readonly DataSearcher _dataSearcher;
         int lpSysRowID;
         static bool lpSysWork;
         static string lpSysPassword;
@@ -97,7 +87,6 @@ namespace Passtable
 
             WindowBackground.SetBackground(this);
             HandleUiWidgets();
-            //Background = new SolidColorBrush(Colors.White);
         }
 
         private void Window_Initialized(object sender, EventArgs e)
@@ -108,10 +97,6 @@ namespace Passtable
             isOpen = false;
             _statusBar = new StatusBar(dpSaveInfo, dpNoEntryInfo, dpNotEnoughData);
             _showedPasswordsRows = new List<DataGridRow>();
-            //Items for test
-            //gridItems.Add(new GridItem("http://example.com/", "typicaluser@example.com", "THECAKEISALIE"));
-            //for (int i = 0; i < 100; i++) gridItems.Add(new GridItem(i.ToString(), (i * 2).ToString(), (i * 3).ToString()));
-            //
         }
 
         private void gridMain_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -125,11 +110,13 @@ namespace Passtable
             {
                 FindAndCopyToClipboard();
             }
+
             if (e.Key == Key.Delete) DeleteEntry();
             if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.E)
             {
                 EditEntry();
             }
+
             if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.W)
             {
                 ShowPassword();
@@ -162,6 +149,7 @@ namespace Passtable
                     else LogPassAbort(mainWindow.btLogPass);
                 }
             }
+
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
 
@@ -221,7 +209,7 @@ namespace Passtable
                 lpSysRowID = gridMain.Items.IndexOf(gridMain.CurrentItem);
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             UnhookWindowsHookEx(_hookID);
         }
@@ -234,11 +222,13 @@ namespace Passtable
                 if (e.Key == Key.N)
                 {
                     // new file
-                    CloseFile(); 
+                    CloseFile();
                     return;
                 }
+
                 if (e.Key == Key.S) SaveFile(true); // save as
             }
+
             if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
             {
                 if (e.Key == Key.N) AddEntry();
@@ -255,12 +245,13 @@ namespace Passtable
                     if (e.Key == Key.F) SearchByDataShortcut();
                 }
             }
+
             if (e.Key == Key.F1) ShowAbout();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-          DeleteEntry();
+            DeleteEntry();
         }
 
         private void DeleteEntry()
@@ -277,7 +268,7 @@ namespace Passtable
             };
 
             if (deleteConfirmWindow.ShowDialog() != true) return;
-            
+
             LogPassAbort();
             if (_dataSearcher.SearchIsRunning)
             {
@@ -303,7 +294,7 @@ namespace Passtable
         private void AddEntry()
         {
             if (!isOpen && !SaveFile()) return;
-            
+
             var editForm = new EditGridWindow
             {
                 Owner = this,
@@ -337,6 +328,7 @@ namespace Passtable
                 _statusBar.Show(StatusKey.NoEntry);
                 return;
             }
+
             LogPassAbort();
 
             var editForm = new EditGridWindow();
@@ -347,7 +339,7 @@ namespace Passtable
             editForm.pbPassword.Password = gridItems[lpSysRowID].Password;
             editForm.SelectTag(int.Parse(gridItems[lpSysRowID].Tag));
             if (editForm.ShowDialog() != true) return;
-            
+
             gridItems[lpSysRowID].Note = editForm.tbNote.Text;
             gridItems[lpSysRowID].Login = editForm.tbLogin.Text;
             gridItems[lpSysRowID].Password = editForm.pbPassword.Password;
@@ -363,7 +355,7 @@ namespace Passtable
                 gridMain.Items.Refresh();
                 _dataSearcher.RememberCurrentState();
             }
-                
+
             SaveFile();
         }
 
@@ -387,6 +379,7 @@ namespace Passtable
                 if (!Askers.AskPrimaryPassword(this, mode, false, ref masterPass))
                     return false;
             }
+
             //Process cancellation protection
             if (filePath == "" || saveAs) filePath = filePathPreselected;
 
@@ -403,7 +396,7 @@ namespace Passtable
                 res = stringBuilder.ToString().Remove(stringBuilder.Length - 1);
             }
             else res = "/emptyCollection";
-            
+
             /* Encrypting data. */
             string strToSave;
             try
@@ -435,8 +428,8 @@ namespace Passtable
                 isOpen = true;
                 HandleUiWidgets();
             }
-            
-            Title = System.IO.Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
+
+            Title = Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
             _statusBar.Show(StatusKey.Saved);
             return true;
         }
@@ -457,7 +450,7 @@ namespace Passtable
         {
             OpenFile();
         }
-        
+
         private void mnSaveAs_Click(object sender, RoutedEventArgs e)
         {
             SaveFile(true);
@@ -520,13 +513,13 @@ namespace Passtable
                 ShowErrBox(Strings.err_critical_title, Strings.err_critical_fileDamaged);
                 return;
             }
-            
+
             if (!Askers.AskPrimaryPassword(this, Askers.Mode.Open, false, ref masterPass))
             {
                 CloseFile();
                 return;
             }
-            
+
             try
             {
                 string data;
@@ -545,20 +538,21 @@ namespace Passtable
 
                 if (data == "/emptyCollection")
                 {
-                    Title = System.IO.Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
+                    Title = Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
                     isOpen = true;
                     HandleUiWidgets();
                     return;
                 }
-                
+
                 foreach (var list in data.Split('\n'))
                 {
                     var strs = list.Split('\t');
                     gridItems.Add(new GridItem(strs[0], strs[1], strs[2], strs[3]));
                 }
+
                 gridMain.Items.Refresh();
                 _dataSearcher.RememberCurrentState();
-                Title = System.IO.Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
+                Title = Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
                 isOpen = true;
                 HandleUiWidgets();
             }
@@ -587,18 +581,18 @@ namespace Passtable
             };
             aboutWindows.ShowDialog();
         }
-        
+
         private async void CopyToClipboard(ClipboardKey key)
         {
             if (gridMain.SelectedItem == null) return;
-            
+
             if (copyIsBlocked) return;
             copyIsBlocked = true;
             await Task.Delay(200); // if the user copy too often (without delay), the app crashes.
             copyIsBlocked = false;
-            
+
             LogPassAbort();
-            
+
             var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
             switch (key)
             {
@@ -619,6 +613,7 @@ namespace Passtable
                     {
                         // ignored
                     }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(key), key, null);
@@ -633,37 +628,37 @@ namespace Passtable
             if (colId == 2) key = ClipboardKey.Username;
             if (colId == 3) key = ClipboardKey.Password;
             CopyToClipboard(key);
-                
+
             var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
             var row = (DataGridRow)gridMain.ItemContainerGenerator.ContainerFromIndex(rowId);
 
             var sizeAnimation = new DoubleAnimation(24, 17, new Duration(TimeSpan.FromSeconds(0.4)));
             var opacityAnimation = new DoubleAnimation(1.0, 0.3, new Duration(TimeSpan.FromSeconds(0.4)));
-                
+
             var btKey = "btCopyNote";
             if (colId == 2) btKey = "btCopyUsername";
             if (colId == 3) btKey = "btCopyPassword";
-                
+
             DataGridUtils.GetObject<Image>(row, btKey).BeginAnimation(WidthProperty, sizeAnimation);
             DataGridUtils.GetObject<Image>(row, btKey).BeginAnimation(HeightProperty, sizeAnimation);
             DataGridUtils.GetObject<Image>(row, btKey).BeginAnimation(OpacityProperty, opacityAnimation);
         }
-        
+
         private void btCopyNote_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             CopyToClipboard(ClipboardKey.Note);
         }
-        
+
         private void btCopyUsername_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             CopyToClipboard(ClipboardKey.Username);
         }
-        
+
         private void btCopyPassword_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             CopyToClipboard(ClipboardKey.Password);
         }
-        
+
         private void btShowPassword_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             ShowPassword();
@@ -702,7 +697,7 @@ namespace Passtable
                 var stackPanel = DataGridUtils.GetObject<StackPanel>(row, "spPassword");
                 var imgShow = DataGridUtils.GetObject<Image>(row, "btShowPassword");
                 var imgCopy = DataGridUtils.GetObject<Image>(row, "btCopyPassword");
-                
+
                 textBlock.Visibility = Visibility.Collapsed;
                 imgShow.Source = (DrawingImage)FindResource("IconShowPassword");
                 imgShow.Margin = new Thickness(10, 0, 7, 0);
@@ -719,18 +714,21 @@ namespace Passtable
                 ShowErrBox(Strings.err_critical_title, Strings.err_critical_fileNotSupported);
                 return;
             }
+
             OpenFile(files[0]);
         }
 
         private async void TbSearchData_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            async Task<bool> UserKeepsTyping() {
-                var txt = tbSearchData.Text;   // remember text
-                await Task.Delay(500);        // wait some
-                return txt != tbSearchData.Text;  // return that text chaged or not
+            async Task<bool> UserKeepsTyping()
+            {
+                var txt = tbSearchData.Text; // remember text
+                await Task.Delay(500); // wait some
+                return txt != tbSearchData.Text; // check changes
             }
+
             if (await UserKeepsTyping()) return;
-            
+
             UnselectRow();
             _dataSearcher.SearchByDataAsync(tbSearchData.Text);
         }
@@ -746,7 +744,7 @@ namespace Passtable
             button.IsChecked = button.IsChecked != true;
             SearchByTag();
         }
-        
+
         private void SearchByTagShortcut()
         {
             if (tbSearchData.Visibility != Visibility.Collapsed) return;
@@ -797,7 +795,8 @@ namespace Passtable
             {
                 ResetSearch();
                 SearchByData();
-            } else ResetSearch();
+            }
+            else ResetSearch();
         }
 
         private static void BtTagSetVisibility(Visibility visibility, params ToggleButton[] buttons)
@@ -815,7 +814,7 @@ namespace Passtable
             btSearch.Content = isActive ? Strings.bt_close : Strings.bt_search;
             btSearch.ToolTip = isActive ? null : Strings.bt_search_tip;
         }
-        
+
         private static void BtLogPassSetState(bool isActive, Button button)
         {
             button.Content = isActive ? Strings.bt_abort : Strings.bt_logPass;
@@ -860,13 +859,13 @@ namespace Passtable
             var fileName = names[names.Length - 1];
             fileName = fileName.Remove(fileName.Length - 10); // remove file extension
             var nameVerifierRes = Verifier.VerifyFileName(fileName);
-            
+
             if (nameVerifierRes == 3)
             {
                 ShowErrBox(Strings.err_critical_title, Strings.err_fileName_spaceChar);
                 return false;
             }
-            
+
             if (0 < nameVerifierRes && nameVerifierRes < 5)
             {
                 ShowErrBox(Strings.err_critical_title, Strings.err_fileName_invalid);

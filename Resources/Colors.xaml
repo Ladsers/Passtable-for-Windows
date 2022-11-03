@@ -6,16 +6,16 @@
     <Color x:Key="TagBlueLight">#C8DCE6</Color>
     <Color x:Key="TagYellowLight">#FFF5AD</Color>
     <Color x:Key="TagPurpleLight">#C8B2D1</Color>
-    
+
     <Color x:Key="ForegroundLight">#1A191A</Color>
     <Color x:Key="HoverLight">#10000000</Color>
-    
+
     <Color x:Key="InfoLight">#C9C9C9</Color>
-    
+
     <Color x:Key="DataGridBackgroundLight">#EAEAEA</Color>
     <Color x:Key="DataGridLinesLight">#B4B4B4</Color>
     <Color x:Key="DataGridHighlightLight">#D4D4D4</Color>
-    
+
     <Color x:Key="InfoRedPrimaryLight">#FF756C</Color>
     <Color x:Key="InfoRedSecondaryLight">#FFECE9</Color>
 
@@ -25,25 +25,25 @@
     <SolidColorBrush x:Key="TagBlueLightBrush" Color="{StaticResource TagBlueLight}" />
     <SolidColorBrush x:Key="TagYellowLightBrush" Color="{StaticResource TagYellowLight}" />
     <SolidColorBrush x:Key="TagPurpleLightBrush" Color="{StaticResource TagPurpleLight}" />
-    
+
     <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}" />
     <SolidColorBrush x:Key="HoverLightBrush" Color="{StaticResource HoverLight}" />
-    
+
     <SolidColorBrush x:Key="InfoLightBrush" Color="{StaticResource InfoLight}" />
-    
+
     <SolidColorBrush x:Key="DataGridBackgroundLightBrush" Color="{StaticResource DataGridBackgroundLight}" />
     <SolidColorBrush x:Key="DataGridLinesLightBrush" Color="{StaticResource DataGridLinesLight}" />
     <SolidColorBrush x:Key="DataGridHighlightLightBrush" Color="{StaticResource DataGridHighlightLight}" />
-    
-    <SolidColorBrush x:Key="InfoRedPrimaryLightBrush" Color="{StaticResource InfoRedPrimaryLight}"/>
-    <SolidColorBrush x:Key="InfoRedSecondaryLightBrush" Color="{StaticResource InfoRedSecondaryLight}"/>
-    
-    
+
+    <SolidColorBrush x:Key="InfoRedPrimaryLightBrush" Color="{StaticResource InfoRedPrimaryLight}" />
+    <SolidColorBrush x:Key="InfoRedSecondaryLightBrush" Color="{StaticResource InfoRedSecondaryLight}" />
+
+
     <LinearGradientBrush x:Key="DataGridHeaderBackgroundBrash" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#FAFAFA" Offset="0"/>
-        <GradientStop Color="#F3F3F3" Offset="1"/>
+        <GradientStop Color="#FAFAFA" Offset="0" />
+        <GradientStop Color="#F3F3F3" Offset="1" />
     </LinearGradientBrush>
-    
+
     <SolidColorBrush x:Key="DataGridHeaderBorderBrash" Color="#FFB4B4B4" />
-    
+
 </ResourceDictionary>
