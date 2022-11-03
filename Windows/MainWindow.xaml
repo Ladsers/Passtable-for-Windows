@@ -7,7 +7,7 @@
            xmlns:hc="https://handyorg.github.io/handycontrol"
            mc:Ignorable="d"
            Title="Passtable for Windows" Height="520" Width="750" MinWidth="675" MinHeight="250"
-           Initialized="Window_Initialized" Icon="icon.ico" Closing="Window_Closing"
+           Initialized="Window_Initialized" Icon="../icon.ico" Closing="Window_Closing"
            PreviewKeyDown="Window_PreviewKeyDown"
            Drop="MainWindow_OnDrop" AllowDrop="True">
     <Grid>

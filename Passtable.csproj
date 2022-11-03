@@ -60,13 +60,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Components\AesEncryptor.cs" />
     <Compile Include="Components\EditErrorWindow.cs" />
+    <Compile Include="Components\FileVersion.cs" />
     <Compile Include="Components\Verifier.cs" />
     <Compile Include="Components\WindowBackground.cs" />
     <Compile Include="Containers\EditErrorKey.cs" />
-    <Compile Include="LogPassInfoWindow.xaml.cs">
-      <DependentUpon>LogPassInfoWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Resources\Strings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -77,21 +76,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.ru-ru.resx</DependentUpon>
     </Compile>
-    <Page Include="AboutWindow.xaml" />
-    <Page Include="DeleteConfirmWindow.xaml" />
-    <Page Include="EditGridWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LogPassInfoWindow.xaml" />
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="AboutWindow.xaml.cs">
+    <Compile Include="Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AesEncryptor.cs" />
+    <Compile Include="Windows\DeleteConfirmWindow.xaml.cs">
+      <DependentUpon>DeleteConfirmWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditGridWindow.xaml.cs">
+      <DependentUpon>EditGridWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LogPassInfoWindow.xaml.cs">
+      <DependentUpon>LogPassInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Windows\MasterPasswordWindow.xaml.cs">
+      <DependentUpon>MasterPasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -103,22 +106,7 @@
     <Compile Include="Components\StatusBar.cs" />
     <Compile Include="Containers\ClipboardKey.cs" />
     <Compile Include="Containers\StatusKey.cs" />
-    <Compile Include="DeleteConfirmWindow.xaml.cs">
-      <DependentUpon>DeleteConfirmWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EditGridWindow.xaml.cs">
-      <DependentUpon>EditGridWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Exceptions\EncryptionException.cs" />
-    <Compile Include="FileVersion.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="MasterPasswordWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\Buttons.xaml" />
     <Page Include="Resources\Colors.xaml" />
     <Page Include="Resources\DataGrid.xaml" />
@@ -127,11 +115,23 @@
     <Page Include="Resources\StatusBar.xaml" />
     <Page Include="Resources\Tags.xaml" />
     <Page Include="Resources\TextBoxes.xaml" />
+    <Page Include="Windows\AboutWindow.xaml" />
+    <Page Include="Windows\DeleteConfirmWindow.xaml" />
+    <Page Include="Windows\EditGridWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LogPassInfoWindow.xaml" />
+    <Page Include="Windows\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MasterPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MasterPasswordWindow.xaml.cs">
-      <DependentUpon>MasterPasswordWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
