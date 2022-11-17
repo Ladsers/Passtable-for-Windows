@@ -273,7 +273,7 @@ namespace Passtable
             if (_dataSearcher.SearchIsRunning)
             {
                 _dataSearcher.DeleteAndGetAll(gridItems[lpSysRowID]);
-                UnselectRow();
+                ResetSearch();
             }
             else
             {
@@ -305,7 +305,7 @@ namespace Passtable
             if (_dataSearcher.SearchIsRunning)
             {
                 _dataSearcher.GetAll();
-                UnselectRow();
+                ResetSearch();
             }
 
             gridItems.Add(new GridItem(editForm.SelectedTag.ToString(), editForm.tbNote.Text,
@@ -348,7 +348,7 @@ namespace Passtable
             if (_dataSearcher.SearchIsRunning)
             {
                 _dataSearcher.EditAndGetAll(gridItems[lpSysRowID]);
-                UnselectRow();
+                ResetSearch();
             }
             else
             {
