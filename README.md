@@ -29,7 +29,7 @@ Automatic sequential copying of data to the clipboard for quick authentication o
 
 ### Contributing
 Here are some ways you can contribute:
-+ [Submit Issues](https://github.com/Ladsers/Passtable-for-Windows/issues/new/choose) in Passtable-Android or another the Passtable project repository;
++ [Submit Issues](https://github.com/Ladsers/Passtable-for-Windows/issues/new/choose) in Passtable-for-Windows or another the Passtable project repository;
 + [Submit Pull requests](https://github.com/Ladsers/Passtable-for-Windows/pulls) with fixes and features;
 + [Share your Ideas](https://github.com/Ladsers/Passtable-for-Windows/discussions/categories/ideas) about application.
 
