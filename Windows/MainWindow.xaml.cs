@@ -19,6 +19,7 @@ using Passtable.Components;
 using Passtable.Containers;
 using Passtable.Exceptions;
 using Passtable.Resources;
+using Passtable.Tools;
 using StatusBar = Passtable.Components.StatusBar;
 
 namespace Passtable
@@ -67,6 +68,7 @@ namespace Passtable
         static string lpSysPassword;
         string filePath;
         string masterPass;
+        private string _appTitle;
         bool isOpen;
         bool copyIsBlocked;
 
@@ -78,6 +80,9 @@ namespace Passtable
         public MainWindow()
         {
             InitializeComponent();
+            DevTools.MarkIcon(this);
+            _appTitle = "Passtable for Windows" + DevTools.AddDevelopInfo();
+            Title = _appTitle;
             gridMain.ItemsSource = gridItems;
             gridMain.ClipboardCopyMode = DataGridClipboardCopyMode.None;
             mainWindow = this;
@@ -429,7 +434,7 @@ namespace Passtable
                 HandleUiWidgets();
             }
 
-            Title = Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
+            Title = $"{Path.GetFileNameWithoutExtension(filePath)} – {_appTitle}";
             _statusBar.Show(StatusKey.Saved);
             return true;
         }
@@ -441,7 +446,7 @@ namespace Passtable
             gridItems.Clear();
             gridMain.Items.Refresh();
             _dataSearcher.RememberCurrentState();
-            Title = "Passtable for Windows";
+            Title = _appTitle;
             isOpen = false;
             HandleUiWidgets();
         }
@@ -538,7 +543,7 @@ namespace Passtable
 
                 if (data == "/emptyCollection")
                 {
-                    Title = Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
+                    Title = $"{Path.GetFileNameWithoutExtension(filePath)} – {_appTitle}";
                     isOpen = true;
                     HandleUiWidgets();
                     return;
@@ -552,7 +557,7 @@ namespace Passtable
 
                 gridMain.Items.Refresh();
                 _dataSearcher.RememberCurrentState();
-                Title = Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
+                Title = $"{Path.GetFileNameWithoutExtension(filePath)} – {_appTitle}";
                 isOpen = true;
                 HandleUiWidgets();
             }

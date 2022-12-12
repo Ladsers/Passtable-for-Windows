@@ -76,6 +76,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.ru-ru.resx</DependentUpon>
     </Compile>
+    <Compile Include="Tools\DevTools.cs" />
+    <Compile Include="Tools\GitTools.cs" />
     <Compile Include="Windows\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
@@ -177,6 +179,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Img\PasstableLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon_dev.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
