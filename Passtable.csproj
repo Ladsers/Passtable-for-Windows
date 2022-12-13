@@ -63,6 +63,7 @@
     <Compile Include="Components\AesEncryptor.cs" />
     <Compile Include="Components\EditErrorWindow.cs" />
     <Compile Include="Components\FileVersion.cs" />
+    <Compile Include="Components\StartupOpener.cs" />
     <Compile Include="Components\Verifier.cs" />
     <Compile Include="Components\WindowBackground.cs" />
     <Compile Include="Containers\EditErrorKey.cs" />

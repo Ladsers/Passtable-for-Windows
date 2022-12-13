@@ -8,7 +8,7 @@
            mc:Ignorable="d"
            Title="Passtable for Windows" Height="520" Width="750" MinWidth="675" MinHeight="250"
            Initialized="Window_Initialized" Icon="../icon.ico" Closing="Window_Closing"
-           PreviewKeyDown="Window_PreviewKeyDown"
+           PreviewKeyDown="Window_PreviewKeyDown" Loaded="MainWindow_OnLoaded"
            Drop="MainWindow_OnDrop" AllowDrop="True">
     <Grid>
         <Grid.RowDefinitions>

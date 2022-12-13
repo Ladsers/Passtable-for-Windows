@@ -66,12 +66,19 @@ namespace Passtable
         int lpSysRowID;
         static bool lpSysWork;
         static string lpSysPassword;
-        string filePath;
-        string masterPass;
         private string _appTitle;
         bool isOpen;
         bool copyIsBlocked;
 
+        private string FilePath { get; set; }
+        
+        public string PrimaryPassword
+        {
+            private get => _primaryPassword;
+            set => _primaryPassword = value;
+        }
+        private string _primaryPassword;
+        
         private List<DataGridRow> _showedPasswordsRows;
 
         private StatusBar _statusBar;
@@ -86,8 +93,8 @@ namespace Passtable
             gridMain.ItemsSource = gridItems;
             gridMain.ClipboardCopyMode = DataGridClipboardCopyMode.None;
             mainWindow = this;
-            filePath = "";
-            masterPass = "";
+            FilePath = "";
+            PrimaryPassword = "";
             _dataSearcher = new DataSearcher(gridItems, gridMain);
 
             WindowBackground.SetBackground(this);
@@ -102,6 +109,11 @@ namespace Passtable
             isOpen = false;
             _statusBar = new StatusBar(dpSaveInfo, dpNoEntryInfo, dpNotEnoughData);
             _showedPasswordsRows = new List<DataGridRow>();
+        }
+        
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            StartupOpener.OpenFile(this, Environment.GetCommandLineArgs());
         }
 
         private void gridMain_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -367,7 +379,7 @@ namespace Passtable
         private bool SaveFile(bool saveAs = false)
         {
             var filePathPreselected = "";
-            if (filePath == "" || saveAs)
+            if (FilePath == "" || saveAs)
             {
                 var saveFileDialog = new SaveFileDialog
                 {
@@ -378,15 +390,15 @@ namespace Passtable
                 if (!VerifyFileName(filePathPreselected)) return false;
             }
 
-            if (masterPass == "" || saveAs)
+            if (PrimaryPassword == "" || saveAs)
             {
-                var mode = saveAs && masterPass != "" ? Askers.Mode.SaveAs : Askers.Mode.Save;
-                if (!Askers.AskPrimaryPassword(this, mode, false, ref masterPass))
+                var mode = saveAs && PrimaryPassword != "" ? Askers.Mode.SaveAs : Askers.Mode.Save;
+                if (!Askers.AskPrimaryPassword(this, mode, false, ref _primaryPassword))
                     return false;
             }
 
             //Process cancellation protection
-            if (filePath == "" || saveAs) filePath = filePathPreselected;
+            if (FilePath == "" || saveAs) FilePath = filePathPreselected;
 
             /* Preparing data for saving. */
             string res;
@@ -406,8 +418,8 @@ namespace Passtable
             string strToSave;
             try
             {
-                var encrypt = AesEncryptor.Encryption(res, masterPass);
-                var decrypt = AesEncryptor.Decryption(encrypt, masterPass);
+                var encrypt = AesEncryptor.Encryption(res, PrimaryPassword);
+                var decrypt = AesEncryptor.Decryption(encrypt, PrimaryPassword);
                 if (decrypt == res) strToSave = FileVersion.GetChar(2, 1) + encrypt;
                 else throw new EncryptionException();
             }
@@ -420,7 +432,7 @@ namespace Passtable
             /* Saving encrypted data to the file. */
             try
             {
-                File.WriteAllText(filePath, strToSave);
+                File.WriteAllText(FilePath, strToSave);
             }
             catch
             {
@@ -434,15 +446,16 @@ namespace Passtable
                 HandleUiWidgets();
             }
 
-            Title = $"{Path.GetFileNameWithoutExtension(filePath)} – {_appTitle}";
+            Title = $"{Path.GetFileNameWithoutExtension(FilePath)} – {_appTitle}";
             _statusBar.Show(StatusKey.Saved);
             return true;
         }
 
         private void CloseFile()
         {
-            filePath = "";
-            masterPass = "";
+            if (!isOpen) return;
+            FilePath = "";
+            PrimaryPassword = "";
             gridItems.Clear();
             gridMain.Items.Refresh();
             _dataSearcher.RememberCurrentState();
@@ -461,7 +474,7 @@ namespace Passtable
             SaveFile(true);
         }
 
-        private void OpenFile(string pathToFile = "")
+        public void OpenFile(string pathToFile = "")
         {
             if (pathToFile == "")
             {
@@ -471,18 +484,18 @@ namespace Passtable
                 };
                 if (openFileDialog.ShowDialog() != true) return;
                 CloseFile(); // close previously opened file, if it is open
-                filePath = openFileDialog.FileName;
+                FilePath = openFileDialog.FileName;
             }
             else
             {
                 CloseFile();
-                filePath = pathToFile;
+                FilePath = pathToFile;
             }
 
             string encryptedData;
             try
             {
-                using (var sr = new StreamReader(filePath))
+                using (var sr = new StreamReader(FilePath))
                 {
                     encryptedData = sr.ReadToEnd();
                 }
@@ -519,7 +532,8 @@ namespace Passtable
                 return;
             }
 
-            if (!Askers.AskPrimaryPassword(this, Askers.Mode.Open, false, ref masterPass))
+            if (Verifier.VerifyPrimary(PrimaryPassword) != 0 && // to open file on app startup
+                !Askers.AskPrimaryPassword(this, Askers.Mode.Open, false, ref _primaryPassword))
             {
                 CloseFile();
                 return;
@@ -530,10 +544,10 @@ namespace Passtable
                 string data;
                 while (true)
                 {
-                    data = AesEncryptor.Decryption(encryptedData, masterPass);
+                    data = AesEncryptor.Decryption(encryptedData, PrimaryPassword);
                     if (data == "/error")
                     {
-                        if (Askers.AskPrimaryPassword(this, Askers.Mode.Open, true, ref masterPass)) continue;
+                        if (Askers.AskPrimaryPassword(this, Askers.Mode.Open, true, ref _primaryPassword)) continue;
                         CloseFile();
                         return;
                     }
@@ -543,7 +557,7 @@ namespace Passtable
 
                 if (data == "/emptyCollection")
                 {
-                    Title = $"{Path.GetFileNameWithoutExtension(filePath)} – {_appTitle}";
+                    Title = $"{Path.GetFileNameWithoutExtension(FilePath)} – {_appTitle}";
                     isOpen = true;
                     HandleUiWidgets();
                     return;
@@ -557,7 +571,7 @@ namespace Passtable
 
                 gridMain.Items.Refresh();
                 _dataSearcher.RememberCurrentState();
-                Title = $"{Path.GetFileNameWithoutExtension(filePath)} – {_appTitle}";
+                Title = $"{Path.GetFileNameWithoutExtension(FilePath)} – {_appTitle}";
                 isOpen = true;
                 HandleUiWidgets();
             }
