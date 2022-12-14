@@ -1,4 +1,7 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
+using System.Windows.Media;
 using HandyControl.Controls;
 using HandyControl.Tools;
 using Microsoft.Win32;
@@ -17,8 +20,27 @@ namespace Passtable.Components
 
         public static void SetBackground(Window window)
         {
-            if (CheckWin11()) window.SystemBackdropType = BackdropType.Mica;
+            if (CheckWin11())
+            {
+                window.SystemBackdropType = BackdropType.Mica;
+                FixBackground(window);
+            }
             else window.Background = new SolidColorBrush(Colors.White);
         }
+        
+        private static void FixBackground(Window window)
+        {
+            // fixing HandyControls Mica material issue
+            var hwnd = new WindowInteropHelper(window).Handle;
+            SetWindowLong(hwnd, GwlStyle, GetWindowLong(hwnd, GwlStyle) & ~WsSysMenu);
+        }
+        
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+        
+        private const int GwlStyle = -16;
+        private const int WsSysMenu = 0x80000;
     }
 }
