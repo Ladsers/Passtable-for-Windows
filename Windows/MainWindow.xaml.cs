@@ -69,6 +69,7 @@ namespace Passtable
         private string _appTitle;
         bool isOpen;
         bool copyIsBlocked;
+        private bool _maximizeByKey;
 
         private string FilePath { get; set; }
         
@@ -263,6 +264,11 @@ namespace Passtable
                 }
             }
 
+            if (e.Key == Key.LWin || e.Key == Key.RWin)
+            {
+                _maximizeByKey = true;
+            }
+            
             if (e.Key == Key.F1) ShowAbout();
         }
 
@@ -908,6 +914,14 @@ namespace Passtable
         private void TbSearchData_OnLostFocus(object sender, RoutedEventArgs e)
         {
             UnselectRow();
+        }
+
+        protected override void OnStateChanged(EventArgs e)
+        {
+            // fixing HandyControls issue: window maximization now works correctly, but the Win+Up combination
+            // does not work at all. This solution takes into account just pressing the Win key and is the most optimal.
+            if (_maximizeByKey) _maximizeByKey = false;
+            else base.OnStateChanged(e);
         }
     }
 }

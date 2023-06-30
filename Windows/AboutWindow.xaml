@@ -7,9 +7,7 @@
            xmlns:res="clr-namespace:Passtable.Resources"
            mc:Ignorable="d"
            Title="{x:Static res:Strings.title_about}" Height="440" Width="710"
-           ResizeMode="CanMinimize" ShowMinButton="False"
-           MinWidth="710" MinHeight="440"
-           MaxWidth="710" MaxHeight="440"
+           ResizeMode="NoResize" ShowMinButton="False"
            WindowStartupLocation="CenterOwner">
     <TabControl VerticalAlignment="Stretch" Style="{StaticResource TabControlCapsule}" Background="Transparent"
                 FontSize="13">
