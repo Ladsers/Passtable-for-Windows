@@ -40,6 +40,11 @@
                 <Image Source="{DynamicResource IconSave}" Style="{DynamicResource StatusBarImage}" />
                 <TextBlock Text="{x:Static res:Strings.toolbar_status_saved}" Style="{DynamicResource StatusBarInfo}" />
             </DockPanel>
+            <DockPanel x:Name="dpCopied" Grid.Column="4" Style="{DynamicResource StatusBarDock}">
+                <Image Source="{DynamicResource IconClipboard}" Style="{DynamicResource StatusBarImage}" />
+                <TextBlock Text="{x:Static res:Strings.toolbar_status_copied}"
+                           Style="{DynamicResource StatusBarInfo}" />
+            </DockPanel>
             <DockPanel x:Name="dpNoEntryInfo" Grid.Column="4" Style="{DynamicResource StatusBarDock}">
                 <Image Source="{DynamicResource IconNoEntry}" Style="{DynamicResource StatusBarImage}" />
                 <TextBlock Text="{x:Static res:Strings.toolbar_status_nothingSelected}"

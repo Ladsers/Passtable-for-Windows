@@ -470,4 +470,10 @@ https://fonts.google.com/icons
     <data name="err_fileName_invalid" xml:space="preserve">
         <value>The specified file name is not supported.</value>
     </data>
+    <data name="toolbar_status_copied" xml:space="preserve">
+        <value>Copied</value>
+    </data>
+    <data name="bt_saveWithCurrentPassword" xml:space="preserve">
+        <value>Save with current password</value>
+    </data>
 </root>

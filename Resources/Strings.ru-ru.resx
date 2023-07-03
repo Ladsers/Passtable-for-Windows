@@ -259,4 +259,10 @@
     <data name="err_fileName_invalid" xml:space="preserve">
         <value>Указанное имя файла не поддерживается.</value>
     </data>
+    <data name="toolbar_status_copied" xml:space="preserve">
+        <value>Скопировано</value>
+    </data>
+    <data name="bt_saveWithCurrentPassword" xml:space="preserve">
+        <value>Сохр. с текущим паролем</value>
+    </data>
 </root>

@@ -108,7 +108,7 @@ namespace Passtable
             lpSysRowID = -2;
             lpSysWork = false;
             isOpen = false;
-            _statusBar = new StatusBar(dpSaveInfo, dpNoEntryInfo, dpNotEnoughData);
+            _statusBar = new StatusBar(dpSaveInfo, dpNoEntryInfo, dpNotEnoughData, dpCopied);
             _showedPasswordsRows = new List<DataGridRow>();
         }
         
@@ -119,14 +119,14 @@ namespace Passtable
 
         private void gridMain_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            FindAndCopyToClipboard();
+            CopyToClipboard((ClipboardKey)gridMain.CurrentCell.Column.DisplayIndex);
         }
 
         private void gridMain_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.C)
             {
-                FindAndCopyToClipboard();
+                CopyToClipboard((ClipboardKey)gridMain.CurrentCell.Column.DisplayIndex);
             }
 
             if (e.Key == Key.Delete) DeleteEntry();
@@ -613,6 +613,13 @@ namespace Passtable
 
             if (copyIsBlocked) return;
             copyIsBlocked = true;
+            
+            _statusBar.Show(StatusKey.Copied); // correct animation start if placed here.
+            var opacityAnimation = new DoubleAnimation(0.3, 1.0, new Duration(TimeSpan.FromSeconds(0.4)));
+            var cell = DataGridUtils.GetDataGridCell(gridMain.CurrentCell);
+            cell.Opacity = 0.3;
+            cell.BeginAnimation(OpacityProperty, opacityAnimation);
+            
             await Task.Delay(200); // if the user copy too often (without delay), the app crashes.
             copyIsBlocked = false;
 
@@ -643,30 +650,6 @@ namespace Passtable
                 default:
                     throw new ArgumentOutOfRangeException(nameof(key), key, null);
             }
-        }
-
-        private void FindAndCopyToClipboard()
-        {
-            if (gridMain.SelectedItem == null) return;
-            var colId = gridMain.CurrentCell.Column.DisplayIndex;
-            var key = ClipboardKey.Note;
-            if (colId == 2) key = ClipboardKey.Username;
-            if (colId == 3) key = ClipboardKey.Password;
-            CopyToClipboard(key);
-
-            var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
-            var row = (DataGridRow)gridMain.ItemContainerGenerator.ContainerFromIndex(rowId);
-
-            var sizeAnimation = new DoubleAnimation(24, 17, new Duration(TimeSpan.FromSeconds(0.4)));
-            var opacityAnimation = new DoubleAnimation(1.0, 0.3, new Duration(TimeSpan.FromSeconds(0.4)));
-
-            var btKey = "btCopyNote";
-            if (colId == 2) btKey = "btCopyUsername";
-            if (colId == 3) btKey = "btCopyPassword";
-
-            DataGridUtils.GetObject<Image>(row, btKey).BeginAnimation(WidthProperty, sizeAnimation);
-            DataGridUtils.GetObject<Image>(row, btKey).BeginAnimation(HeightProperty, sizeAnimation);
-            DataGridUtils.GetObject<Image>(row, btKey).BeginAnimation(OpacityProperty, opacityAnimation);
         }
 
         private void btCopyNote_PreviewMouseUp(object sender, MouseButtonEventArgs e)
