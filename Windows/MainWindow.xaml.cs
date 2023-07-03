@@ -194,9 +194,9 @@ namespace Passtable
                 lpSysPassword = password;
                 try
                 {
+                    lpSysWork = true;
                     _hookID = SetHook(_proc);
                     BtLogPassSetState(true, btLogPass);
-                    lpSysWork = true;
                 }
                 catch
                 {
@@ -292,7 +292,7 @@ namespace Passtable
 
             if (deleteConfirmWindow.ShowDialog() != true) return;
 
-            LogPassAbort();
+            if (lpSysWork) LogPassAbort();
             if (_dataSearcher.SearchIsRunning)
             {
                 _dataSearcher.DeleteAndGetAll(gridItems[lpSysRowID]);
@@ -352,7 +352,7 @@ namespace Passtable
                 return;
             }
 
-            LogPassAbort();
+            if (lpSysWork) LogPassAbort();
 
             var editForm = new EditGridWindow();
             editForm.Owner = this;
