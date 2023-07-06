@@ -159,6 +159,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download from app site.
+        /// </summary>
+        public static string bt_downloadNewVersion {
+            get {
+                return ResourceManager.GetString("bt_downloadNewVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string bt_edit {
@@ -602,6 +611,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update contains improvements and bug fixes.
+        /// </summary>
+        public static string info_updateAvailable {
+            get {
+                return ResourceManager.GetString("info_updateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version:.
         /// </summary>
         public static string info_version {
@@ -724,6 +742,15 @@ namespace Passtable.Resources {
         public static string title_tag {
             get {
                 return ResourceManager.GetString("title_tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update available.
+        /// </summary>
+        public static string title_updateAvailable {
+            get {
+                return ResourceManager.GetString("title_updateAvailable", resourceCulture);
             }
         }
         

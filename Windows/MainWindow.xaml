@@ -23,6 +23,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Style="{DynamicResource ToolbarButton}" Content="{x:Static res:Strings.toolbar_new}"
                     ToolTip="{x:Static res:Strings.toolbar_new_tip}" Grid.Column="0" Click="mnNew_Click"
@@ -55,7 +56,10 @@
                 <TextBlock Text="{x:Static res:Strings.toolbar_status_notEnoughData}"
                            Style="{DynamicResource StatusBarInfo}" />
             </DockPanel>
-
+            <Button x:Name="btNotification" Style="{DynamicResource NotificationButton}"
+                    hc:IconElement.Geometry="{DynamicResource IconNotification}"
+                    ToolTip="{x:Static res:Strings.bt_aboutLogPass_tip}" Click="BtNotification_OnClick"
+                    Grid.Column="5" Visibility="Collapsed" />
         </Grid>
         <DataGrid x:Name="gridMain" Grid.Row="1" Style="{DynamicResource DataGridMain}"
                   MouseDoubleClick="gridMain_MouseDoubleClick" ScrollViewer.ScrollChanged="GridMain_OnScrollChanged"

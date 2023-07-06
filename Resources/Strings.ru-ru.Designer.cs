@@ -159,6 +159,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Загрузить с сайта приложения.
+        /// </summary>
+        public static string bt_downloadNewVersion {
+            get {
+                return ResourceManager.GetString("bt_downloadNewVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изменить.
         /// </summary>
         public static string bt_edit {
@@ -544,6 +553,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Обновление содержит улучшения и исправления ошибок.
+        /// </summary>
+        public static string info_updateAvailable {
+            get {
+                return ResourceManager.GetString("info_updateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Версия:.
         /// </summary>
         public static string info_version {
@@ -666,6 +684,15 @@ namespace Passtable.Resources {
         public static string title_tag {
             get {
                 return ResourceManager.GetString("title_tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Доступно обновление.
+        /// </summary>
+        public static string title_updateAvailable {
+            get {
+                return ResourceManager.GetString("title_updateAvailable", resourceCulture);
             }
         }
         

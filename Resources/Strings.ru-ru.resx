@@ -265,4 +265,13 @@
     <data name="bt_saveWithCurrentPassword" xml:space="preserve">
         <value>Сохр. с текущим паролем</value>
     </data>
+    <data name="title_updateAvailable" xml:space="preserve">
+        <value>Доступно обновление</value>
+    </data>
+    <data name="info_updateAvailable" xml:space="preserve">
+        <value>Обновление содержит улучшения и исправления ошибок</value>
+    </data>
+    <data name="bt_downloadNewVersion" xml:space="preserve">
+        <value>Загрузить с сайта приложения</value>
+    </data>
 </root>

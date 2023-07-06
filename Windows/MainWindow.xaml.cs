@@ -102,7 +102,7 @@ namespace Passtable
             HandleUiWidgets();
         }
 
-        private void Window_Initialized(object sender, EventArgs e)
+        private async void Window_Initialized(object sender, EventArgs e)
         {
             gridItems = new List<GridItem>();
             lpSysRowID = -2;
@@ -110,6 +110,11 @@ namespace Passtable
             isOpen = false;
             _statusBar = new StatusBar(dpSaveInfo, dpNoEntryInfo, dpNotEnoughData, dpCopied);
             _showedPasswordsRows = new List<DataGridRow>();
+
+            if (await Updater.Check() == UpdaterCheckResult.NeedUpdate)
+            {
+                btNotification.Visibility = Visibility.Visible;
+            }
         }
         
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
@@ -905,6 +910,15 @@ namespace Passtable
             // does not work at all. This solution takes into account just pressing the Win key and is the most optimal.
             if (_maximizeByKey) _maximizeByKey = false;
             else base.OnStateChanged(e);
+        }
+
+        private void BtNotification_OnClick(object sender, RoutedEventArgs e)
+        {
+            var updateInfoWindow = new UpdateInfoWindow()
+            {
+                Owner = this
+            };
+            updateInfoWindow.ShowDialog();
         }
     }
 }

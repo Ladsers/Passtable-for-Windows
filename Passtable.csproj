@@ -64,9 +64,12 @@
     <Compile Include="Components\EditErrorWindow.cs" />
     <Compile Include="Components\FileVersion.cs" />
     <Compile Include="Components\StartupOpener.cs" />
+    <Compile Include="Components\Updater.cs" />
     <Compile Include="Components\Verifier.cs" />
     <Compile Include="Components\WindowBackground.cs" />
+    <Compile Include="Containers\AppVersion.cs" />
     <Compile Include="Containers\EditErrorKey.cs" />
+    <Compile Include="Containers\UpdaterCheckResult.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -110,6 +113,9 @@
     <Compile Include="Containers\ClipboardKey.cs" />
     <Compile Include="Containers\StatusKey.cs" />
     <Compile Include="Exceptions\EncryptionException.cs" />
+    <Compile Include="Windows\UpdateInfoWindow.xaml.cs">
+      <DependentUpon>UpdateInfoWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\Buttons.xaml" />
     <Page Include="Resources\Colors.xaml" />
     <Page Include="Resources\DataGrid.xaml" />
@@ -133,6 +139,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\UpdateInfoWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -176,6 +183,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="HandyControls" Version="3.4.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Resource.Embedder" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
