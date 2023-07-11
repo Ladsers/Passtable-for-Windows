@@ -15,6 +15,8 @@ git clone --recursive https://github.com/Ladsers/Passtable-for-Windows.git
 🔸 **Free & No ads** </br>
 The application does not contain paid functions and advertising.
 
+🔸 **Strong AES encryption** </br>
+
 🔸 **File approach** </br>
 Passtable stores data in separate files, and not in the application itself. The advantage of this approach is that data sets can exist independently of each other and, if necessary, can easily be moved to another device (including Android smartphone).
 
@@ -29,7 +31,7 @@ Automatic sequential copying of data to the clipboard for quick authentication o
 
 ### Contributing
 Here are some ways you can contribute:
-+ [Submit Issues](https://github.com/Ladsers/Passtable-for-Windows/issues/new/choose) in Passtable-Android or another the Passtable project repository;
++ [Submit Issues](https://github.com/Ladsers/Passtable-for-Windows/issues/new/choose) in Passtable-for-Windows or another the Passtable project repository;
 + [Submit Pull requests](https://github.com/Ladsers/Passtable-for-Windows/pulls) with fixes and features;
 + [Share your Ideas](https://github.com/Ladsers/Passtable-for-Windows/discussions/categories/ideas) about application.
 

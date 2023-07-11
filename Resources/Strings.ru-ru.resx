@@ -259,4 +259,25 @@
     <data name="err_fileName_invalid" xml:space="preserve">
         <value>Указанное имя файла не поддерживается.</value>
     </data>
+    <data name="toolbar_status_copied" xml:space="preserve">
+        <value>Скопировано</value>
+    </data>
+    <data name="bt_saveWithCurrentPassword" xml:space="preserve">
+        <value>Сохр. с текущим паролем</value>
+    </data>
+    <data name="title_updateAvailable" xml:space="preserve">
+        <value>Доступно обновление</value>
+    </data>
+    <data name="info_updateAvailable" xml:space="preserve">
+        <value>Обновление содержит улучшения и исправления ошибок</value>
+    </data>
+    <data name="bt_downloadNewVersion" xml:space="preserve">
+        <value>Загрузить с сайта приложения</value>
+    </data>
+    <data name="bt_supportDeveloper" xml:space="preserve">
+        <value>Поддержать разработчика</value>
+    </data>
+    <data name="bt_reportProblem" xml:space="preserve">
+        <value>Сообщить о проблеме</value>
+    </data>
 </root>

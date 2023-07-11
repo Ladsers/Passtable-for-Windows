@@ -7,17 +7,15 @@
            xmlns:res="clr-namespace:Passtable.Resources"
            mc:Ignorable="d"
            Title="{x:Static res:Strings.info_logPass_title}"
-           Width="400" MinWidth="400" MaxWidth="400"
+           Width="400"
            SizeToContent="Height" WindowStartupLocation="CenterOwner"
-           ResizeMode="CanMinimize" ShowMinButton="False"
-           Loaded="LogPassInfoWindow_OnLoaded"
-           LayoutUpdated="LogPassInfoWindow_OnLayoutUpdated">
+           ResizeMode="NoResize" ShowMinButton="False">
     <StackPanel>
-        <TextBlock Text="{x:Static res:Strings.info_logPass_steps}" FontSize="14"
+        <TextBlock Text="{x:Static res:Strings.info_logPass_steps}" FontSize="14" TextWrapping="Wrap"
                    Foreground="{DynamicResource ForegroundLightBrush}" HorizontalAlignment="Stretch"
                    Margin="20, 10, 20, 0" />
-        <Label FontSize="14" Foreground="{DynamicResource ForegroundLightBrush}"
-               HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Margin="10">
+        <Label FontSize="14" Foreground="{DynamicResource ForegroundLightBrush}" Height="Auto"
+                HorizontalContentAlignment="Left" Margin="10">
             <Label.Content>
                 <AccessText TextWrapping="Wrap" Text="{x:Static res:Strings.info_logPass_notes}" />
             </Label.Content>

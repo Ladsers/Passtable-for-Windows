@@ -19,6 +19,7 @@ using Passtable.Components;
 using Passtable.Containers;
 using Passtable.Exceptions;
 using Passtable.Resources;
+using Passtable.Tools;
 using StatusBar = Passtable.Components.StatusBar;
 
 namespace Passtable
@@ -65,11 +66,20 @@ namespace Passtable
         int lpSysRowID;
         static bool lpSysWork;
         static string lpSysPassword;
-        string filePath;
-        string masterPass;
+        private string _appTitle;
         bool isOpen;
         bool copyIsBlocked;
+        private bool _maximizeByKey;
 
+        private string FilePath { get; set; }
+        
+        public string PrimaryPassword
+        {
+            private get => _primaryPassword;
+            set => _primaryPassword = value;
+        }
+        private string _primaryPassword;
+        
         private List<DataGridRow> _showedPasswordsRows;
 
         private StatusBar _statusBar;
@@ -78,37 +88,51 @@ namespace Passtable
         public MainWindow()
         {
             InitializeComponent();
+            //DevTools.MarkIcon(this);
+            //_appTitle = "Passtable for Windows" + DevTools.AddDevelopInfo();
+            _appTitle = "Passtable for Windows";
+            Title = _appTitle;
             gridMain.ItemsSource = gridItems;
             gridMain.ClipboardCopyMode = DataGridClipboardCopyMode.None;
             mainWindow = this;
-            filePath = "";
-            masterPass = "";
+            FilePath = "";
+            PrimaryPassword = "";
             _dataSearcher = new DataSearcher(gridItems, gridMain);
 
             WindowBackground.SetBackground(this);
             HandleUiWidgets();
         }
 
-        private void Window_Initialized(object sender, EventArgs e)
+        private async void Window_Initialized(object sender, EventArgs e)
         {
             gridItems = new List<GridItem>();
             lpSysRowID = -2;
             lpSysWork = false;
             isOpen = false;
-            _statusBar = new StatusBar(dpSaveInfo, dpNoEntryInfo, dpNotEnoughData);
+            _statusBar = new StatusBar(dpSaveInfo, dpNoEntryInfo, dpNotEnoughData, dpCopied);
             _showedPasswordsRows = new List<DataGridRow>();
+
+            if (await Updater.Check() == UpdaterCheckResult.NeedUpdate)
+            {
+                btNotification.Visibility = Visibility.Visible;
+            }
+        }
+        
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            StartupOpener.OpenFile(this, Environment.GetCommandLineArgs());
         }
 
         private void gridMain_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            FindAndCopyToClipboard();
+            CopyToClipboard((ClipboardKey)gridMain.CurrentCell.Column.DisplayIndex);
         }
 
         private void gridMain_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.C)
             {
-                FindAndCopyToClipboard();
+                CopyToClipboard((ClipboardKey)gridMain.CurrentCell.Column.DisplayIndex);
             }
 
             if (e.Key == Key.Delete) DeleteEntry();
@@ -176,9 +200,9 @@ namespace Passtable
                 lpSysPassword = password;
                 try
                 {
+                    lpSysWork = true;
                     _hookID = SetHook(_proc);
                     BtLogPassSetState(true, btLogPass);
-                    lpSysWork = true;
                 }
                 catch
                 {
@@ -246,6 +270,11 @@ namespace Passtable
                 }
             }
 
+            if (e.Key == Key.LWin || e.Key == Key.RWin)
+            {
+                _maximizeByKey = true;
+            }
+            
             if (e.Key == Key.F1) ShowAbout();
         }
 
@@ -269,7 +298,7 @@ namespace Passtable
 
             if (deleteConfirmWindow.ShowDialog() != true) return;
 
-            LogPassAbort();
+            if (lpSysWork) LogPassAbort();
             if (_dataSearcher.SearchIsRunning)
             {
                 _dataSearcher.DeleteAndGetAll(gridItems[lpSysRowID]);
@@ -329,7 +358,7 @@ namespace Passtable
                 return;
             }
 
-            LogPassAbort();
+            if (lpSysWork) LogPassAbort();
 
             var editForm = new EditGridWindow();
             editForm.Owner = this;
@@ -362,7 +391,7 @@ namespace Passtable
         private bool SaveFile(bool saveAs = false)
         {
             var filePathPreselected = "";
-            if (filePath == "" || saveAs)
+            if (FilePath == "" || saveAs)
             {
                 var saveFileDialog = new SaveFileDialog
                 {
@@ -373,15 +402,15 @@ namespace Passtable
                 if (!VerifyFileName(filePathPreselected)) return false;
             }
 
-            if (masterPass == "" || saveAs)
+            if (PrimaryPassword == "" || saveAs)
             {
-                var mode = saveAs && masterPass != "" ? Askers.Mode.SaveAs : Askers.Mode.Save;
-                if (!Askers.AskPrimaryPassword(this, mode, false, ref masterPass))
+                var mode = saveAs && PrimaryPassword != "" ? Askers.Mode.SaveAs : Askers.Mode.Save;
+                if (!Askers.AskPrimaryPassword(this, mode, false, ref _primaryPassword))
                     return false;
             }
 
             //Process cancellation protection
-            if (filePath == "" || saveAs) filePath = filePathPreselected;
+            if (FilePath == "" || saveAs) FilePath = filePathPreselected;
 
             /* Preparing data for saving. */
             string res;
@@ -401,8 +430,8 @@ namespace Passtable
             string strToSave;
             try
             {
-                var encrypt = AesEncryptor.Encryption(res, masterPass);
-                var decrypt = AesEncryptor.Decryption(encrypt, masterPass);
+                var encrypt = AesEncryptor.Encryption(res, PrimaryPassword);
+                var decrypt = AesEncryptor.Decryption(encrypt, PrimaryPassword);
                 if (decrypt == res) strToSave = FileVersion.GetChar(2, 1) + encrypt;
                 else throw new EncryptionException();
             }
@@ -415,7 +444,7 @@ namespace Passtable
             /* Saving encrypted data to the file. */
             try
             {
-                File.WriteAllText(filePath, strToSave);
+                File.WriteAllText(FilePath, strToSave);
             }
             catch
             {
@@ -429,19 +458,20 @@ namespace Passtable
                 HandleUiWidgets();
             }
 
-            Title = Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
+            Title = $"{Path.GetFileNameWithoutExtension(FilePath)} – {_appTitle}";
             _statusBar.Show(StatusKey.Saved);
             return true;
         }
 
         private void CloseFile()
         {
-            filePath = "";
-            masterPass = "";
+            if (!isOpen) return;
+            FilePath = "";
+            PrimaryPassword = "";
             gridItems.Clear();
             gridMain.Items.Refresh();
             _dataSearcher.RememberCurrentState();
-            Title = "Passtable for Windows";
+            Title = _appTitle;
             isOpen = false;
             HandleUiWidgets();
         }
@@ -456,7 +486,7 @@ namespace Passtable
             SaveFile(true);
         }
 
-        private void OpenFile(string pathToFile = "")
+        public void OpenFile(string pathToFile = "")
         {
             if (pathToFile == "")
             {
@@ -466,18 +496,18 @@ namespace Passtable
                 };
                 if (openFileDialog.ShowDialog() != true) return;
                 CloseFile(); // close previously opened file, if it is open
-                filePath = openFileDialog.FileName;
+                FilePath = openFileDialog.FileName;
             }
             else
             {
                 CloseFile();
-                filePath = pathToFile;
+                FilePath = pathToFile;
             }
 
             string encryptedData;
             try
             {
-                using (var sr = new StreamReader(filePath))
+                using (var sr = new StreamReader(FilePath))
                 {
                     encryptedData = sr.ReadToEnd();
                 }
@@ -514,7 +544,8 @@ namespace Passtable
                 return;
             }
 
-            if (!Askers.AskPrimaryPassword(this, Askers.Mode.Open, false, ref masterPass))
+            if (Verifier.VerifyPrimary(PrimaryPassword) != 0 && // to open file on app startup
+                !Askers.AskPrimaryPassword(this, Askers.Mode.Open, false, ref _primaryPassword))
             {
                 CloseFile();
                 return;
@@ -525,10 +556,10 @@ namespace Passtable
                 string data;
                 while (true)
                 {
-                    data = AesEncryptor.Decryption(encryptedData, masterPass);
+                    data = AesEncryptor.Decryption(encryptedData, PrimaryPassword);
                     if (data == "/error")
                     {
-                        if (Askers.AskPrimaryPassword(this, Askers.Mode.Open, true, ref masterPass)) continue;
+                        if (Askers.AskPrimaryPassword(this, Askers.Mode.Open, true, ref _primaryPassword)) continue;
                         CloseFile();
                         return;
                     }
@@ -538,7 +569,7 @@ namespace Passtable
 
                 if (data == "/emptyCollection")
                 {
-                    Title = Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
+                    Title = $"{Path.GetFileNameWithoutExtension(FilePath)} – {_appTitle}";
                     isOpen = true;
                     HandleUiWidgets();
                     return;
@@ -552,7 +583,7 @@ namespace Passtable
 
                 gridMain.Items.Refresh();
                 _dataSearcher.RememberCurrentState();
-                Title = Path.GetFileNameWithoutExtension(filePath) + " – Passtable for Windows";
+                Title = $"{Path.GetFileNameWithoutExtension(FilePath)} – {_appTitle}";
                 isOpen = true;
                 HandleUiWidgets();
             }
@@ -588,6 +619,13 @@ namespace Passtable
 
             if (copyIsBlocked) return;
             copyIsBlocked = true;
+            
+            _statusBar.Show(StatusKey.Copied); // correct animation start if placed here.
+            var opacityAnimation = new DoubleAnimation(0.3, 1.0, new Duration(TimeSpan.FromSeconds(0.4)));
+            var cell = DataGridUtils.GetDataGridCell(gridMain.CurrentCell);
+            cell.Opacity = 0.3;
+            cell.BeginAnimation(OpacityProperty, opacityAnimation);
+            
             await Task.Delay(200); // if the user copy too often (without delay), the app crashes.
             copyIsBlocked = false;
 
@@ -618,30 +656,6 @@ namespace Passtable
                 default:
                     throw new ArgumentOutOfRangeException(nameof(key), key, null);
             }
-        }
-
-        private void FindAndCopyToClipboard()
-        {
-            if (gridMain.SelectedItem == null) return;
-            var colId = gridMain.CurrentCell.Column.DisplayIndex;
-            var key = ClipboardKey.Note;
-            if (colId == 2) key = ClipboardKey.Username;
-            if (colId == 3) key = ClipboardKey.Password;
-            CopyToClipboard(key);
-
-            var rowId = gridMain.Items.IndexOf(gridMain.CurrentItem);
-            var row = (DataGridRow)gridMain.ItemContainerGenerator.ContainerFromIndex(rowId);
-
-            var sizeAnimation = new DoubleAnimation(24, 17, new Duration(TimeSpan.FromSeconds(0.4)));
-            var opacityAnimation = new DoubleAnimation(1.0, 0.3, new Duration(TimeSpan.FromSeconds(0.4)));
-
-            var btKey = "btCopyNote";
-            if (colId == 2) btKey = "btCopyUsername";
-            if (colId == 3) btKey = "btCopyPassword";
-
-            DataGridUtils.GetObject<Image>(row, btKey).BeginAnimation(WidthProperty, sizeAnimation);
-            DataGridUtils.GetObject<Image>(row, btKey).BeginAnimation(HeightProperty, sizeAnimation);
-            DataGridUtils.GetObject<Image>(row, btKey).BeginAnimation(OpacityProperty, opacityAnimation);
         }
 
         private void btCopyNote_PreviewMouseUp(object sender, MouseButtonEventArgs e)
@@ -889,6 +903,23 @@ namespace Passtable
         private void TbSearchData_OnLostFocus(object sender, RoutedEventArgs e)
         {
             UnselectRow();
+        }
+
+        protected override void OnStateChanged(EventArgs e)
+        {
+            // fixing HandyControls issue: window maximization now works correctly, but the Win+Up combination
+            // does not work at all. This solution takes into account just pressing the Win key and is the most optimal.
+            if (_maximizeByKey) _maximizeByKey = false;
+            else base.OnStateChanged(e);
+        }
+
+        private void BtNotification_OnClick(object sender, RoutedEventArgs e)
+        {
+            var updateInfoWindow = new UpdateInfoWindow()
+            {
+                Owner = this
+            };
+            updateInfoWindow.ShowDialog();
         }
     }
 }
