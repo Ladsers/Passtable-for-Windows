@@ -88,8 +88,9 @@ namespace Passtable
         public MainWindow()
         {
             InitializeComponent();
-            DevTools.MarkIcon(this);
-            _appTitle = "Passtable for Windows" + DevTools.AddDevelopInfo();
+            //DevTools.MarkIcon(this);
+            //_appTitle = "Passtable for Windows" + DevTools.AddDevelopInfo();
+            _appTitle = "Passtable for Windows";
             Title = _appTitle;
             gridMain.ItemsSource = gridItems;
             gridMain.ClipboardCopyMode = DataGridClipboardCopyMode.None;
