@@ -222,6 +222,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сообщить о проблеме.
+        /// </summary>
+        public static string bt_reportProblem {
+            get {
+                return ResourceManager.GetString("bt_reportProblem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Сохранить.
         /// </summary>
         public static string bt_save {
@@ -254,6 +263,15 @@ namespace Passtable.Resources {
         public static string bt_search_tip {
             get {
                 return ResourceManager.GetString("bt_search_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поддержать разработчика.
+        /// </summary>
+        public static string bt_supportDeveloper {
+            get {
+                return ResourceManager.GetString("bt_supportDeveloper", resourceCulture);
             }
         }
         

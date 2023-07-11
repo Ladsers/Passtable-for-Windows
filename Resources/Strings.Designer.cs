@@ -222,6 +222,15 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report a problem.
+        /// </summary>
+        public static string bt_reportProblem {
+            get {
+                return ResourceManager.GetString("bt_reportProblem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string bt_save {
@@ -254,6 +263,15 @@ namespace Passtable.Resources {
         public static string bt_search_tip {
             get {
                 return ResourceManager.GetString("bt_search_tip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support developer.
+        /// </summary>
+        public static string bt_supportDeveloper {
+            get {
+                return ResourceManager.GetString("bt_supportDeveloper", resourceCulture);
             }
         }
         
@@ -501,7 +519,7 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to     Copyright 2022 Maxim Korolev
+        ///   Looks up a localized string similar to     Copyright 2023 Maxim Korolev
         ///    Licensed under the Apache License, Version 2.0
         ///    
         ///    

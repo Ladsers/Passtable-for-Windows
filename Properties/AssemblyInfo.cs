@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ladsers")]
 [assembly: AssemblyProduct("Passtable")]
-[assembly: AssemblyCopyright("Copyright 2022 Maxim Korolev")]
+[assembly: AssemblyCopyright("Copyright 2023 Maxim Korolev")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,11 +31,11 @@ using System.Windows;
 
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //где расположены словари ресурсов по конкретным тематикам
-                                     //(используется, если ресурс не найден на странице,
-                                     // или в словарях ресурсов приложения)
+    //(используется, если ресурс не найден на странице,
+    // или в словарях ресурсов приложения)
     ResourceDictionaryLocation.SourceAssembly //где расположен словарь универсальных ресурсов
-                                              //(используется, если ресурс не найден на странице,
-                                              // в приложении или в каких-либо словарях ресурсов для конкретной темы)
+    //(используется, если ресурс не найден на странице,
+    // в приложении или в каких-либо словарях ресурсов для конкретной темы)
 )]
 
 
@@ -49,5 +49,5 @@ using System.Windows;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("23.07.0")]
-[assembly: AssemblyFileVersion("23.07.0")]
+[assembly: AssemblyVersion("23.7.0")]
+[assembly: AssemblyFileVersion("23.7.0")]

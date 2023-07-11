@@ -274,4 +274,10 @@
     <data name="bt_downloadNewVersion" xml:space="preserve">
         <value>Загрузить с сайта приложения</value>
     </data>
+    <data name="bt_supportDeveloper" xml:space="preserve">
+        <value>Поддержать разработчика</value>
+    </data>
+    <data name="bt_reportProblem" xml:space="preserve">
+        <value>Сообщить о проблеме</value>
+    </data>
 </root>

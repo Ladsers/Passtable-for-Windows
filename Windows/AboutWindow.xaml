@@ -13,11 +13,11 @@
                 FontSize="13">
         <TabItem Header="{x:Static res:Strings.bt_about}" Width="230" Margin="0, 10, 0, 5">
             <StackPanel Background="White" Orientation="Vertical">
-                <Image Source="{StaticResource PasstableLogo}" HorizontalAlignment="Center" Width="110"
+                <Image Source="{StaticResource PasstableLogo}" HorizontalAlignment="Center" Width="90"
                        Margin="0, 20, 0, 15" />
                 <TextBlock Text="Passtable" HorizontalAlignment="Center" FontFamily="Segoe UI Variable Text"
                            Foreground="{DynamicResource ForegroundLightBrush}"
-                           FontSize="26" FontWeight="SemiBold" Margin="0, 0, 0, 15" />
+                           FontSize="21" FontWeight="SemiBold" Margin="0, 0, 0, 15" />
                 <TextBlock x:Name="tbAbout" HorizontalAlignment="Center" TextAlignment="Center"
                            FontFamily="Segoe UI Variable Text" Foreground="{DynamicResource ForegroundLightBrush}"
                            FontSize="16" />
@@ -33,6 +33,21 @@
                     &#160;
                     <Hyperlink Click="RepoLink_OnClick">https://github.com/Ladsers/Passtable-for-Windows</Hyperlink>
                 </TextBlock>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
+                    <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontFamily="Segoe UI Variable Text"
+                               FontSize="16" Margin="10, 0">
+                        <Hyperlink Click="ReportProblem_OnClick">
+                            <Run Text="{x:Static res:Strings.bt_reportProblem}" />
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock x:Name="tbSupportDeveloper" HorizontalAlignment="Center" TextAlignment="Center"
+                               FontFamily="Segoe UI Variable Text" FontSize="16" Margin="10, 0">
+                        <Hyperlink Click="SupportDeveloper_OnClick">
+                            <Run Text="{x:Static res:Strings.bt_supportDeveloper}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
             </StackPanel>
         </TabItem>
         <TabItem Header="{x:Static res:Strings.bt_license}" Width="230" Margin="0, 10, 0, 5">
