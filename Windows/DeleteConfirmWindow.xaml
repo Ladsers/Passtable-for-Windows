@@ -6,16 +6,13 @@
            xmlns:hc="https://handyorg.github.io/handycontrol"
            xmlns:res="clr-namespace:Passtable.Resources"
            mc:Ignorable="d"
-           SizeToContent="Height" ResizeMode="CanMinimize" ShowMinButton="False" ShowCloseButton="False"
-           Width="415" MinWidth="415" MaxWidth="415"
-           WindowStartupLocation="CenterOwner"
-           Loaded="DeleteConfirmWindow_OnLoaded"
-           LayoutUpdated="DeleteConfirmWindow_OnLayoutUpdated">
+           SizeToContent="Height" ResizeMode="NoResize" ShowMinButton="False" ShowCloseButton="False" Width="415"
+           WindowStartupLocation="CenterOwner">
     <StackPanel>
         <TextBlock Text="{x:Static res:Strings.title_deleteEntry}" FontSize="15" FontWeight="SemiBold"
                    TextAlignment="Center" Margin="10, 0, 10, 0" />
         <TextBlock Text="{x:Static res:Strings.msg_permanentAction}" FontSize="15" TextAlignment="Center"
-                   Margin="10, 14, 10, 22" />
+                   TextWrapping="Wrap" Margin="10, 14, 10, 22" />
         <Grid Margin="10, 0, 10, 10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*" />

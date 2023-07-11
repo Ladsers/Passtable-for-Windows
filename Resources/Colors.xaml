@@ -18,6 +18,7 @@
 
     <Color x:Key="InfoRedPrimaryLight">#FF756C</Color>
     <Color x:Key="InfoRedSecondaryLight">#FFECE9</Color>
+    <Color x:Key="NotificationLight">#F98600</Color>
 
     <SolidColorBrush x:Key="TagNoneLightBrush" Color="{StaticResource TagNoneLight}" />
     <SolidColorBrush x:Key="TagRedLightBrush" Color="{StaticResource TagRedLight}" />
@@ -37,6 +38,7 @@
 
     <SolidColorBrush x:Key="InfoRedPrimaryLightBrush" Color="{StaticResource InfoRedPrimaryLight}" />
     <SolidColorBrush x:Key="InfoRedSecondaryLightBrush" Color="{StaticResource InfoRedSecondaryLight}" />
+    <SolidColorBrush x:Key="NotificationLightBrush" Color="{StaticResource NotificationLight}" />
 
 
     <LinearGradientBrush x:Key="DataGridHeaderBackgroundBrash" EndPoint="0,1" StartPoint="0,0">

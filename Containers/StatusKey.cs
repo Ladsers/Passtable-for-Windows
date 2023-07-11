@@ -4,6 +4,7 @@
     {
         Saved,
         NoEntry,
-        NotEnoughData
+        NotEnoughData,
+        Copied
     }
 }

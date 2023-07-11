@@ -214,7 +214,7 @@
         <value>space</value>
     </data>
     <data name="info_license" xml:space="preserve">
-        <value>    Copyright 2022 Maxim Korolev
+        <value>    Copyright 2023 Maxim Korolev
     Licensed under the Apache License, Version 2.0
     
     
@@ -469,5 +469,26 @@ https://fonts.google.com/icons
     </data>
     <data name="err_fileName_invalid" xml:space="preserve">
         <value>The specified file name is not supported.</value>
+    </data>
+    <data name="toolbar_status_copied" xml:space="preserve">
+        <value>Copied</value>
+    </data>
+    <data name="bt_saveWithCurrentPassword" xml:space="preserve">
+        <value>Save with current password</value>
+    </data>
+    <data name="title_updateAvailable" xml:space="preserve">
+        <value>Update available</value>
+    </data>
+    <data name="info_updateAvailable" xml:space="preserve">
+        <value>Update contains improvements and bug fixes</value>
+    </data>
+    <data name="bt_downloadNewVersion" xml:space="preserve">
+        <value>Download from app site</value>
+    </data>
+    <data name="bt_supportDeveloper" xml:space="preserve">
+        <value>Support developer</value>
+    </data>
+    <data name="bt_reportProblem" xml:space="preserve">
+        <value>Report a problem</value>
     </data>
 </root>

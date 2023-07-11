@@ -2,8 +2,8 @@
 {
     public enum ClipboardKey
     {
-        Note,
-        Username,
-        Password
+        Note = 1,
+        Username = 2,
+        Password = 3
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Passtable.Components
 {
-    public class DataGridUtils
+    public static class DataGridUtils
     {
         public static T GetObject<T>(DependencyObject parent, string objectName) where T : DependencyObject
         {
@@ -39,6 +40,12 @@ namespace Passtable.Components
             }
 
             return foundObject;
+        }
+        
+        public static DataGridCell GetDataGridCell(DataGridCellInfo cellInfo)
+        {
+            var cellContent = cellInfo.Column.GetCellContent(cellInfo.Item);
+            return (DataGridCell)cellContent?.Parent;
         }
     }
 }

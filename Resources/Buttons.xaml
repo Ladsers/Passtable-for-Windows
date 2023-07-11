@@ -114,4 +114,20 @@
         <Setter Property="hc:IconElement.Height" Value="10" />
         <Setter Property="hc:IconElement.Width" Value="10" />
     </Style>
+    
+    <Style x:Key="NotificationButton" TargetType="Button" BasedOn="{StaticResource ButtonDefault}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource NotificationLightBrush}" />
+        <Setter Property="hc:IconElement.Height" Value="40" />
+        <Setter Property="hc:IconElement.Width" Value="40" />
+        <Setter Property="Width" Value="35" />
+        <Setter Property="Margin" Value="4,5,5,0" />
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Focusable" Value="False" />
+        
+        <Setter Property="hc:BackgroundSwitchElement.MouseHoverBackground" Value="{DynamicResource HoverLightBrush}" />
+        <Setter Property="hc:BackgroundSwitchElement.MouseDownBackground" Value="{DynamicResource HoverLightBrush}" />
+        <Setter Property="hc:BorderElement.CornerRadius" Value="3"/>
+    </Style>
+    
 </ResourceDictionary>
