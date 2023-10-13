@@ -20,8 +20,7 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="{x:Static res:Strings.bt_downloadNewVersion}" FontSize="13"
                     Style="{StaticResource ButtonPrimary}" HorizontalAlignment="Stretch" IsDefault="True"
-                    Margin="0, 0, 5, 0" Padding="10, 0"
-                    Click="GoToWebSite_OnClick" />
+                    Height="32" Padding="10, 0" Click="GoToWebSite_OnClick" />
         </Grid>
     </StackPanel>
 </hc:Window>
