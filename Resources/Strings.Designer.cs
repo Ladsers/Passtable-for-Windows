@@ -620,6 +620,10 @@ namespace Passtable.Resources {
         ///Google LLC
         ///Apache License 2.0
         ///https://fonts.google.com/icons
+        ///
+        ///Newtonsoft.Json
+        ///James Newton-King
+        ///https://www.newtonsoft.com/json
         ///.
         /// </summary>
         public static string info_thirdPartyResources {
