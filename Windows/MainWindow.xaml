@@ -6,7 +6,7 @@
            xmlns:res="clr-namespace:Passtable.Resources"
            xmlns:hc="https://handyorg.github.io/handycontrol"
            mc:Ignorable="d"
-           Title="Passtable for Windows" Height="520" Width="750" MinWidth="675" MinHeight="250"
+           Title="Passtable" Height="520" Width="750" MinWidth="675" MinHeight="250"
            Initialized="Window_Initialized" Icon="../icon.ico" Closing="Window_Closing"
            PreviewKeyDown="Window_PreviewKeyDown" Loaded="MainWindow_OnLoaded"
            Drop="MainWindow_OnDrop" AllowDrop="True">
@@ -58,7 +58,7 @@
             </DockPanel>
             <Button x:Name="btNotification" Style="{DynamicResource NotificationButton}"
                     hc:IconElement.Geometry="{DynamicResource IconNotification}"
-                    ToolTip="{x:Static res:Strings.bt_aboutLogPass_tip}" Click="BtNotification_OnClick"
+                    ToolTip="{x:Static res:Strings.title_updateAvailable}" Click="BtNotification_OnClick"
                     Grid.Column="5" Visibility="Collapsed" />
         </Grid>
         <DataGrid x:Name="gridMain" Grid.Row="1" Style="{DynamicResource DataGridMain}"

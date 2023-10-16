@@ -84,13 +84,14 @@ namespace Passtable
 
         private StatusBar _statusBar;
         static MainWindow mainWindow;
+        private static Task<Task> _copyPasswordTask = new Task<Task>(() => Task.CompletedTask);
 
         public MainWindow()
         {
             InitializeComponent();
             //DevTools.MarkIcon(this);
-            //_appTitle = "Passtable for Windows" + DevTools.AddDevelopInfo();
-            _appTitle = "Passtable for Windows";
+            //_appTitle = "Passtable" + DevTools.AddDevelopInfo();
+            _appTitle = "Passtable";
             Title = _appTitle;
             gridMain.ItemsSource = gridItems;
             gridMain.ClipboardCopyMode = DataGridClipboardCopyMode.None;
@@ -161,18 +162,22 @@ namespace Passtable
 
         private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
-            {
-                int vkCode = Marshal.ReadInt32(lParam);
+            if (nCode < 0 || wParam != (IntPtr)WM_KEYDOWN) return CallNextHookEx(_hookID, nCode, wParam, lParam);
 
-                var key = KeyInterop.KeyFromVirtualKey(vkCode);
-                if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && Key.V == key)
+            var vkCode = Marshal.ReadInt32(lParam);
+            var key = KeyInterop.KeyFromVirtualKey(vkCode);
+            if (_copyPasswordTask.Status == TaskStatus.Running ||
+                (Keyboard.Modifiers & ModifierKeys.Control) != ModifierKeys.Control || Key.V != key)
+                return CallNextHookEx(_hookID, nCode, wParam, lParam);
+
+            _copyPasswordTask = Task.Factory.StartNew
+            (async delegate
                 {
-                    Thread.Sleep(400);
-                    if (Clipboard.GetText() != lpSysPassword) Clipboard.SetText(lpSysPassword);
+                    await Task.Delay(TimeSpan.FromMilliseconds(20));
+                    if (Clipboard.GetText() != lpSysPassword) Clipboard.SetDataObject(lpSysPassword);
                     else LogPassAbort(mainWindow.btLogPass);
-                }
-            }
+                }, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.FromCurrentSynchronizationContext()
+            );
 
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
@@ -181,6 +186,8 @@ namespace Passtable
         {
             if (!lpSysWork)
             {
+                UnhookWindowsHookEx(_hookID);
+                
                 if (lpSysRowID < 0)
                 {
                     _statusBar.Show(StatusKey.NoEntry);
@@ -196,7 +203,7 @@ namespace Passtable
                     return;
                 }
 
-                Clipboard.SetText(username);
+                Clipboard.SetDataObject(username);
                 lpSysPassword = password;
                 try
                 {
@@ -214,7 +221,7 @@ namespace Passtable
 
         private static void LogPassAbort(Button button)
         {
-            Clipboard.SetText("");
+            Clipboard.SetDataObject(string.Empty);
             lpSysWork = false;
             UnhookWindowsHookEx(_hookID);
             BtLogPassSetState(false, button);
@@ -635,14 +642,14 @@ namespace Passtable
             switch (key)
             {
                 case ClipboardKey.Note:
-                    Clipboard.SetText(gridItems[rowId].Note);
+                    Clipboard.SetDataObject(gridItems[rowId].Note);
                     break;
                 case ClipboardKey.Username:
-                    Clipboard.SetText(gridItems[rowId].Login);
+                    Clipboard.SetDataObject(gridItems[rowId].Login);
                     break;
                 case ClipboardKey.Password:
                     lpSysPassword = gridItems[rowId].Password; //additional password protection
-                    Clipboard.SetText(lpSysPassword);
+                    Clipboard.SetDataObject(lpSysPassword);
                     try
                     {
                         _hookID = SetHook(_proc);
