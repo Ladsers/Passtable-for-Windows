@@ -496,7 +496,7 @@ https://www.ibm.com/plex
     <data name="bt_supportDeveloper" xml:space="preserve">
         <value>Support developer</value>
     </data>
-    <data name="bt_reportProblem" xml:space="preserve">
-        <value>Report a problem</value>
+    <data name="bt_reportError" xml:space="preserve">
+        <value>Report Error</value>
     </data>
 </root>

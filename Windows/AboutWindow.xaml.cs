@@ -33,9 +33,9 @@ namespace Passtable
             Process.Start("https://github.com/Ladsers/Passtable-for-Windows");
         }
 
-        private void ReportProblem_OnClick(object sender, RoutedEventArgs e)
+        private void ReportError_OnClick(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://ladsers.com/passtable/report-windows/");
+            Process.Start("https://ladsers.com/report/");
         }
 
         private void SupportDeveloper_OnClick(object sender, RoutedEventArgs e)

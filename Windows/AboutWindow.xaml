@@ -37,8 +37,8 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
                     <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontFamily="Segoe UI Variable Text"
                                FontSize="16" Margin="10, 0">
-                        <Hyperlink Click="ReportProblem_OnClick">
-                            <Run Text="{x:Static res:Strings.bt_reportProblem}" />
+                        <Hyperlink Click="ReportError_OnClick">
+                            <Run Text="{x:Static res:Strings.bt_reportError}" />
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock x:Name="tbSupportDeveloper" HorizontalAlignment="Center" TextAlignment="Center"

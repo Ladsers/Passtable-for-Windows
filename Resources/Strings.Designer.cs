@@ -222,11 +222,11 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Report a problem.
+        ///   Looks up a localized string similar to Report Error.
         /// </summary>
-        public static string bt_reportProblem {
+        public static string bt_reportError {
             get {
-                return ResourceManager.GetString("bt_reportProblem", resourceCulture);
+                return ResourceManager.GetString("bt_reportError", resourceCulture);
             }
         }
         

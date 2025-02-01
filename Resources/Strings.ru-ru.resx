@@ -277,7 +277,7 @@
     <data name="bt_supportDeveloper" xml:space="preserve">
         <value>Поддержать разработчика</value>
     </data>
-    <data name="bt_reportProblem" xml:space="preserve">
-        <value>Сообщить о проблеме</value>
+    <data name="bt_reportError" xml:space="preserve">
+        <value>Сообщить об ошибке</value>
     </data>
 </root>
