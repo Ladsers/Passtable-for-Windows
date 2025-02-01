@@ -519,7 +519,7 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to     Copyright 2023 Maxim Korolev
+        ///   Looks up a localized string similar to     Copyright 2025 Maxim Korolev
         ///    Licensed under the Apache License, Version 2.0
         ///    
         ///    
