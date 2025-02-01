@@ -624,7 +624,10 @@ namespace Passtable.Resources {
         ///Newtonsoft.Json
         ///James Newton-King
         ///https://www.newtonsoft.com/json
-        ///.
+        ///
+        ///IBM Plex Sans
+        ///IBM Corp., Mike Abbink, Bold Monday
+        ///https://www.ib [rest of string was truncated]&quot;;.
         /// </summary>
         public static string info_thirdPartyResources {
             get {

@@ -14,9 +14,11 @@
            LayoutUpdated="EditGridWindow_OnLayoutUpdated">
     <StackPanel Orientation="Vertical">
         <TextBox x:Name="tbNote" x:FieldModifier="public" Style="{DynamicResource MultilineEditTextBox}"
-                 hc:InfoElement.Title="{x:Static res:Strings.title_note}" TextChanged="tbNote_TextChanged" />
+                 hc:InfoElement.Title="{x:Static res:Strings.title_note}"
+                 FontFamily="{StaticResource IbmPlexSans}" TextChanged="tbNote_TextChanged" />
         <TextBox x:Name="tbLogin" x:FieldModifier="public" Style="{DynamicResource EditTextBox}"
-                 hc:InfoElement.Title="{x:Static res:Strings.title_username}" TextChanged="tbLogin_TextChanged" />
+                 hc:InfoElement.Title="{x:Static res:Strings.title_username}"
+                 FontFamily="{StaticResource IbmPlexSans}" TextChanged="tbLogin_TextChanged" />
         <Grid Margin="10,5,10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*" />
@@ -24,12 +26,12 @@
             </Grid.ColumnDefinitions>
             <hc:PasswordBox Grid.Column="0" x:Name="pbPassword" Style="{DynamicResource PasswordBox}"
                             hc:InfoElement.Title="{x:Static res:Strings.title_password}" Margin="0,0,5,0"
-                            KeyUp="PbPassword_OnKeyUp" />
+                            FontFamily="{StaticResource IbmPlexSans}" KeyUp="PbPassword_OnKeyUp" />
             <hc:PasswordBox Grid.Column="1" x:Name="pbConfirm"
                             hc:InfoElement.Placeholder="{x:Static res:Strings.edit_leaveBlankToSkip}"
                             Style="{DynamicResource PasswordBox}"
                             hc:InfoElement.Title="{x:Static res:Strings.edit_confirm}" Margin="5,0,0,0"
-                            KeyUp="PbConfirm_OnKeyUp" />
+                            FontFamily="{StaticResource IbmPlexSans}" KeyUp="PbConfirm_OnKeyUp" />
         </Grid>
 
         <hc:ElementGroup x:Name="egTags" Orientation="Horizontal" Layout="Stack" HorizontalAlignment="Left"
