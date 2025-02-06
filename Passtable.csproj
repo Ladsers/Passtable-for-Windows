@@ -121,6 +121,7 @@
     <Page Include="Resources\Buttons.xaml" />
     <Page Include="Resources\Colors.xaml" />
     <Page Include="Resources\DataGrid.xaml" />
+    <Page Include="Resources\Fonts\Fonts.xaml" />
     <Page Include="Resources\Icons.xaml" />
     <Page Include="Resources\Img\BitmapSource.xaml" />
     <Page Include="Resources\StatusBar.xaml" />
@@ -189,6 +190,7 @@
     <PackageReference Include="Resource.Embedder" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Fonts\IbmPlexSansRegular.ttf" />
     <Resource Include="Resources\Img\PasstableLogo.png" />
   </ItemGroup>
   <ItemGroup>

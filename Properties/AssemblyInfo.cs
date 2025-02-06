@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ladsers")]
 [assembly: AssemblyProduct("Passtable")]
-[assembly: AssemblyCopyright("Copyright 2023 Maxim Korolev")]
+[assembly: AssemblyCopyright("Copyright 2025 Maxim Korolev")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -49,5 +49,5 @@ using System.Windows;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("23.10.0")]
-[assembly: AssemblyFileVersion("23.10.0")]
+[assembly: AssemblyVersion("25.2.0")]
+[assembly: AssemblyFileVersion("25.2.0")]

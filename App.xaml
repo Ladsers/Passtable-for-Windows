@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="Resources/Tags.xaml" />
                 <ResourceDictionary Source="Resources/StatusBar.xaml" />
                 <ResourceDictionary Source="Resources/Img/BitmapSource.xaml" />
+                <ResourceDictionary Source="Resources/Fonts/Fonts.xaml" /> 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

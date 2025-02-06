@@ -36,12 +36,22 @@ namespace Passtable.Components
                 return UpdaterCheckResult.ParsingError;
             }
 
-            var lastVer = appVersion.windowsRelease;
-            
-            var currentVerTag = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            currentVerTag = currentVerTag.Remove(currentVerTag.Length - 2);
+            var serverVersionTag = appVersion.windowsRelease;
 
-            return currentVerTag == lastVer ? UpdaterCheckResult.UpToDate : UpdaterCheckResult.NeedUpdate;
+            var currentVersionTag = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            currentVersionTag = currentVersionTag.Remove(currentVersionTag.Length - 2);
+
+            return CompareVersions(currentVersionTag, serverVersionTag);
+        }
+
+        private static UpdaterCheckResult CompareVersions(string currentVersionTag, string serverVersionTag)
+        {
+            var currentVersion = new Version(currentVersionTag);
+            var serverVersion = new Version(serverVersionTag);
+
+            return serverVersion.CompareTo(currentVersion) > 0
+                ? UpdaterCheckResult.NeedUpdate
+                : UpdaterCheckResult.UpToDate;
         }
     }
 }

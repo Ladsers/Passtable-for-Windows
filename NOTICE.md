@@ -1,5 +1,5 @@
 # Passtable (Application for Windows)
-Copyright 2022 Maxim Korolev
+Copyright 2025 Maxim Korolev
 <br /><br />
 ### This software includes binary files and/or source codes from third party:
 
@@ -147,4 +147,10 @@ Web site: https://www.newtonsoft.com/json <br />
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE
 ```
+<br />
+
+**IBM Plex Sans** <br />
+*IBM Corp., Mike Abbink, Bold Monday* <br />
+Web site: https://www.ibm.com/plex/<br />
+SIL Open Font License: https://raw.githubusercontent.com/IBM/plex/master/LICENSE.txt <br />
 <br />

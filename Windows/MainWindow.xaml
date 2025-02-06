@@ -89,7 +89,7 @@
                                 <TextBlock Text="⚫" Style="{DynamicResource TagColor}" FontSize="9"
                                            VerticalAlignment="Center" Margin="5,0,7,0" />
                                 <TextBlock Grid.Column="1" Text="{Binding Note}" VerticalAlignment="Center"
-                                           TextTrimming="CharacterEllipsis" />
+                                           TextTrimming="CharacterEllipsis" FontFamily="{StaticResource IbmPlexSans}" />
                                 <DockPanel Grid.Column="2" Style="{DynamicResource DataGridNoteBtnPanel}">
                                     <Image x:Name="btCopyNote" Style="{DynamicResource ButtonDataGrid}"
                                            Source="{DynamicResource IconClipboard}" Margin="7,0,5,0"
@@ -109,7 +109,7 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding Login}" VerticalAlignment="Center" Margin="5,0,0,0"
-                                           TextTrimming="CharacterEllipsis" />
+                                           TextTrimming="CharacterEllipsis" FontFamily="{StaticResource IbmPlexSans}" />
                                 <DockPanel Grid.Column="1" Style="{DynamicResource DataGridUsernameBtnPanel}">
                                     <Image x:Name="btCopyUsername" Style="{DynamicResource ButtonDataGrid}"
                                            Source="{DynamicResource IconClipboard}" Margin="7,0,5,0"
@@ -129,7 +129,8 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock x:Name="tbPassword" Text="{Binding Password}" Visibility="Collapsed"
-                                           VerticalAlignment="Center" Margin="5,0,0,0" TextTrimming="CharacterEllipsis" />
+                                           VerticalAlignment="Center" Margin="5,0,0,0" TextTrimming="CharacterEllipsis"
+                                           FontFamily="{StaticResource IbmPlexSans}" />
                                 <StackPanel Grid.Column="0" x:Name="spPassword"
                                             Style="{DynamicResource DataGridPasswordBtnPanel}" Orientation="Horizontal"
                                             HorizontalAlignment="Center">

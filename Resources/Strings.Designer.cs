@@ -222,11 +222,11 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Report a problem.
+        ///   Looks up a localized string similar to Report Error.
         /// </summary>
-        public static string bt_reportProblem {
+        public static string bt_reportError {
             get {
-                return ResourceManager.GetString("bt_reportProblem", resourceCulture);
+                return ResourceManager.GetString("bt_reportError", resourceCulture);
             }
         }
         
@@ -519,7 +519,7 @@ namespace Passtable.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to     Copyright 2023 Maxim Korolev
+        ///   Looks up a localized string similar to     Copyright 2025 Maxim Korolev
         ///    Licensed under the Apache License, Version 2.0
         ///    
         ///    
@@ -624,7 +624,10 @@ namespace Passtable.Resources {
         ///Newtonsoft.Json
         ///James Newton-King
         ///https://www.newtonsoft.com/json
-        ///.
+        ///
+        ///IBM Plex Sans
+        ///IBM Corp., Mike Abbink, Bold Monday
+        ///https://www.ib [rest of string was truncated]&quot;;.
         /// </summary>
         public static string info_thirdPartyResources {
             get {
